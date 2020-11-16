@@ -120,5 +120,8 @@
       }
     }
   },
-  "defaultProject": "project-fronted"
+  "defaultProject": "project-fronted",
+  "cli": {
+    "analytics": false
+  }
 }
