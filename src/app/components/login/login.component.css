@@ -1,0 +1,27 @@
+.container-frm{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.frm-login{
+    background-color: #ffffff;
+    width: 95%;
+}
+
+@media(min-width:768px){
+    .frm-login{
+        width: 30%;
+    }
+}
+
+/* Logo content */
+
+.logo-content{
+    padding: .5rem 1rem 0 1rem;
+}
+
+.title{
+    font-size: 2.4rem;
+}
