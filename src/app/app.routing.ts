@@ -5,7 +5,7 @@ import { HomeComponent } from './components/home/home.component';
 
 const appRoutes:Routes=[
     { path:'login', component: LoginComponent },
-    { path:'home', component:HomeComponent }
+    { path:'', component:HomeComponent }
 ];
 
 export const appRoutingProviders:any[]=[];

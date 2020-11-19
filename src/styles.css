@@ -31,9 +31,11 @@ html {
 
 body{
     font-family: var(--openSans);
-    background-color: var(--grayColor);
+    background-color: #ffffff;
     font-size: 62,5%;
     overflow-x: hidden;
+    color: black;
+    z-index: -1000;
 }
 
 /* Classes text */
@@ -60,4 +62,10 @@ body{
 
 .border-color{
     border: 1px solid var(--borderColor) !important;
+}
+
+.container{
+    width: 90%;
+    margin: 0 auto;
+    max-width: 1200px;
 }
