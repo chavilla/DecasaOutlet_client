@@ -18,7 +18,7 @@
 
 @media(min-width:768px){
     .frm-login{
-        width: 25% !important; 
+        width: 20% !important; 
     }
 }
 
@@ -46,8 +46,14 @@
 .input-field i{
     color: #DE5900;
     position: absolute;
-    left: 260px;
-    top: 35px;
+    left: 80%;
+    top: 52%;
+}
+
+@media(min-width:768px){
+    .input-field i {
+        left: 83%;
+    }
 }
 
 .input-field:last-of-type{
@@ -56,7 +62,7 @@
 
 .input-field label{
     font-size: .8rem;
-    font-weight: 700;
+    font-weight: 500;
     margin-bottom: .5rem;
     color: #DE5900;
 }
@@ -75,7 +81,7 @@
     box-shadow: none;
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
-    border: 2px solid rgba(49,59,70,.4);
+    border: 1px solid #DE5900;
 }
 
 .input-field input[type="submit"]{
@@ -92,4 +98,12 @@
 .input-field input[type="submit"]:hover{
     background-color: #DE5900;
     opacity: 0.9;
+}
+
+.error {
+    color: red;
+    font-size: 0.8rem;
+    position: absolute;
+    right: 15px;
+    top: 100%;
 }

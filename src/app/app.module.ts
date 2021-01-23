@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/ui/navbar/navbar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,9 @@ import { NavbarComponent } from './components/ui/navbar/navbar.component';
   ],
   imports: [
     BrowserModule,
-    routing
+    routing,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     appRoutingProviders

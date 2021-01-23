@@ -1,15 +1,20 @@
 <div class="container-frm">
-    <form action="" class="frm-login">
+    <form class="frm-login" [formGroup]="frame" (ngSubmit)="onSubmit(frame)"  novalidate>
         <h2 class="text-center text-uppercase font-bold-openSans title text-gray">Login</h2>
         <div class="input-field">
             <i class="fas fa-user-alt"></i>
             <label for="email">Usuario</label>
-            <input type="email" id="email" placeholder="Email Aquí">
+            <input type="email" id="email" class="email" placeholder="Email Aquí" formControlName="email" autocomplete="off">
+            <div class="error" *ngIf="frame.get('email').hasError('required')">Email es requerido</div>
+            <div class="error" *ngIf="frame.get('email').hasError('email')">Email no válido</div>
         </div>
+       <!--  <div class="error" ngIf*="">Campo Requerido</div> -->
         <div class="input-field">
             <i class="fas fa-key"></i>
             <label for="password">Contraseña</label>
-            <input type="password" id="password" placeholder="Password Aquí">
+            <input type="password" id="password" class="password" placeholder="Password Aquí" formControlName="password" autocomplete="off">
+            <div class="error" *ngIf="frame.get('password').hasError('required')">Password es requerido</div>
+            <div class="error" *ngIf="frame.get('password').hasError('min')">Password debe tener al menos 8</div>
         </div>
         <div class="input-field">
             <input type="submit" value="Enviar" />
