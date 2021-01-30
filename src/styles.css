@@ -4,7 +4,8 @@
 /* apply a natural box layout model to all elements, but allowing components to change */
 
 :root{
-    --mainColor: #DE5900;
+    --mainColor: #FC7323;
+    --alpha: rgba(252,115,35, 0.8);
     --grayColor: #ECEAE9;
     --textGrayColor: #ADADAD;
     --openSans: 'Open Sans', sans-serif;
@@ -20,7 +21,7 @@
 
 html {
     box-sizing: border-box;
-    overflow-y: hidden;
+    overflow: hidden;
   }
 
   *, *:before, *:after {
@@ -29,41 +30,20 @@ html {
 
 body{
     font-family: var(--openSans);
-    background-color: #ffffff;
+    background-color: var(--grayColor);
     font-size: 62,5%;
-    overflow-x: hidden;
     color: black;
     z-index: -1000;
 }
 
-/* Classes text */
-
-.text-center{
-    text-align: center;
+.text-primary {
+    color:var(--mainColor) !important;
 }
 
-.text-uppercase{
-    text-transform: uppercase;
+.text-primary:hover {
+    color: var(--mainColor) !important;
 }
 
-.text-main{
-    color: var(--mainColor);
-}
-
-.text-gray{
-    color: var(--textGrayColor);
-}
-
-.font-bold-openSans{
-    font-weight: var(--openSansFontWeight700);
-}
-
-.border-color{
-    border: 1px solid var(--borderColor) !important;
-}
-
-.container{
-    width: 90%;
-    margin: 0 auto;
-    max-width: 1200px;
+a {
+    text-decoration: none;
 }

@@ -1,38 +1,50 @@
-<nav class="navbar">
-    <div class="container">
-        <div class="content-navbar-logo">
-            <img src="assets/img/logo-outlet.png" alt="logo-outlet">
-            <div class="logout-icon">
-                <i class="fas fa-power-off"></i>
-            </div>
-        </div>
+<div class="py-1">
+  <div class="container ">
+    <div class="d-flex align-items-center justify-content-between">
+      <a class="navbar-brand" href="#">
+        <img class="logo" src="assets/img/logo-outlet.png" alt="logo">
+      </a>
+      <a  class="text-primary link-logout">Cerrar Sessión</a>
     </div>
-</nav>
 
-<div class="menu">
-    <div class="menu-list container">
-        <div class="menu-item">
-            <div class="header-item">
-                <p>Movimientos</p>
-                <i class="fas fa-caret-down"></i>
-            </div>
-            <div class="submenu s-first">
-                <a href="">Facturar</a>
-                <a href="">Ingresar Usuario</a>
-                <a href="">Ingresar Venta</a>
-            </div>
-        </div>
-       
-        <div class="menu-item">
-            <div class="header-item">
-                <p>Consultas</p>
-                <i class="fas fa-caret-down"></i>
-            </div>
-            <div class="submenu s-second">
-                <a href="">Facturar</a>
-                <a href="">Ingresar Usuario</a>
-                <a href="">Ingresar Venta</a>
-            </div>
-        </div>
-    </div>
+  </div>
 </div>
+
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"
+      (click)="navbarCollapsed = !navbarCollapsed">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown" [ngbCollapse]="navbarCollapsed">
+      <ul class="navbar-nav">
+        <li ngbDropdown class="nav-item dropdown mr-3">
+          <a ngbDropdownToggle class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Movimientos
+          </a>
+          <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item text-primary" href="#">Categoría</a>
+            <a class="dropdown-item text-primary" href="#">Producto</a>
+            <a class="dropdown-item text-primary" href="#">Entrada</a>
+            <a class="dropdown-item text-primary" href="#">Factura</a>
+          </div>
+        </li>
+        <li ngbDropdown class="nav-item dropdown">
+          <a ngbDropdownToggle class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Consultas
+          </a>
+          <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item text-primary" href="#">Categorías</a>
+            <a class="dropdown-item text-primary" href="#">Productos</a>
+            <a class="dropdown-item text-primary" href="#">Entradas</a>
+            <a class="dropdown-item text-primary" href="#">Facturas</a>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>

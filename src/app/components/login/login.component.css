@@ -18,7 +18,8 @@
 
 @media(min-width:768px){
     .frm-login{
-        width: 20% !important; 
+        padding: .7rem;
+        width: 25% !important; 
     }
 }
 
