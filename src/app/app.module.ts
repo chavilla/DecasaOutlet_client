@@ -8,13 +8,19 @@ import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/ui/navbar/navbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProductStoreComponent } from './components/products/product-store/product-store.component';
+import { ProductAddFrameComponent } from './components/products/product-add-frame/product-add-frame.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    ProductStoreComponent,
+    ProductAddFrameComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

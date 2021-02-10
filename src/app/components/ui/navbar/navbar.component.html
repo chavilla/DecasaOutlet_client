@@ -1,7 +1,7 @@
 <div class="py-1">
   <div class="container ">
     <div class="d-flex align-items-center justify-content-between">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" [routerLink]="['/home']">
         <img class="logo" src="assets/img/logo-outlet.png" alt="logo">
       </a>
       <a  class="text-primary link-logout">Cerrar Sessión</a>
@@ -20,19 +20,19 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown" [ngbCollapse]="navbarCollapsed">
       <ul class="navbar-nav">
         <li ngbDropdown class="nav-item dropdown mr-3">
-          <a ngbDropdownToggle class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+          <a ngbDropdownToggle class="nav-link text-white dropdown-toggle" id="navbarDropdownMenuLink" role="button"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Movimientos
           </a>
           <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item text-primary" href="#">Categoría</a>
-            <a class="dropdown-item text-primary" href="#">Producto</a>
+            <a class="dropdown-item text-primary" [routerLink]="['/product']">Producto</a>
             <a class="dropdown-item text-primary" href="#">Entrada</a>
             <a class="dropdown-item text-primary" href="#">Factura</a>
           </div>
         </li>
         <li ngbDropdown class="nav-item dropdown">
-          <a ngbDropdownToggle class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+          <a ngbDropdownToggle class="nav-link text-white dropdown-toggle" id="navbarDropdownMenuLink" role="button"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Consultas
           </a>
