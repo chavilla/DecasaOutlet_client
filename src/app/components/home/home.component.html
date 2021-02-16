@@ -1,7 +1,19 @@
-
-<app-navbar>
-</app-navbar>
-
-<div class="container">
-<h1 class="text-center text-primary">Home</h1>
-</div>
+<mat-drawer-container class="container" autosize>
+	<mat-drawer #drawer class="sidenav" mode="side">
+		<div class="div-logo">
+			<img src="assets/img/logo-outlet.png" alt="logo">
+		</div>
+		<div></div>
+	</mat-drawer>
+  
+	<div class="main-content">
+		<div class="_navup">
+			<button type="button" mat-button (click)="drawer.toggle()">
+				<i class="fas fa-bars"></i> 
+			</button>
+			<div class="">Hola Jesús</div>
+		</div>
+	  <router-outlet></router-outlet>
+	</div>
+  
+  </mat-drawer-container>
