@@ -1,0 +1,62 @@
+<div class="div-sidebar">
+	<h2 class="title-menu">Menú</h2>
+	<mat-accordion class="accordion">
+
+		<!-- products -->
+		<mat-expansion-panel class="item" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+			<mat-expansion-panel-header>
+				<mat-panel-title style="flex-grow: 0;">
+					<i class="fab fa-product-hunt"></i>
+				</mat-panel-title>
+				<mat-panel-title>
+					Productos
+				</mat-panel-title>
+				<div>
+					<i class="fas fa-angle-down"></i>
+				</div>
+			</mat-expansion-panel-header>
+			<div class="sub-items">
+				<a [routerLink]="['product/add']" >Añadir</a>
+				<a [routerLink]="['product/store']" >Ver todos</a>
+			</div>
+		</mat-expansion-panel>
+
+		<!-- clients -->
+		<mat-expansion-panel class="item" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+			<mat-expansion-panel-header>
+				<mat-panel-title style="flex-grow: 0;">
+					<i class="fas fa-person-booth"></i>
+				</mat-panel-title>
+				<mat-panel-title>
+					Clientes
+				</mat-panel-title>
+				<div>
+					<i class="fas fa-angle-down"></i>
+				</div>
+			</mat-expansion-panel-header>
+			<div class="sub-items">
+				<a [routerLink]="['product/add']" >Añadir</a>
+				<a [routerLink]="['product/store']" >Ver todos</a>
+			</div>
+		</mat-expansion-panel>
+
+		<!-- Invoices -->
+		<mat-expansion-panel class="item" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+			<mat-expansion-panel-header>
+				<mat-panel-title style="flex-grow: 0;">
+					<i class="fas fa-file-invoice-dollar"></i>
+				</mat-panel-title>
+				<mat-panel-title>
+					Facturas
+				</mat-panel-title>
+				<div>
+					<i class="fas fa-angle-down"></i>
+				</div>
+			</mat-expansion-panel-header>
+			<div class="sub-items">
+				<a [routerLink]="['product/add']" >Añadir</a>
+				<a [routerLink]="['product/store']" >Ver todos</a>
+			</div>
+		</mat-expansion-panel>
+	</mat-accordion>
+</div>

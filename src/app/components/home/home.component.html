@@ -3,7 +3,9 @@
 		<div class="div-logo">
 			<img src="assets/img/logo-outlet.png" alt="logo">
 		</div>
-		<div></div>
+		<div>
+			<app-sidebar></app-sidebar>
+		</div>
 	</mat-drawer>
   
 	<div class="main-content">
@@ -11,7 +13,10 @@
 			<button type="button" mat-button (click)="drawer.toggle()">
 				<i class="fas fa-bars"></i> 
 			</button>
-			<div class="">Hola Jesús</div>
+			<div class="">
+				Hola Jesús
+			</div>
+			<div class=""><a [routerLink]="['../login']" class="logout">Cerrar Sesión</a></div>
 		</div>
 	  <router-outlet></router-outlet>
 	</div>

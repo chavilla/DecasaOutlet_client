@@ -13,6 +13,7 @@ import { ProductAddFrameComponent } from './components/products/product-add-fram
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './material/angular-material.module';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AngularMaterialModule } from './material/angular-material.module';
     NavbarComponent,
     ProductStoreComponent,
     ProductAddFrameComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

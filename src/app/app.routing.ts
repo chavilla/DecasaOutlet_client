@@ -12,6 +12,7 @@ const appRoutes: Routes = [
         path: 'app', component: HomeComponent, children: [
             { path: 'product', component: ProductStoreComponent },
             { path: 'product/add', component: ProductAddFrameComponent },
+            { path: 'product/store', component: ProductStoreComponent },
         ]
     },
     { path: '', redirectTo: '/app', pathMatch: 'full' },

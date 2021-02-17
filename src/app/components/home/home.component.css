@@ -13,10 +13,26 @@
 	background-color: #FAFBFC;
 	padding: 1rem 0;
 	color: #6C757D;
-	display: flex;
-	justify-content: space-between;
+	display: grid;
+	grid-template-columns: 60% 20% 20%;
 	padding: 1rem 2rem;
 	overflow: hidden;
+  }
+
+  .logout {
+	  text-decoration: none;
+	  color: #6C757D;
+  }
+
+  @media(min-width:768px) {
+	._navup {
+		display: grid;
+		grid-template-columns: 80% 10% 10%;
+	}
+
+	._navup button {
+		text-align: left;
+	}
   }
 
   .main-content button {
@@ -34,8 +50,8 @@
   .sidenav {
 	background-color: #ffffff;
 	color: #fe4918;
-	padding: 20px;
 	width: 75%;
+	padding-top: 1rem;
   }
 
   @media(min-width:768px){
