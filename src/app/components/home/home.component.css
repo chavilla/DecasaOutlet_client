@@ -59,6 +59,7 @@
 .item-title i {
   font-size: 1.2rem;
   font-weight: 700;
+  width: 18px;
 }
 
 .item-icon i {
@@ -120,6 +121,11 @@
   .layout-logout, .layout-user {
     text-align: center;
   }
+
+  .layout-logout {
+    cursor: pointer;
+  }
+
   .title {
     display: block;
   }
@@ -128,5 +134,6 @@
 
 div.content {
   background-color: var(--grayColor);
-  height: 100vh !important;
+  min-height: 100vh !important;
+  padding: 2rem 0;
 }

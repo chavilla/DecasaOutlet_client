@@ -1,29 +1,56 @@
 .container-dashboard {
-	margin: 0 auto;
-	padding-top: 3rem;
-	width: 95%;
+  margin: 0 auto;
+  width: 95%;
+  height: 100%;
 }
 
-.cards-zone {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+@media(min-width:768px) {
+  .cards-zone {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding-bottom: 2rem;
+  }
+
+  .card {
+    margin: 0 auto;
+  }
 }
 
 .card {
-	background-color: #ffffff;
-	box-shadow: 0 0.46875rem 2.1875rem rgb(4 9 20 / 3%), 0 0.9375rem 1.40625rem rgb(4 9 20 / 3%), 0 0.25rem 0.53125rem rgb(4 9 20 / 5%), 0 0.125rem 0.1875rem rgb(4 9 20 / 3%);
-	box-sizing: border-box;
-	margin: 0 auto;
-	padding: 2rem;
-	width: 90%;
-  }
-  
-  .card p {
-	  color: #B4B7BA;
-	  font-size: 1.2rem;
-  }
+  background-color: #ffffff;
+  box-shadow: 0 0.46875rem 2.1875rem rgb(4 9 20 / 3%), 0 0.9375rem 1.40625rem rgb(4 9 20 / 3%), 0 0.25rem 0.53125rem rgb(4 9 20 / 5%), 0 0.125rem 0.1875rem rgb(4 9 20 / 3%);
+  box-sizing: border-box;
+  margin: 1rem auto;
+  padding: 2rem;
+  width: 90%;
+}
 
-  .card p span {
-	  color: black;
-	  font-size: 1.6rem;
-  }
+.card p {
+  color: var(--textGrayColor);
+  font-size: 1.2rem;
+}
+
+.card p span {
+  color: black;
+  font-size: 1.7rem;
+}
+
+.card h3 {
+  color: var(--textGrayColor);
+}
+
+.borderBottomGreen {
+  border-bottom: 5px solid #3AC47D;
+}
+
+.borderBottomBlue {
+  border-bottom: 5px solid #3F6AD8;
+}
+
+.borderBottomYellow {
+  border-bottom: 5px solid #F9CF6A;
+}
+
+.borderBottomRed {
+  border-bottom: 5px solid #D92550;
+}

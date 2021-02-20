@@ -9,7 +9,7 @@
 
     <!-- menu -->
     <mat-toolbar class="toolbar-sidenav">Menu</mat-toolbar>
-    <mat-expansion-panel class="item" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel class="item">
       <mat-expansion-panel-header class="item-header">
         <mat-panel-title class="item-title" style="flex-grow: 0;" >
           <i class="fab fa-product-hunt"></i>
@@ -26,6 +26,121 @@
         <a [routerLink]="['product/store']" routerLinkActive="router-link-active"  class="submenu-item">Ver Todo</a>
       </div>
     </mat-expansion-panel>
+
+    <!-- category -->
+    <mat-expansion-panel class="item">
+      <mat-expansion-panel-header class="item-header">
+        <mat-panel-title class="item-title" style="flex-grow: 0;" >
+          <i class="fas fa-arrows-alt"></i>
+        </mat-panel-title>
+        <mat-panel-title class="item-title">
+          Categorías
+        </mat-panel-title>
+        <div class="item-icon">
+          <i class="fas fa-angle-down"></i>
+        </div>
+      </mat-expansion-panel-header>
+      <div class="submenu">
+        <a [routerLink]="['product/add']" routerLinkActive="router-link-active"  class="submenu-item">Añadir</a>
+        <a [routerLink]="['product/store']" routerLinkActive="router-link-active"  class="submenu-item">Ver Todo</a>
+      </div>
+    </mat-expansion-panel>
+
+    <!-- Entradas -->
+    <mat-expansion-panel class="item">
+      <mat-expansion-panel-header class="item-header">
+        <mat-panel-title class="item-title" style="flex-grow: 0;" >
+          <i class="fas fa-arrow-left"></i>
+        </mat-panel-title>
+        <mat-panel-title class="item-title">
+          Entradas
+        </mat-panel-title>
+        <div class="item-icon">
+          <i class="fas fa-angle-down"></i>
+        </div>
+      </mat-expansion-panel-header>
+      <div class="submenu">
+        <a [routerLink]="['product/add']" routerLinkActive="router-link-active"  class="submenu-item">Añadir</a>
+        <a [routerLink]="['product/store']" routerLinkActive="router-link-active"  class="submenu-item">Ver Todo</a>
+      </div>
+    </mat-expansion-panel>
+
+     <!-- Inventory -->
+     <mat-expansion-panel class="item">
+      <mat-expansion-panel-header class="item-header">
+        <mat-panel-title class="item-title" style="flex-grow: 0;" >
+          <i class="fas fa-warehouse"></i>
+        </mat-panel-title>
+        <mat-panel-title class="item-title">
+          Inventarios
+        </mat-panel-title>
+        <div class="item-icon">
+          <i class="fas fa-angle-down"></i>
+        </div>
+      </mat-expansion-panel-header>
+      <div class="submenu">
+        <a [routerLink]="['product/add']" routerLinkActive="router-link-active"  class="submenu-item">Añadir</a>
+        <a [routerLink]="['product/store']" routerLinkActive="router-link-active"  class="submenu-item">Ver Todo</a>
+      </div>
+    </mat-expansion-panel>
+
+    <!-- Invoices -->
+    <mat-expansion-panel class="item">
+      <mat-expansion-panel-header class="item-header">
+        <mat-panel-title class="item-title" style="flex-grow: 0;" >
+          <i class="fas fa-file-invoice-dollar"></i>
+        </mat-panel-title>
+        <mat-panel-title class="item-title">
+          Facturas
+        </mat-panel-title>
+        <div class="item-icon">
+          <i class="fas fa-angle-down"></i>
+        </div>
+      </mat-expansion-panel-header>
+      <div class="submenu">
+        <a [routerLink]="['product/add']" routerLinkActive="router-link-active"  class="submenu-item">Añadir</a>
+        <a [routerLink]="['product/store']" routerLinkActive="router-link-active"  class="submenu-item">Ver Todo</a>
+      </div>
+    </mat-expansion-panel>
+
+     <!-- Clients -->
+     <mat-expansion-panel class="item">
+      <mat-expansion-panel-header class="item-header">
+        <mat-panel-title class="item-title" style="flex-grow: 0;" >
+          <i class="fas fa-address-book"></i>
+        </mat-panel-title>
+        <mat-panel-title class="item-title">
+          Clientes
+        </mat-panel-title>
+        <div class="item-icon">
+          <i class="fas fa-angle-down"></i>
+        </div>
+      </mat-expansion-panel-header>
+      <div class="submenu">
+        <a [routerLink]="['product/add']" routerLinkActive="router-link-active"  class="submenu-item">Añadir</a>
+        <a [routerLink]="['product/store']" routerLinkActive="router-link-active"  class="submenu-item">Ver Todo</a>
+      </div>
+    </mat-expansion-panel>
+
+     <!-- Users -->
+     <mat-expansion-panel class="item">
+      <mat-expansion-panel-header class="item-header">
+        <mat-panel-title class="item-title" style="flex-grow: 0;" >
+          <i class="fas fa-user-friends"></i>
+        </mat-panel-title>
+        <mat-panel-title class="item-title">
+          Usuarios
+        </mat-panel-title>
+        <div class="item-icon">
+          <i class="fas fa-angle-down"></i>
+        </div>
+      </mat-expansion-panel-header>
+      <div class="submenu">
+        <a [routerLink]="['product/add']" routerLinkActive="router-link-active"  class="submenu-item">Añadir</a>
+        <a [routerLink]="['product/store']" routerLinkActive="router-link-active"  class="submenu-item">Ver Todo</a>
+      </div>
+    </mat-expansion-panel>
+
   </mat-sidenav>
   <!-- end sidenav -->
 
@@ -38,7 +153,7 @@
       </button>
       <span class="title">project-fronted</span>
         <p class="layout-user" >Jesús charris</p>
-        <p class="layout-logout">Cerrar Sesión</p>
+        <p class="layout-logout" (click)="logout()">Cerrar Sesión</p>
     </mat-toolbar>
 
     <!-- Add Content Here -->
