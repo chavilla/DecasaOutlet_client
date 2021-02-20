@@ -1,0 +1,29 @@
+.container-dashboard {
+	margin: 0 auto;
+	padding-top: 3rem;
+	width: 95%;
+}
+
+.cards-zone {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+}
+
+.card {
+	background-color: #ffffff;
+	box-shadow: 0 0.46875rem 2.1875rem rgb(4 9 20 / 3%), 0 0.9375rem 1.40625rem rgb(4 9 20 / 3%), 0 0.25rem 0.53125rem rgb(4 9 20 / 5%), 0 0.125rem 0.1875rem rgb(4 9 20 / 3%);
+	box-sizing: border-box;
+	margin: 0 auto;
+	padding: 2rem;
+	width: 90%;
+  }
+  
+  .card p {
+	  color: #B4B7BA;
+	  font-size: 1.2rem;
+  }
+
+  .card p span {
+	  color: black;
+	  font-size: 1.6rem;
+  }

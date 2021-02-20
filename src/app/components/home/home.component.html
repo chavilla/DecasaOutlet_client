@@ -1,24 +1,49 @@
-<mat-drawer-container class="container" autosize>
-	<mat-drawer #drawer class="sidenav" mode="side">
-		<div class="div-logo">
-			<img src="assets/img/logo-outlet.png" alt="logo">
-		</div>
-		<div>
-			<app-sidebar></app-sidebar>
-		</div>
-	</mat-drawer>
-  
-	<div class="main-content">
-		<div class="_navup">
-			<button type="button" mat-button (click)="drawer.toggle()">
-				<i class="fas fa-bars"></i> 
-			</button>
-			<div class="">
-				Hola Jesús
-			</div>
-			<div class=""><a [routerLink]="['../login']" class="logout">Cerrar Sesión</a></div>
-		</div>
-	  <router-outlet></router-outlet>
-	</div>
-  
-  </mat-drawer-container>
+<mat-sidenav-container class="sidenav-container">
+
+  <!-- sidenav -->
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    <div class="image-logo">
+      <img src="assets/img/logo-outlet.png" alt="logo outlet" class="logo">
+    </div>
+
+    <!-- menu -->
+    <mat-toolbar class="toolbar-sidenav">Menu</mat-toolbar>
+    <mat-expansion-panel class="item" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header class="item-header">
+        <mat-panel-title class="item-title" style="flex-grow: 0;" >
+          <i class="fab fa-product-hunt"></i>
+        </mat-panel-title>
+        <mat-panel-title class="item-title">
+          Productos
+        </mat-panel-title>
+        <div class="item-icon">
+          <i class="fas fa-angle-down"></i>
+        </div>
+      </mat-expansion-panel-header>
+      <div class="submenu">
+        <a [routerLink]="['product/add']" routerLinkActive="router-link-active"  class="submenu-item">Añadir</a>
+        <a [routerLink]="['product/store']" routerLinkActive="router-link-active"  class="submenu-item">Ver Todo</a>
+      </div>
+    </mat-expansion-panel>
+  </mat-sidenav>
+  <!-- end sidenav -->
+
+  <!-- main content -->
+  <mat-sidenav-content>
+    <mat-toolbar class="toolbar-header">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span class="title">project-fronted</span>
+        <p class="layout-user" >Jesús charris</p>
+        <p class="layout-logout">Cerrar Sesión</p>
+    </mat-toolbar>
+
+    <!-- Add Content Here -->
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

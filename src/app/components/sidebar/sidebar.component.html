@@ -1,62 +1,27 @@
-<div class="div-sidebar">
-	<h2 class="title-menu">Menú</h2>
-	<mat-accordion class="accordion">
-
-		<!-- products -->
-		<mat-expansion-panel class="item" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-			<mat-expansion-panel-header>
-				<mat-panel-title style="flex-grow: 0;">
-					<i class="fab fa-product-hunt"></i>
-				</mat-panel-title>
-				<mat-panel-title>
-					Productos
-				</mat-panel-title>
-				<div>
-					<i class="fas fa-angle-down"></i>
-				</div>
-			</mat-expansion-panel-header>
-			<div class="sub-items">
-				<a [routerLink]="['product/add']" >Añadir</a>
-				<a [routerLink]="['product/store']" >Ver todos</a>
-			</div>
-		</mat-expansion-panel>
-
-		<!-- clients -->
-		<mat-expansion-panel class="item" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-			<mat-expansion-panel-header>
-				<mat-panel-title style="flex-grow: 0;">
-					<i class="fas fa-person-booth"></i>
-				</mat-panel-title>
-				<mat-panel-title>
-					Clientes
-				</mat-panel-title>
-				<div>
-					<i class="fas fa-angle-down"></i>
-				</div>
-			</mat-expansion-panel-header>
-			<div class="sub-items">
-				<a [routerLink]="['product/add']" >Añadir</a>
-				<a [routerLink]="['product/store']" >Ver todos</a>
-			</div>
-		</mat-expansion-panel>
-
-		<!-- Invoices -->
-		<mat-expansion-panel class="item" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-			<mat-expansion-panel-header>
-				<mat-panel-title style="flex-grow: 0;">
-					<i class="fas fa-file-invoice-dollar"></i>
-				</mat-panel-title>
-				<mat-panel-title>
-					Facturas
-				</mat-panel-title>
-				<div>
-					<i class="fas fa-angle-down"></i>
-				</div>
-			</mat-expansion-panel-header>
-			<div class="sub-items">
-				<a [routerLink]="['product/add']" >Añadir</a>
-				<a [routerLink]="['product/store']" >Ver todos</a>
-			</div>
-		</mat-expansion-panel>
-	</mat-accordion>
-</div>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item href="#">Link 1</a>
+      <a mat-list-item href="#">Link 2</a>
+      <a mat-list-item href="#">Link 3</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>project-fronted</span>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

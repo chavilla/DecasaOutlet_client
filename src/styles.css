@@ -1,0 +1,24 @@
+html {
+	box-sizing: border-box;
+  }
+  *, *:before, *:after {
+	box-sizing: inherit;
+}
+
+html, body {
+	height: 100% !important;
+}
+
+:root {
+	--grayColor:#F1F4F6;
+	--grayHeaderColor: #FAFBFC;
+	--orangeColor: #fe4918;
+	--whiteColor: #ffffff;
+	--darkGrayColor: #6C757D;
+	/* text */
+	--textGrayColor: #838a91;
+}
+
+a {
+	text-decoration: none;
+}
