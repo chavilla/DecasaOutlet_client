@@ -17,12 +17,13 @@ export class LoginComponent implements OnInit {
     this.frame = this.fb.group({
       // first: defaultValue, validators
       email: [ '', [Validators.required, Validators.email]],
-      password: ['', [Validators.minLength(8), Validators.maxLength(16), Validators.required]],
+      password: ['', [Validators.required]],
     });
   }
 
-  onSubmit(frame): void {
-    console.log(frame);
+  onSubmit(frame:FormGroup): void {
+
+    const { email, password } = frame.value;
     
   }
 

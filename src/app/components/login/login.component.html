@@ -12,12 +12,12 @@
         <div class="input-field">
             <i class="fas fa-key"></i>
             <label for="password">Contraseña</label>
-            <input type="password" id="password" class="password" placeholder="Password Aquí" formControlName="password" autocomplete="off">
+            <input type="password" id="password" class="password" placeholder="Contraseña Aquí" formControlName="password" autocomplete="off">
             <div class="error" *ngIf="frame.get('password').hasError('required')">Password es requerido</div>
             <div class="error" *ngIf="frame.get('password').hasError('min')">Password debe tener al menos 8</div>
         </div>
         <div class="input-field">
-            <input type="submit" value="Enviar" />
+            <input type="submit" value="Enviar" [disabled]="!frame.valid" />
         </div>
     </form>
 </div>
