@@ -138,3 +138,23 @@
     right: 25px;
     top: 100%;
 }
+
+.errorLoginMessage {
+    background-color: rgb(235, 74, 74);
+    border-radius: 5px;
+    bottom: 30px;
+    color: #ffffff;
+    left: 50%;
+    position: fixed;
+    padding: .7rem .5rem;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 90%;
+}
+
+@media(min-width:768px) {
+    .errorLoginMessage {
+        bottom: 50px;
+        width: 25%;
+    }
+}
