@@ -1,0 +1,19 @@
+<form [formGroup]="form" class="normal-form" (ngSubmit)="saveCategory(form,messageDialog)">
+	<div class="input-fields-zone">
+		<h2 class="text-center text-uppercase font-bold-openSans title text-orange">Crear Categoría</h2>
+		<div class="form-control-group">
+			<div class="input-field">
+				<label for="name">Nombre (Ejemplo: Hogar, Cocina, Deportes, etc)</label>
+				<input type="text" id="name" class="name" placeholder="Descripción Aquí" formControlName="name" autocomplete="off">
+				<div class="error" *ngIf="form.get('name').hasError('required')">Nombre es requerido</div>
+				<div class="error" *ngIf="form.get('name').hasError('pattern')">Nombre no válido</div>
+			</div>
+			
+			<div class="input-field">
+				<input type="submit" value="Enviar" [disabled]="!form.valid" />
+			</div>
+		</div>
+	</div>
+</form>
+
+<div #messageDialog class="hide">{{message}}</div>

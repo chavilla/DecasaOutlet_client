@@ -7,6 +7,7 @@ import { ProductAddFrameComponent } from './components/products/product-add-fram
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthServiceGuard } from './auth-guard-service.guard';
+import { CategoriesAddComponent } from './components/categories/categories-add/categories-add.component';
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -15,6 +16,7 @@ const appRoutes: Routes = [
             { path: '', component: DashboardComponent },
             { path: 'product', component: ProductStoreComponent },
             { path: 'product/add', component: ProductAddFrameComponent },
+            { path: 'categories/add', component: CategoriesAddComponent },
             { path: '**', redirectTo:'', pathMatch:'full' },
         ],
         canActivate:[ AuthServiceGuard],

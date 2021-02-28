@@ -20,6 +20,8 @@ import { LoginService } from './services/login.service';
 import { AuthServiceGuard } from './auth-guard-service.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { ProductService } from './services/product-service.service';
+import { CategoriesAddComponent } from './components/categories/categories-add/categories-add.component';
+import { CategoryService } from './services/category.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { ProductService } from './services/product-service.service';
     ProductAddFrameComponent,
     PageNotFoundComponent,
     SidebarComponent,
-    DashboardComponent
+    DashboardComponent,
+    CategoriesAddComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ import { ProductService } from './services/product-service.service';
     appRoutingProviders,
     LoginService,
     ProductService,
+    CategoryService,
     AuthServiceGuard,
     {
       provide: HTTP_INTERCEPTORS,
