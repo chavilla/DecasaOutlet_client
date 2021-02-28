@@ -6,20 +6,21 @@ import { ProductStoreComponent } from './components/products/product-store/produ
 import { ProductAddFrameComponent } from './components/products/product-add-frame/product-add-frame.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
+import { AuthServiceGuard } from './auth-guard-service.guard';
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
     {
         path: 'app', component: HomeComponent, children: [
-            { path: 'dashboard', component: DashboardComponent },
+            { path: '', component: DashboardComponent },
             { path: 'product', component: ProductStoreComponent },
             { path: 'product/add', component: ProductAddFrameComponent },
-            { path: '', redirectTo:'dashboard', pathMatch:'full' },
-            { path: '**', redirectTo:'dashboard', pathMatch:'full' },
-        ]
+            { path: '**', redirectTo:'', pathMatch:'full' },
+        ],
+        canActivate:[ AuthServiceGuard],
     },
-    { path: '', redirectTo: '/app', pathMatch: 'full' },
-    { path: '**', component: PageNotFoundComponent },
+    { path: '', redirectTo: '/app', pathMatch: 'full', canActivate: [AuthServiceGuard] },
+    { path: '**', component: PageNotFoundComponent,  canActivate:[ AuthServiceGuard], },
 ];
 
 export const appRoutingProviders: any[] = [];

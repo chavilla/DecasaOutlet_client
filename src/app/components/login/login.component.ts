@@ -21,6 +21,11 @@ export class LoginComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+  
+    if(this.loginService.isLoggedIn()){
+      this.route.navigate(['app/']);
+    }
+
     this.frame = this.fb.group({
       // first: defaultValue, validators
       email: [ '', [Validators.required, Validators.email]],

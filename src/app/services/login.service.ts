@@ -9,16 +9,29 @@ import { baseUrl } from './baseUrl';
 })
 export class LoginService {
 
-  private url:string;
+  private url: string;
 
   constructor(
     private _http: HttpClient
-  ) { 
+  ) {
     this.url = baseUrl;
   }
 
-  public loginService(body:AuthModel): Observable<any> {
-    return this._http.post<any>(`${this.url}/api/v1/auth/login`, body);
+  public loginService(body: AuthModel): Observable<any> {
+    return this._http.post<any>(`${this.url}/auth/login`, body);
+  }
+
+  public getToken(): string {
+    return localStorage.getItem('token');
+  }
+
+  public isLoggedIn(): boolean {
+    return !!localStorage.getItem('token');
+  }
+
+  public logout(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
   }
 
 }

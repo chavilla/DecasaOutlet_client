@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-home',
@@ -19,10 +20,12 @@ export class HomeComponent {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private route:Router
+    private route:Router,
+    private loginService:LoginService,
   ) {}
 
   public logout(): void {
+    this.loginService.logout();
     this.route.navigate(['../login']);
   }
 

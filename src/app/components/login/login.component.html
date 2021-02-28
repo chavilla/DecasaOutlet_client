@@ -16,7 +16,7 @@
             <div class="error" *ngIf="frame.get('password').hasError('required')">Password es requerido</div>
             <div class="error" *ngIf="frame.get('password').hasError('min')">Password debe tener al menos 8</div>
         </div>
-        <div class="input-field">
+        <div class="input-field submit-app">
             <input type="submit" value="Enviar" [disabled]="!frame.valid" />
         </div>
     </form>

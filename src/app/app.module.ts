@@ -14,14 +14,12 @@ import { AngularMaterialModule } from './material/angular-material.module';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
 import { HomeComponent } from './components/home/home.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginService } from './services/login.service';
+import { AuthServiceGuard } from './auth-guard-service.guard';
+import { TokenInterceptorService } from './services/token-interceptor.service';
+import { ProductService } from './services/product-service.service';
 
 @NgModule({
   declarations: [
@@ -43,17 +41,19 @@ import { LoginService } from './services/login.service';
     BrowserAnimationsModule,
     AngularMaterialModule,
     LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
     CommonModule,
     HttpClientModule,
   ],
   providers: [
     appRoutingProviders,
     LoginService,
+    ProductService,
+    AuthServiceGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent]
 })
