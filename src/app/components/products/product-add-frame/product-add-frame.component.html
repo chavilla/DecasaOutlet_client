@@ -16,8 +16,12 @@
 			<div class="input-field ">
 				<label for="reference">Categoría</label>
 				<select  id="category" class="category" placeholder="Categoría Aquí" formControlName="category_id" autocomplete="off">
-					<option value="" selected>Seleccionar Aquí</option>
-					<option value="1">Hogar</option>
+
+					<optgroup>
+						<option value="" selected>Seleccionar Categoría</option>
+						<option  *ngFor="let category of categories"  value="{{category.id}}">{{category.name}}</option>
+					</optgroup>
+					
 				</select>
 				<div class="error" *ngIf="frame.get('category_id').hasError('required')">Categoría es requerido</div>
 			</div>

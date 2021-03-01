@@ -19,4 +19,8 @@ export class CategoryService {
     return this._http.post(`${this.baseUrl}/categories`, category);
   }
 
+  public getIdAndNameCategories() : Observable<any> {
+    return this._http.get(`${this.baseUrl}/categories/getIdAndNameCategories`);
+  }
+
 }

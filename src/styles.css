@@ -162,6 +162,16 @@ a {
     color: var(--textGrayColor);
 }
 
+optgroup {
+    appearance: none;
+    font-size: 1.1rem;
+    border-radius: 20px;
+}
+
+optgroup option {
+    appearance: none;
+}
+
 .error {
     color: red;
     font-size: 0.8rem;
