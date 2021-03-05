@@ -1,7 +1,9 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { categoryModel } from 'src/app/models/Category.model';
 import { CategoryService } from 'src/app/services/category.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-categories-add',
@@ -17,7 +19,9 @@ export class CategoriesAddComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private categoryServie: CategoryService,
+    private loginService: LoginService,
     private render: Renderer2,
+    private route: Router,
   ) { }
 
   ngOnInit(): void {
@@ -37,7 +41,14 @@ export class CategoriesAddComponent implements OnInit {
         this.form.reset();
       },
       err => {
-        this.toggleElement(messageDialog, err.error.error, 'failed');
+        if(err.status===401) {
+          alert('Tu sesión expiró. Debes volver al login');
+          this.loginService.logout();
+          this.route.navigate(['../login']);
+        }     
+        else if(err.status===400) {
+          this.toggleElement(messageDialog, err.error.error, 'failed');
+        }
       }
     )
   }
