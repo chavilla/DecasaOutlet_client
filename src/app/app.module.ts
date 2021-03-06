@@ -22,6 +22,7 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
 import { ProductService } from './services/product-service.service';
 import { CategoriesAddComponent } from './components/categories/categories-add/categories-add.component';
 import { CategoryService } from './services/category.service';
+import { ClientsAddComponent } from './components/clients/clients-add/clients-add.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { CategoryService } from './services/category.service';
     SidebarComponent,
     DashboardComponent,
     CategoriesAddComponent,
+    ClientsAddComponent,
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthServiceGuard } from './auth-guard-service.guard';
 import { CategoriesAddComponent } from './components/categories/categories-add/categories-add.component';
+import { ClientsAddComponent } from './components/clients/clients-add/clients-add.component';
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -17,6 +18,7 @@ const appRoutes: Routes = [
             { path: 'product', component: ProductStoreComponent },
             { path: 'product/add', component: ProductAddFrameComponent },
             { path: 'categories/add', component: CategoriesAddComponent },
+            { path: 'clients/add', component: ClientsAddComponent },
             { path: '**', redirectTo:'', pathMatch:'full' },
         ],
         canActivate:[ AuthServiceGuard],
