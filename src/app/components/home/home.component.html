@@ -42,7 +42,7 @@
       </mat-expansion-panel-header>
       <div class="submenu">
         <a [routerLink]="['categories/add']" routerLinkActive="router-link-active"  class="submenu-item">Añadir</a>
-        <a [routerLink]="['product/store']" routerLinkActive="router-link-active"  class="submenu-item">Ver Todo</a>
+        <a [routerLink]="['categories']" routerLinkActive="router-link-active"  class="submenu-item">Ver Todo</a>
       </div>
     </mat-expansion-panel>
 
@@ -117,8 +117,8 @@
         </div>
       </mat-expansion-panel-header>
       <div class="submenu">
-        <a [routerLink]="['product/add']" routerLinkActive="router-link-active"  class="submenu-item">Añadir</a>
-        <a [routerLink]="['product/store']" routerLinkActive="router-link-active"  class="submenu-item">Ver Todo</a>
+        <a [routerLink]="['clients/add']" routerLinkActive="router-link-active"  class="submenu-item">Añadir</a>
+        <a [routerLink]="['clients']" routerLinkActive="router-link-active"  class="submenu-item">Ver Todo</a>
       </div>
     </mat-expansion-panel>
 
@@ -145,7 +145,7 @@
   <!-- end sidenav -->
 
   <!-- main content -->
-  <mat-sidenav-content>
+  <mat-sidenav-content class="main-content">
     <mat-toolbar class="toolbar-header">
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">

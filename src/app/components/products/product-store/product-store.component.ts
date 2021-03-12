@@ -1,75 +1,84 @@
-import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTable } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { ProductModel } from 'src/app/models/Product.models';
+import { LoginService } from 'src/app/services/login.service';
 import { ProductService } from 'src/app/services/product-service.service';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
-
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  color: string;
-}
-
-/** Constants used to fill up our data base. */
-const COLORS: string[] = [
-  'maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple', 'fuchsia', 'lime', 'teal',
-  'aqua', 'blue', 'navy', 'black', 'gray'
-];
-const NAMES: string[] = [
-  'Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack', 'Charlotte', 'Theodore', 'Isla', 'Oliver',
-  'Isabella', 'Jasper', 'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'
-];
-
+import { ProductStoreDataSource } from './product-store-datasource';
+import { MatDialog } from '@angular/material/dialog';
+import { ProductUpdateComponent } from '../product-update/product-update.component';
 
 @Component({
   selector: 'app-product-store',
   templateUrl: './product-store.component.html',
   styleUrls: ['./product-store.component.css']
 })
-export class ProductStoreComponent implements OnInit, AfterViewInit {
+export class ProductStoreComponent implements AfterViewInit, OnInit {
 
-  displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
-  dataSource: MatTableDataSource<UserData>;
-
+  // Attributes
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatTable) table: MatTable<ProductModel>;
+  dataSource: ProductStoreDataSource;
+  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
+  displayedColumns = ['id', 'description', 'reference', 'category_id', 'stock', 'cost', 'tax', 'priceTotal', 'active'];
+  productStore: Array<ProductModel>;
+  loading: Array<any>;
 
   constructor(
-    private productService:ProductService
+    private productService: ProductService,
+    private loginService: LoginService,
+    private route: Router,
+    public dialog: MatDialog,
+    private ChangeDetectorRef:ChangeDetectorRef,
   ) { }
 
-  ngOnInit(): void {
-    this.productService.getProductServie().subscribe(
-      res => console.log(res),
-      err => console.log(err)
-    )
+  // end attributes
+
+  ngOnInit() {
+    this.dataSource = new ProductStoreDataSource(this.productService);
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+    this.table.dataSource = this.dataSource;
+    
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  // disabled a product from service
+  inactivateProduct(id: number) {
+    this.productService.inactivateProductService(id).subscribe(
+      res => {
+        this.productService.disabledProductOnView(this.dataSource.data, id);
+      },
+      err => {
+        if (err.status === 401) {
+          alert('Su sesión ha expirado');
+          this.loginService.logout();
+          this.route.navigate(['../login']);
+        }
+      });
+  } // end inactivate
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
+  // update product
+  onUpdate(product: object) {
+    let dialogRef = this.dialog.open(ProductUpdateComponent, {
+      minWidth: 900,
+      data: { ...product }
+    });
+
+    dialogRef.afterClosed().subscribe((res:ProductModel[])=> {
+      this.productService.updateProductOnView(this.dataSource.data, res);
+      this.refresh(res);
+    })
   }
 
-  /** Builds and returns a new User. */
-   createNewUser(id: number): UserData {
-  const name = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-      NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
+  refresh(itemUpdated) {
+    this.dataSource.data.map((i) => i.id === itemUpdated.id ? itemUpdated : i);
+    this.dataSource.data = this.dataSource.data;
+  }
 
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-  };
-}
 }

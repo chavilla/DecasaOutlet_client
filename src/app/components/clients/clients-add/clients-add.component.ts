@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ClientModel } from 'src/app/models/Client.model';
+import { ClientService } from 'src/app/services/client.service';
 import { NotificationHelper } from '../../../helpers/notification.helper';
 
 @Component({
@@ -15,6 +16,8 @@ export class ClientsAddComponent extends NotificationHelper implements OnInit {
 
   constructor(
     private fb:FormBuilder,
+    private clientService:ClientService,
+    private render:Renderer2,
   ) {
     super();
    }
@@ -30,8 +33,18 @@ export class ClientsAddComponent extends NotificationHelper implements OnInit {
     })
   }
 
-  public saveClient(_form:FormGroup) {
+  public saveClient(_form:FormGroup, messageDialog: HTMLElement) {
     const { ruc, name, lastName, phone, email } = _form.value;
+    this.client = new ClientModel(ruc,name,lastName,phone,email);
+
+    //Call the clientService
+    this.clientService.saveClientService(this.client).subscribe(
+      res =>{
+        this.toggleElement(this.render,messageDialog,res.msg, 'success');
+        this.form.reset();
+      },
+      err => this.toggleElement(this.render,messageDialog,err.error.error, 'failed'),
+    );
   }
 
 }

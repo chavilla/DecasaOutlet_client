@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { NotificationHelper } from 'src/app/helpers/notification.helper';
 import { categoryModel } from 'src/app/models/Category.model';
 import { ProductModel } from 'src/app/models/Product.models';
@@ -16,9 +16,8 @@ export class ProductAddFrameComponent extends NotificationHelper implements OnIn
   public form: FormGroup;
   private product: ProductModel;
   public categories: Array<categoryModel>;
-
+  
   constructor(
-    private fb: FormBuilder,
     private productService: ProductService,
     private categoryService: CategoryService,
     private render: Renderer2,
@@ -27,22 +26,14 @@ export class ProductAddFrameComponent extends NotificationHelper implements OnIn
   }
 
   ngOnInit(): void {
-    this.setFormBuilder();
-    this.getCategories();
+      this.form =this.productService.form;
+      this.productService.initializeFormGroup();
+      this.getCategories(); 
   }
 
-  public setFormBuilder(): void {
-    this.form = this.fb.group({
-      // first: defaultValue, validators
-      category_id: ['', [Validators.required]],
-      cost: [0, [Validators.compose([Validators.required, Validators.min(0.05), Validators.max(999.99)])]],
-      stock: [0, [Validators.required, , Validators.min(1)]],
-      tax: [0, [Validators.required, Validators.min(0)]],
-      description: ['', [Validators.required, Validators.pattern(/^[A-Z][a-záéíóú0-9]+(\s?[A-Za-záéíóú0-9])+$/)]],
-      reference: ['', [Validators.required]],
-    })
-  } // end setFormBuilder
-
+  public setFormBuilder() {
+  }
+    
   public getCategories(): void {
     this.categoryService.getIdAndNameCategories().subscribe(
       res => this.categories = res,
@@ -53,9 +44,8 @@ export class ProductAddFrameComponent extends NotificationHelper implements OnIn
   public saveProduct(_frame: FormGroup, messageDialog: HTMLElement) {
 
     // Destructuring to the components
-    const { description, reference, category_id, cost, stock, tax } = _frame.value;
-    this.product = new ProductModel(description, reference, category_id, cost, stock, tax);
-    console.log(this.product);
+    const { description, reference, category_id, cost, priceTotal, stock, tax } = _frame.value;
+    this.product = new ProductModel(description, reference, category_id, cost, priceTotal, stock, tax);
 
     this.productService.addProductService(this.product).subscribe(
       res => {
@@ -64,7 +54,6 @@ export class ProductAddFrameComponent extends NotificationHelper implements OnIn
       },
       err => this.toggleElement(this.render, messageDialog, err.error.error, 'failed')
     )
-
   } // end saveProduct
 
 }

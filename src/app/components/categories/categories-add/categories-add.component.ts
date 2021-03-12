@@ -1,6 +1,6 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { categoryModel } from 'src/app/models/Category.model';
 import { CategoryService } from 'src/app/services/category.service';
 import { LoginService } from 'src/app/services/login.service';
@@ -10,32 +10,41 @@ import { LoginService } from 'src/app/services/login.service';
   templateUrl: './categories-add.component.html',
   styleUrls: ['./categories-add.component.css']
 })
-export class CategoriesAddComponent implements OnInit {
+export class CategoriesAddComponent implements OnInit, OnDestroy {
 
   public form: FormGroup;
   public message: string;
   private category: categoryModel;
 
   constructor(
-    private fb: FormBuilder,
-    private categoryServie: CategoryService,
+    private categoryService: CategoryService,
     private loginService: LoginService,
     private render: Renderer2,
     private route: Router,
+    private activatedRoute:ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-      // first: defaultValue, validators
-      name: ['', [Validators.required, Validators.pattern(/(^[A-Z][a-záéíóú]+$)/)]],
-    });
+
+    console.log();
+    
+
+    if (this.activatedRoute.snapshot.queryParams.editionMode) {
+      this.setCategoryToUpdate(this.activatedRoute.snapshot.params.id).then(res =>{
+          this.categoryService.populateForm(res[0])
+      }).catch(
+          err => this.categoryService.cleanForm()
+        );
+    }
+    
+    this.form = this.categoryService.form;
+
   }
 
   public saveCategory(_frame: FormGroup, messageDialog:HTMLElement) {
-
     const { name } = _frame.value;
     this.category = new categoryModel(name);
-    this.categoryServie.saveCategoryService(this.category).subscribe(
+    this.categoryService.saveCategoryService(this.category).subscribe(
       res => {
         this.toggleElement(messageDialog, res.msg, 'success');
         this.form.reset();
@@ -53,6 +62,17 @@ export class CategoriesAddComponent implements OnInit {
     )
   }
 
+  public setCategoryToUpdate(id:number) {
+
+    return new Promise((resolve,reject)=>{
+      this.categoryService.getCategoryById(id).subscribe( res  =>{
+        resolve(res);
+      }, err => {
+        reject(err);
+      });
+    });
+  }
+
   public toggleElement(toggleElement: HTMLElement, messageStatus:string, className:string) {
     
     setTimeout(() => {
@@ -66,6 +86,12 @@ export class CategoriesAddComponent implements OnInit {
         this.render.removeClass(toggleElement, className);
       }, 4000)
     }, 0)
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.categoryService.cleanForm();
   }
 
 }

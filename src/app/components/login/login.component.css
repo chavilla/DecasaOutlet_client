@@ -16,6 +16,12 @@
     padding: 1rem;
 }
 
+@media(min-width:500px) {
+    .frm-login {
+        width: 60% !important;
+    }
+}
+
 @media(min-width:768px){
     .frm-login{
         padding: 1.8rem .5rem;

@@ -18,4 +18,8 @@ export class ClientService {
   public saveClientService(client:ClientModel):Observable<any>{
     return this._http.post(`${this.baseUrl}/clients`, client);
   }
+
+  public getClientService(): Observable<any> {
+    return this._http.get(`${this.baseUrl}/clients`);
+  }
 }

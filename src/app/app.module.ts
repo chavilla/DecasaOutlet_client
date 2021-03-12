@@ -23,6 +23,13 @@ import { ProductService } from './services/product-service.service';
 import { CategoriesAddComponent } from './components/categories/categories-add/categories-add.component';
 import { CategoryService } from './services/category.service';
 import { ClientsAddComponent } from './components/clients/clients-add/clients-add.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { SpinnerComponent } from './components/ui/spinner/spinner.component';
+import { CategoriesStoreComponent } from './components/categories/categories-store/categories-store.component';
+import { ProductUpdateComponent } from './components/products/product-update/product-update.component';
+import { ClientStoreComponent } from './components/clients/client-store/client-store.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +43,10 @@ import { ClientsAddComponent } from './components/clients/clients-add/clients-ad
     DashboardComponent,
     CategoriesAddComponent,
     ClientsAddComponent,
+    SpinnerComponent,
+    CategoriesStoreComponent,
+    ProductUpdateComponent,
+    ClientStoreComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +59,9 @@ import { ClientsAddComponent } from './components/clients/clients-add/clients-ad
     LayoutModule,
     CommonModule,
     HttpClientModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
   providers: [
     appRoutingProviders,
@@ -61,6 +75,6 @@ import { ClientsAddComponent } from './components/clients/clients-add/clients-ad
       multi: true,
     },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -9,6 +9,8 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthServiceGuard } from './auth-guard-service.guard';
 import { CategoriesAddComponent } from './components/categories/categories-add/categories-add.component';
 import { ClientsAddComponent } from './components/clients/clients-add/clients-add.component';
+import { CategoriesStoreComponent } from './components/categories/categories-store/categories-store.component';
+import { ClientStoreComponent } from './components/clients/client-store/client-store.component';
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -17,8 +19,12 @@ const appRoutes: Routes = [
             { path: '', component: DashboardComponent },
             { path: 'product', component: ProductStoreComponent },
             { path: 'product/add', component: ProductAddFrameComponent },
+            { path: 'product/add/:id', component: ProductAddFrameComponent },
+            { path: 'categories', component: CategoriesStoreComponent },
             { path: 'categories/add', component: CategoriesAddComponent },
+            { path: 'categories/add/:id', component: CategoriesAddComponent },
             { path: 'clients/add', component: ClientsAddComponent },
+            { path: 'clients', component: ClientStoreComponent },
             { path: '**', redirectTo:'', pathMatch:'full' },
         ],
         canActivate:[ AuthServiceGuard],
