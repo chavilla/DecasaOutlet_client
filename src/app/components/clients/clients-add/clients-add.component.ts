@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { ClientModel } from 'src/app/models/Client.model';
 import { ClientService } from 'src/app/services/client.service';
 import { NotificationHelper } from '../../../helpers/notification.helper';
@@ -15,7 +15,6 @@ export class ClientsAddComponent extends NotificationHelper implements OnInit {
   client:ClientModel;
 
   constructor(
-    private fb:FormBuilder,
     private clientService:ClientService,
     private render:Renderer2,
   ) {
@@ -23,14 +22,8 @@ export class ClientsAddComponent extends NotificationHelper implements OnInit {
    }
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-       // first: defaultValue, validators
-       ruc: ['',[Validators.required, Validators.pattern(/^[A-Za-z0-9]\w+$/)]],
-       name: ['',[Validators.required, Validators.pattern(/(^[A-ZÁÉÍÓÚ][a-záéíóú]{1,15}$)/)]],
-       lastName: ['',[Validators.required, Validators.pattern(/^[A-ZÁÉÍÓÚ][a-záéíóú]{1,15}$/)]],
-       phone: ['',[Validators.required, Validators.pattern(/(^6\d{3}-\d{4}$)/)]],
-       email: ['',[Validators.required, Validators.pattern(/(^[a-z][\w]+[-\.]?\w+@[a-z]+\.(com)?(net)?(org)?)/)]],
-    })
+    this.form = this.clientService.form;
+    this.clientService.initializeFormGroup();
   }
 
   public saveClient(_form:FormGroup, messageDialog: HTMLElement) {

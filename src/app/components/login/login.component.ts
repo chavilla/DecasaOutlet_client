@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
 
   public frame:FormGroup;
   public errorLoginMessage: String = null;
+  public loading:boolean;
 
 
   constructor(
@@ -34,15 +35,18 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(frame:FormGroup): void {
+    this.loading = true;
     this.loginService.loginService(frame.value).subscribe(
       res =>{
         localStorage.setItem('token', res.token);
+        this.loading =false;
         this.route.navigate(['app/dashboard']);
       },
       err => {
         const { error } = err;
         setTimeout(()=>{
           this.errorLoginMessage = error.message;
+          this.loading =false;
           setTimeout(() => {
             this.errorLoginMessage = null;
           },3000)

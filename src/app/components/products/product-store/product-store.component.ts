@@ -1,12 +1,11 @@
-import { AfterViewInit, Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
+import {MatTableDataSource} from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ProductModel } from 'src/app/models/Product.models';
 import { LoginService } from 'src/app/services/login.service';
 import { ProductService } from 'src/app/services/product-service.service';
-import { ProductStoreDataSource } from './product-store-datasource';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductUpdateComponent } from '../product-update/product-update.component';
 
@@ -15,37 +14,39 @@ import { ProductUpdateComponent } from '../product-update/product-update.compone
   templateUrl: './product-store.component.html',
   styleUrls: ['./product-store.component.css']
 })
-export class ProductStoreComponent implements AfterViewInit, OnInit {
+export class ProductStoreComponent {
 
   // Attributes
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatTable) table: MatTable<ProductModel>;
-  dataSource: ProductStoreDataSource;
+  dataSource: MatTableDataSource<ProductModel>;
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'description', 'reference', 'category_id', 'stock', 'cost', 'tax', 'priceTotal', 'active'];
-  productStore: Array<ProductModel>;
-  loading: Array<any>;
+  loading:boolean = true;
 
   constructor(
     private productService: ProductService,
     private loginService: LoginService,
     private route: Router,
     public dialog: MatDialog,
-    private ChangeDetectorRef:ChangeDetectorRef,
-  ) { }
-
-  // end attributes
-
-  ngOnInit() {
-    this.dataSource = new ProductStoreDataSource(this.productService);
+  ) {
+    // Assign the data to the data source for the table to render
+    this.getProducts().then( res =>{
+      this.loading = false;
+      this.dataSource = new MatTableDataSource(res[0]);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
   }
 
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
-    
+  getProducts() {
+    return new Promise((resolve,reject) =>{
+      this.productService.getProductService().subscribe( res =>{
+        resolve(res)
+      }, err =>{
+        reject(err);
+      });
+    });
   }
 
   // disabled a product from service
@@ -63,6 +64,15 @@ export class ProductStoreComponent implements AfterViewInit, OnInit {
       });
   } // end inactivate
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
   // update product
   onUpdate(product: object) {
     let dialogRef = this.dialog.open(ProductUpdateComponent, {
@@ -71,14 +81,18 @@ export class ProductStoreComponent implements AfterViewInit, OnInit {
     });
 
     dialogRef.afterClosed().subscribe((res:ProductModel[])=> {
-      this.productService.updateProductOnView(this.dataSource.data, res);
-      this.refresh(res);
+      this.refresh();
     })
   }
 
-  refresh(itemUpdated) {
-    this.dataSource.data.map((i) => i.id === itemUpdated.id ? itemUpdated : i);
-    this.dataSource.data = this.dataSource.data;
+  refresh() {
+    // Assign the data to the data source for the table to render
+    this.getProducts().then( res =>{
+      this.loading = false;
+      this.dataSource = new MatTableDataSource(res[0]);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
   }
 
 }

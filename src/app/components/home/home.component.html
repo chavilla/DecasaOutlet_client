@@ -136,8 +136,8 @@
         </div>
       </mat-expansion-panel-header>
       <div class="submenu">
-        <a [routerLink]="['product/add']" routerLinkActive="router-link-active"  class="submenu-item">Añadir</a>
-        <a [routerLink]="['product/store']" routerLinkActive="router-link-active"  class="submenu-item">Ver Todo</a>
+        <a [routerLink]="['users/add']" routerLinkActive="router-link-active"  class="submenu-item">Añadir</a>
+        <a [routerLink]="['users']" routerLinkActive="router-link-active"  class="submenu-item">Ver Todo</a>
       </div>
     </mat-expansion-panel>
 
@@ -151,7 +151,7 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span class="title">project-fronted</span>
+      <span class="name-title" style="color: #DE5900;">project-fronted</span>
         <p class="layout-user" >Jesús charris</p>
         <p class="layout-logout" (click)="logout()">Cerrar Sesión</p>
     </mat-toolbar>

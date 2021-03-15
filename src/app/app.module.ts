@@ -8,11 +8,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductStoreComponent } from './components/products/product-store/product-store.component';
 import { ProductAddFrameComponent } from './components/products/product-add-frame/product-add-frame.component';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './components/ui/page-not-found/page-not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './material/angular-material.module';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { SidebarComponent } from './components/ui/sidebar/sidebar.component';
+import { DashboardComponent } from './components/ui/dashboard/dashboard.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -30,6 +30,9 @@ import { SpinnerComponent } from './components/ui/spinner/spinner.component';
 import { CategoriesStoreComponent } from './components/categories/categories-store/categories-store.component';
 import { ProductUpdateComponent } from './components/products/product-update/product-update.component';
 import { ClientStoreComponent } from './components/clients/client-store/client-store.component';
+import { ClientUpdateComponent } from './components/clients/client-update/client-update.component';
+import { UserAddComponent } from './components/users/user-add/user-add.component';
+import { UserStoreComponent } from './components/users/user-store/user-store.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +50,9 @@ import { ClientStoreComponent } from './components/clients/client-store/client-s
     CategoriesStoreComponent,
     ProductUpdateComponent,
     ClientStoreComponent,
+    ClientUpdateComponent,
+    UserAddComponent,
+    UserStoreComponent,
   ],
   imports: [
     BrowserModule,

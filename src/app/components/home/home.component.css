@@ -103,7 +103,7 @@
   display: none;
 }
 
-.title {
+.name-title {
   display: none;
 }
 
@@ -126,7 +126,7 @@
     cursor: pointer;
   }
 
-  .title {
+  .name-title {
     display: block;
   }
 }
@@ -134,6 +134,6 @@
 
 div.content {
   background-color: var(--grayColor);
-  min-height: 100vh !important;
+  min-height: 90vh !important;
   padding: 2rem 0;
 }

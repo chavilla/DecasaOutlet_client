@@ -50,11 +50,6 @@ export class ProductService {
     return this._http.put(`${this.baseUrl}/products/${data.id}`, data);
   }
 
-  //update a product on the view
-  updateProductOnView(data:Array<ProductModel>, itemUpdated:any){
-    data.map((i) => i.id === itemUpdated.id ? itemUpdated : i);
-  }
-
   //inactivate a product on the server
   inactivateProductService(id: number): Observable<any> {
     return this._http.put(`${this.baseUrl}/products/disabled/${id}`, id);

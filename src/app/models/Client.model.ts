@@ -5,5 +5,6 @@ export class ClientModel {
 		public lastName:string,
 		public phone:string,
 		public email:string,
+		public id?:number,
 	) {}
 }

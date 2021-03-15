@@ -22,6 +22,7 @@
         </div>
     </form>
 </div>
+<app-spinner *ngIf="loading"></app-spinner>
 <div class="errorLoginMessage" *ngIf="errorLoginMessage" >
     {{ errorLoginMessage }}
 </div>

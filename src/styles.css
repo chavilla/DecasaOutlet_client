@@ -28,6 +28,10 @@ a {
   text-decoration: none;
 }
 
+th {
+  font-weight: bold !important;
+}
+
 .text-center {
   text-align: center;
 }
@@ -51,7 +55,7 @@ a {
 /* form styles */
 
 .title {
-  font-size: 2rem;
+  font-size: 2rem !important;
   padding: 0;
   font-weight: 700;
   color: #DE5900;
@@ -276,6 +280,7 @@ optgroup option {
     padding: 1rem 0 0 0;
     border: none;
     box-shadow: none;
+    overflow: scroll;
 }
 
 .mat-elevation-z8 h3 {
@@ -291,6 +296,10 @@ optgroup option {
 
 .mat-sort-header-content {
   text-align: right !important;
+}
+
+table.table-data {
+  overflow: scroll !important;
 }
 
 .full-width-table th,
@@ -337,36 +346,55 @@ td.mat-footer-cell {
   margin: 0 auto;
 }
 
+.form-filter {
+  margin: 2rem auto .5rem auto;
+  padding: 0 1rem;
+  position:relative;
+  width: 100% !important;
+}
+
 .label-filter {
   color: var(--darkGrayColor);
 }
 
 .input-filter {
-  width: 90% !important;
-  margin: 0 auto !important;
-  color: var(--darkGrayColor);
-}
-
-.mat-form-field-infix {
-  width: 56px !important;
-}
-
-.input-filter::placeholder {
+  border-bottom: 1px solid var(--orangeColor) !important;
   color: var(--darkGrayColor) !important;
+  margin: 0 auto;
+  padding-bottom: .2rem !important;
+  padding-left: 1.4rem !important;
+  width: 80% !important;
+}
+
+@media(min-width:768px) {
+  .input-filter {
+    width: 50% !important;
+  }
+}
+
+.mat-input-element::placeholder{
+  color: var(--darkGrayColor) !important;
+}
+
+.mat-input-element:focus   {
+  border-bottom: 1px solid var(--darkGrayColor) !important;
 }
 
 
 /* Paginator */
-.paginator {
+mat-paginator {
   margin-top: 1rem;
+  width: 100% !important;
 }
 
 /* spinner */
 
 .spinner {
   align-items: center;
-  background-color: #ffffff;
+  background-color: var(--grayColor);
+  color: var(--orangeColor);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   left: 0;
   min-height: 100%;
@@ -378,13 +406,15 @@ td.mat-footer-cell {
 }
 
 .loader {
-  border: 10px solid var(--orangeColor); /* Light grey */
-  border-top: 10px solid rgba(255,255,255,0.9); /* orange */
+  border: 5px solid var(--orangeColor); /* Light grey */
+  border-top: 5px solid rgba(255,255,255,0.9); /* orange */
   border-radius: 50%;
   width: 50px;
   height: 50px;
   animation: spin 1s linear infinite;
 }
+
+
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
