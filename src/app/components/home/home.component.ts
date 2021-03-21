@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -10,8 +10,9 @@ import { LoginService } from 'src/app/services/login.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
+  user:string;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -20,9 +21,21 @@ export class HomeComponent {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private route:Router,
     private loginService:LoginService,
+    private route:Router,
+    private render:Renderer2,
   ) {}
+
+  ngOnInit():void {
+    this.user = localStorage.getItem('user');
+    let welcome = this.render.selectRootElement('.welcome',true);
+
+    setTimeout(()=>{
+      this.render.removeClass(welcome,'show');
+      this.render.addClass(welcome, 'hide');
+    },3000);
+
+  }
 
   public logout(): void {
     this.loginService.logout();

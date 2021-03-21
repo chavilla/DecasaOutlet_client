@@ -13,6 +13,12 @@ body {
   height: 50px;
 }
 
+@media(max-width:768px){
+  body, html {
+    height: 100vh;
+  }
+}
+
 :root {
   --grayColor: #F1F4F6;
   --grayHeaderColor: #FAFBFC;
@@ -52,6 +58,11 @@ th {
   position: relative;
 }
 
+.mat-expansion-panel:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover {
+    background: none !important;
+}
+
+
 /* form styles */
 
 .title {
@@ -64,6 +75,10 @@ th {
 .normal-form {
   margin: 1rem 2rem;
   padding: .5rem 0;
+}
+
+.normal-form h2 {
+  font-weight: lighter;
 }
 
 .input-fields-zone {

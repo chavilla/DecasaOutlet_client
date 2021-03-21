@@ -1,8 +1,9 @@
 export class InputModel {
 	constructor(
-		public description:string,
+		public product_id:number,
 		public amount:number,
 		public cost:number,
+		public description?:string,
 		public updated_at?: string,
 		public user?:number,
 	){}
