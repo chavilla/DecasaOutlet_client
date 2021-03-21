@@ -13,7 +13,6 @@ export class ProductService {
 
   private baseUrl: string;
   form: FormGroup;
-  products: ProductModel[];
 
   constructor(
     private _http: HttpClient,
@@ -40,6 +39,10 @@ export class ProductService {
 
   getProductByIdService(id: number): Observable<any> {
     return this._http.get(`${this.baseUrl}/products/${id}`);
+  }
+
+  getIdAndDescription(): Observable<any> {
+    return this._http.get(`${this.baseUrl}/products/getIdAndDescription`);
   }
 
   addProductService(product: ProductModel): Observable<any> {

@@ -33,6 +33,8 @@ import { ClientStoreComponent } from './components/clients/client-store/client-s
 import { ClientUpdateComponent } from './components/clients/client-update/client-update.component';
 import { UserAddComponent } from './components/users/user-add/user-add.component';
 import { UserStoreComponent } from './components/users/user-store/user-store.component';
+import { InputsAddComponent } from './components/inputs/inputs-add/inputs-add.component';
+import { InputStoreComponent } from './components/inputs/input-store/input-store.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,8 @@ import { UserStoreComponent } from './components/users/user-store/user-store.com
     ClientUpdateComponent,
     UserAddComponent,
     UserStoreComponent,
+    InputsAddComponent,
+    InputStoreComponent,
   ],
   imports: [
     BrowserModule,

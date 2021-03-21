@@ -3,10 +3,9 @@
   <app-spinner *ngIf="loading"></app-spinner>
   <h3 class="text-center text-orange title">Productos</h3>
 
-  <mat-form-field class="form-filter">
-    <mat-label class="label-filter">Buscar Producto</mat-label>
-    <input class="input-filter" matInput (keyup)="applyFilter($event)" placeholder="Por ejemplo: Jesús" #input>
-  </mat-form-field>
+  <div class="form-filter">
+		<input class="input-filter" matInput (keyup)="applyFilter($event)" placeholder="Buscar Producto" #input>
+	</div>
 
   <div class="mat-elevation-z8">
     <table  [dataSource]="dataSource" mat-table class="full-width-table" matSort aria-label="Elements">
@@ -66,6 +65,10 @@
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      	<!-- Row shown when there is no matching data. -->
+			<tr class="mat-row" *matNoDataRow>
+				<td class="mat-cell" colspan="4">No hay resultados para "{{input.value}}"</td>
+			</tr>
     </table>
 
     <mat-paginator

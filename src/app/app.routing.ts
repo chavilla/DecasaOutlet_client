@@ -13,6 +13,8 @@ import { CategoriesStoreComponent } from './components/categories/categories-sto
 import { ClientStoreComponent } from './components/clients/client-store/client-store.component';
 import { UserAddComponent } from './components/users/user-add/user-add.component';
 import { UserStoreComponent } from './components/users/user-store/user-store.component';
+import { InputsAddComponent } from './components/inputs/inputs-add/inputs-add.component';
+import { InputStoreComponent } from './components/inputs/input-store/input-store.component';
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -29,7 +31,8 @@ const appRoutes: Routes = [
             { path: 'clients', component: ClientStoreComponent },
             { path: 'users', component: UserStoreComponent },
             { path: 'users/add', component: UserAddComponent },
-            { path: 'clients', component: ClientStoreComponent },
+            { path: 'inputs', component: InputStoreComponent },
+            { path: 'inputs/add', component: InputsAddComponent },
             { path: '**', redirectTo:'', pathMatch:'full' },
         ],
         canActivate:[ AuthServiceGuard],

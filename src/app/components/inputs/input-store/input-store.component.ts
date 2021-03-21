@@ -2,25 +2,25 @@ import { Component, ViewChild} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ClientModel } from 'src/app/models/Client.model';
-import { ClientService } from 'src/app/services/client.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ClientUpdateComponent } from '../client-update/client-update.component';
+import { InputModel } from 'src/app/models/Input.model';
+import { InputService } from 'src/app/services/input.service';
 import { RedirectionHelper } from 'src/app/helpers/redirection.helper';
 import { LoginService } from 'src/app/services/login.service';
 import { Router } from '@angular/router';
 
 
+
 @Component({
-  selector: 'app-client-store',
-  styleUrls: ['client-store.component.css'],
-  templateUrl: 'client-store.component.html',
+  selector: 'app-input-store',
+  styleUrls: ['input-store.component.css'],
+  templateUrl: 'input-store.component.html',
 })
-export class ClientStoreComponent  {
+export class InputStoreComponent  {
 
   //Attributes
-  displayedColumns: string[] = ['ruc', 'name', 'lastName', 'phone' ,'email'];
-  dataSource: MatTableDataSource<ClientModel>;
+  displayedColumns: string[] = ['amount', 'description', 'cost', 'user' ,'updated_at'];
+  dataSource: MatTableDataSource<InputModel>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -28,14 +28,13 @@ export class ClientStoreComponent  {
   redirect:RedirectionHelper;
 
   constructor(
-    private clientService:ClientService,
-    private loginService: LoginService,
+    private inputService:InputService,
+    private loginService:LoginService,
     private route:Router,
     public dialog: MatDialog,
   ) {
     // Assign the data to the data source for the table to render
-    this.getClients().then( res =>{
-      
+    this.getInputs().then( res =>{
       this.loading = false;
       this.dataSource = new MatTableDataSource(res[0]);
       this.dataSource.paginator = this.paginator;
@@ -43,13 +42,12 @@ export class ClientStoreComponent  {
     }).catch( err =>{
       if(err.status ===401){
         this.redirect = new RedirectionHelper(this.loginService,this.route,err);
-      }
-  });;
+      }});
   }
 
-  getClients() {
+  getInputs() {
     return new Promise((resolve,reject) =>{
-      this.clientService.getClientService().subscribe( res =>{
+      this.inputService.getInputService().subscribe( res =>{
         resolve(res)
       }, err =>{
         reject(err);
@@ -66,22 +64,9 @@ export class ClientStoreComponent  {
     }
   }
 
-  onUpdate(client: ClientModel) {
-    let dialogRef = this.dialog.open(ClientUpdateComponent, {
-      minWidth: 900,
-      data: { ...client }
-    });
-
-
-    dialogRef.afterClosed().subscribe((res:ClientModel[])=> {
-      //this.clientService.updateProductOnView(this.dataSource.data, res);
-      this.refresh();
-    })
-  }
-
   refresh() {
      // Assign the data to the data source for the table to render
-     this.getClients().then( res =>{
+     this.getInputs().then( res =>{
       this.loading = false;
       this.dataSource = new MatTableDataSource(res[0]);
       this.dataSource.paginator = this.paginator;

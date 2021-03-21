@@ -8,13 +8,14 @@ import { LoginService } from 'src/app/services/login.service';
 import { ProductService } from 'src/app/services/product-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductUpdateComponent } from '../product-update/product-update.component';
+import { RedirectionHelper } from 'src/app/helpers/redirection.helper';
 
 @Component({
   selector: 'app-product-store',
   templateUrl: './product-store.component.html',
   styleUrls: ['./product-store.component.css']
 })
-export class ProductStoreComponent {
+export class ProductStoreComponent  {
 
   // Attributes
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -23,6 +24,7 @@ export class ProductStoreComponent {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'description', 'reference', 'category_id', 'stock', 'cost', 'tax', 'priceTotal', 'active'];
   loading:boolean = true;
+  redirect:RedirectionHelper;
 
   constructor(
     private productService: ProductService,
@@ -36,6 +38,10 @@ export class ProductStoreComponent {
       this.dataSource = new MatTableDataSource(res[0]);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+    }).catch( err =>{
+        if(err.status ===401){
+          this.redirect = new RedirectionHelper(this.loginService,this.route,err);
+        }
     });
   }
 

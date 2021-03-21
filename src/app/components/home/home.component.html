@@ -4,7 +4,9 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
     <div class="image-logo">
-      <img src="assets/img/logo-outlet.png" alt="logo outlet" class="logo">
+      <a [routerLink]="['app']">
+        <img src="assets/img/logo-outlet.png" alt="logo outlet" class="logo">
+      </a>
     </div>
 
     <!-- menu -->
@@ -23,7 +25,7 @@
       </mat-expansion-panel-header>
       <div class="submenu">
         <a [routerLink]="['product/add']" routerLinkActive="router-link-active"  class="submenu-item">Añadir</a>
-        <a [routerLink]="['product']" routerLinkActive="router-link-active"  class="submenu-item">Ver Todo</a>
+        <a [routerLink]="['products']" routerLinkActive="router-link-active"  class="submenu-item">Ver Todo</a>
       </div>
     </mat-expansion-panel>
 
@@ -60,8 +62,8 @@
         </div>
       </mat-expansion-panel-header>
       <div class="submenu">
-        <a [routerLink]="['product/add']" routerLinkActive="router-link-active"  class="submenu-item">Añadir</a>
-        <a [routerLink]="['product/store']" routerLinkActive="router-link-active"  class="submenu-item">Ver Todo</a>
+        <a [routerLink]="['inputs/add']" routerLinkActive="router-link-active"  class="submenu-item">Añadir</a>
+        <a [routerLink]="['inputs']" routerLinkActive="router-link-active"  class="submenu-item">Ver Todo</a>
       </div>
     </mat-expansion-panel>
 
@@ -80,7 +82,7 @@
       </mat-expansion-panel-header>
       <div class="submenu">
         <a [routerLink]="['product/add']" routerLinkActive="router-link-active"  class="submenu-item">Añadir</a>
-        <a [routerLink]="['product/store']" routerLinkActive="router-link-active"  class="submenu-item">Ver Todo</a>
+        <a [routerLink]="['app/products']" routerLinkActive="router-link-active"  class="submenu-item">Ver Todo</a>
       </div>
     </mat-expansion-panel>
 
@@ -151,7 +153,7 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span class="name-title" style="color: #DE5900;">project-fronted</span>
+      <span class="name-title" style="color: #fe4918;">Plutón</span>
         <p class="layout-user" >Jesús charris</p>
         <p class="layout-logout" (click)="logout()">Cerrar Sesión</p>
     </mat-toolbar>

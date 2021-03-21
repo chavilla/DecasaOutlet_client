@@ -1,0 +1,40 @@
+<form [formGroup]="form" class="normal-form" (ngSubmit)="saveInput(form,messageDialog)">
+	<div class="input-fields-zone">
+		<h2 class="text-center text-uppercase font-bold-openSans title text-orange">Ingresar Producto</h2>
+
+		<!-- FormControlNames -->
+		<div class="form-control-group"> 
+			<div class="input-field ">
+				<label for="product_id">Producto</label>
+				<select  id="product_id" class="product" placeholder="" formControlName="product_id" autocomplete="off">
+					<optgroup>
+						<option value="" selected>Seleccionar Producto</option>
+						<option  *ngFor="let product of products"  value="{{product.id}}">{{product.description}}</option>
+					</optgroup>
+				</select>
+				<div class="error" *ngIf="form.get('product_id').hasError('required')">Debes seleccionar un producto</div>
+			</div>
+			<div class="input-field">
+				<label for="amount">Cantidad</label>
+				<input type="number" id="amount" class="amount" placeholder="Cantidad Aquí" formControlName="amount" autocomplete="off">
+				<div class="error" *ngIf="form.get('amount').hasError('required')">Cantidad es requerido</div>
+				<div class="error" *ngIf="form.get('amount').hasError('min')">Cantidad debe ser mayor a 1</div>
+				<div class="error" *ngIf="form.get('amount').hasError('max')">Cantidad debe ser menor a 999</div>
+			</div>
+			<div class="input-field">
+				<label for="cost">Costo</label>
+				<input type="number" id="cost" class="cost" placeholder="Costo Aquí" formControlName="cost" autocomplete="off">
+				<div class="error" *ngIf="form.get('cost').hasError('required')">Costo es requerido</div>
+				<div class="error" *ngIf="form.get('cost').hasError('min')">Costo debe ser mayor a 0.05</div>
+				<div class="error" *ngIf="form.get('cost').hasError('max')">Costo debe ser menor 999.99</div>
+			</div>
+			
+			<div class="input-field">
+				<input type="submit" value="Enviar" [disabled]="!form.valid" />
+			</div>
+		</div>
+		<!-- End formControlsName -->
+	</div>
+</form>
+
+<div #messageDialog class="hide">{{message}}</div>
