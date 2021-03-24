@@ -35,6 +35,7 @@ import { UserAddComponent } from './components/users/user-add/user-add.component
 import { UserStoreComponent } from './components/users/user-store/user-store.component';
 import { InputsAddComponent } from './components/inputs/inputs-add/inputs-add.component';
 import { InputStoreComponent } from './components/inputs/input-store/input-store.component';
+import { InvoiceAddComponent } from './components/invoice/invoice-add/invoice-add.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { InputStoreComponent } from './components/inputs/input-store/input-store
     UserStoreComponent,
     InputsAddComponent,
     InputStoreComponent,
+    InvoiceAddComponent,
   ],
   imports: [
     BrowserModule,

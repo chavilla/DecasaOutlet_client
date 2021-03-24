@@ -22,7 +22,7 @@ export class ProductStoreComponent  {
   @ViewChild(MatSort) sort: MatSort;
   dataSource: MatTableDataSource<ProductModel>;
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'description', 'reference', 'category_id', 'stock', 'cost', 'tax', 'priceTotal', 'active'];
+  displayedColumns = ['id','codebar', 'description', 'reference', 'category_id', 'stock', 'cost', 'tax', 'priceTotal', 'active'];
   loading:boolean = true;
   redirect:RedirectionHelper;
 
@@ -34,6 +34,8 @@ export class ProductStoreComponent  {
   ) {
     // Assign the data to the data source for the table to render
     this.getProducts().then( res =>{
+      console.log(res);
+      
       this.loading = false;
       this.dataSource = new MatTableDataSource(res[0]);
       this.dataSource.paginator = this.paginator;

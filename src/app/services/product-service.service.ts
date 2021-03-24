@@ -28,6 +28,7 @@ export class ProductService {
       tax: [0, [Validators.required, Validators.min(0)]],
       description: ['', [Validators.required, Validators.pattern(/^[A-Z][a-záéíóú0-9]+(\s?[A-Za-záéíóú0-9])+$/)]],
       reference: ['', [Validators.required]],
+      codebar:[ 0, [ Validators.required, Validators.pattern(/^([0-9]){12,13}$/)]],
       active: 1,
       creador: '',
     });
@@ -74,6 +75,7 @@ export class ProductService {
       tax: 0,
       reference: '',
       description: '',
+      codebar: 0,
       active:1,
       creador:''
     });

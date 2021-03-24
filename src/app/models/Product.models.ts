@@ -7,6 +7,7 @@ export class ProductModel {
 		public priceTotal:number,
 		public stock:number,
 		public tax:number,
+		public codebar:string,
 		public id?:number,
 		public active?:number,
 	){}

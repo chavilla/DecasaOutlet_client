@@ -4,6 +4,14 @@
 
 		<!-- FormControlNames -->
 		<div class="form-control-group">
+
+			<div class="input-field">
+				<label for="codebar">Código de Barras</label>
+				<input type="text" id="codebar" class="codebar" placeholder="Código de Barra Aquí" formControlName="codebar" autocomplete="off">
+				<div class="error" *ngIf="form.get('codebar').hasError('required')">Código de barras es requerido</div>
+				<div class="error" *ngIf="form.get('codebar').hasError('pattern')">Código de barras no válido</div>
+			</div>
+
 			<div class="input-field">
 				<label for="description">Descripción (Iniciar en Mayúscula)</label>
 				<input type="text" id="description" class="description" placeholder="Descripción Aquí" formControlName="description" autocomplete="off">

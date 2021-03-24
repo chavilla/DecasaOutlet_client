@@ -44,8 +44,8 @@ export class ProductAddFrameComponent extends NotificationHelper implements OnIn
   public saveProduct(_frame: FormGroup, messageDialog: HTMLElement) {
 
     // Destructuring to the components
-    const { description, reference, category_id, cost, priceTotal, stock, tax } = _frame.value;
-    this.product = new ProductModel(description, reference, category_id, cost, priceTotal, stock, tax);
+    const { description, reference, category_id, cost, priceTotal, stock, tax, codebar } = _frame.value;
+    this.product = new ProductModel(description, reference, category_id, cost, priceTotal, stock, tax, codebar);
 
     this.productService.addProductService(this.product).subscribe(
       res => {
