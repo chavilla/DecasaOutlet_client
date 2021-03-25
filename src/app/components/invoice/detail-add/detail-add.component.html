@@ -1,21 +1,46 @@
-<form class="normal-form" [formGroup]='form' (ngSubmit)="onSubmit(form)">
+
+<form *ngIf="!item" class="normal-form" (ngSubmit)="getCodebar(codebar.value)">
 	<div class="input-fields-zone">
-		<h2 class="text-center font-bold-openSans title text-orange">Buscar ítem</h2>
 		<div class="form-control-group-invoice">
 			<div class="input-field">
 				<label for="codebar">Código de Barras</label>
-				<input (blur)="onBlur($event)" type="text" id="codebar" class="codebar" placeholder="Código de Barra Aquí" formControlName="codebar" autocomplete="off">
-				<div class="error" *ngIf="form.get('codebar').hasError('required')">Código es requerido</div>
+				<input #codebar type="text" id="codebar" class="codebar" placeholder="Código de Barra Aquí" autocomplete="off" >
+			</div>
+			<div class="input-field">
+				<input type="submit" value="Buscar">
+			</div>
+		</div>	
+	</div>
+</form>
+
+<form *ngIf="item" class="normal-form" [formGroup]='form' (ngSubmit)="onSubmit(form)">
+	<div class="input-fields-zone">
+		<h2 class="text-center font-bold-openSans title text-orange">Item</h2>
+		<div class="form-control-group-invoice">
+			<div class="input-field">
+				<label for="codebar">Código de Barras</label>
+				<input type="text" id="codebar" class="codebar" placeholder="Código de Barra Aquí" formControlName="codebar" autocomplete="off" >
 			</div>
 			<div class="input-field">
 				<label for="description">Descripción</label>
 				<input type="text" id="description" class="description" placeholder="Descripción" formControlName="description" autocomplete="off">
 			</div>
 			<div class="input-field">
-				<input type="submit" value="Agregar" [disabled]="!form.valid" />
+				<label for="priceTotal">Precio</label>
+				<input type="number" id="priceTotal" class="priceTotal" placeholder="Precio" formControlName="priceTotal" autocomplete="off">
 			</div>
-			<p class="loading" *ngIf="loading">Buscando...</p>
-			<p class="not-found" *ngIf="message">{{message}}</p>
+			<div class="input-field">
+				<label for="amount">Cantidad</label>
+				<input (change)="stockValidator(form)" type="number" id="amount" class="amount" placeholder="Cantidad" formControlName="amount" autocomplete="off">
+				<div class="error" *ngIf="form.get('amount').hasError('min')">La cantidad no debe ser menor a 1</div>
+			</div>
+			<div class="input-field">
+				<label for="stock">Stock</label>
+				<input type="number" id="stock" class="stock" placeholder="stock" formControlName="stock" autocomplete="off">
+			</div>
+			<div class="input-field">
+				<input type="submit" value="Agregar" [disabled]="form.get('amount').hasError('min')"/>
+			</div>
 		</div>
 	</div>
 </form>

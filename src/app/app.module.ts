@@ -36,6 +36,7 @@ import { UserStoreComponent } from './components/users/user-store/user-store.com
 import { InputsAddComponent } from './components/inputs/inputs-add/inputs-add.component';
 import { InputStoreComponent } from './components/inputs/input-store/input-store.component';
 import { DetailAddComponent } from './components/invoice/detail-add/detail-add.component';
+import { DetailProductAddComponent } from './components/invoice/detail-product-add/detail-product-add.component';
 
 
 @NgModule({
@@ -60,6 +61,7 @@ import { DetailAddComponent } from './components/invoice/detail-add/detail-add.c
     InputsAddComponent,
     InputStoreComponent,
     DetailAddComponent,
+    DetailProductAddComponent,
   ],
   imports: [
     BrowserModule,
