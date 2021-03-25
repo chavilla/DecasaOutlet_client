@@ -445,3 +445,12 @@ mat-paginator {
 }
 
 
+/* messages */
+
+.not-found {
+  align-items: center;
+  color: red;
+  display: flex;
+  font-weight: bold;
+  justify-content: center;
+}

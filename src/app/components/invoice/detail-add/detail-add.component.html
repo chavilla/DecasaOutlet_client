@@ -1,0 +1,25 @@
+<form class="normal-form" [formGroup]='form' (ngSubmit)="onSubmit(form)">
+	<div class="input-fields-zone">
+		<h2 class="text-center font-bold-openSans title text-orange">Buscar ítem</h2>
+		<div class="form-control-group-invoice">
+			<div class="input-field">
+				<label for="codebar">Código de Barras</label>
+				<input (blur)="onBlur($event)" type="text" id="codebar" class="codebar" placeholder="Código de Barra Aquí" formControlName="codebar" autocomplete="off">
+				<div class="error" *ngIf="form.get('codebar').hasError('required')">Código es requerido</div>
+			</div>
+			<div class="input-field">
+				<label for="description">Descripción</label>
+				<input type="text" id="description" class="description" placeholder="Descripción" formControlName="description" autocomplete="off">
+			</div>
+			<div class="input-field">
+				<input type="submit" value="Agregar" [disabled]="!form.valid" />
+			</div>
+			<p class="loading" *ngIf="loading">Buscando...</p>
+			<p class="not-found" *ngIf="message">{{message}}</p>
+		</div>
+	</div>
+</form>
+
+<div class="invoice-content">
+	<h2 class="text-center font-bold-openSans title text-orange">Items</h2>
+</div>

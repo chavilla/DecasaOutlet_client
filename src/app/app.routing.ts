@@ -15,7 +15,7 @@ import { UserAddComponent } from './components/users/user-add/user-add.component
 import { UserStoreComponent } from './components/users/user-store/user-store.component';
 import { InputsAddComponent } from './components/inputs/inputs-add/inputs-add.component';
 import { InputStoreComponent } from './components/inputs/input-store/input-store.component';
-import { InvoiceAddComponent } from './components/invoice/invoice-add/invoice-add.component';
+import { DetailAddComponent } from './components/invoice/detail-add/detail-add.component';
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -34,8 +34,8 @@ const appRoutes: Routes = [
             { path: 'users/add', component: UserAddComponent },
             { path: 'inputs', component: InputStoreComponent },
             { path: 'inputs/add', component: InputsAddComponent },
-            { path: 'sales', component: InvoiceAddComponent },
-            { path: 'sales/add', component: InvoiceAddComponent },
+            { path: 'sales', component: DetailAddComponent },
+            { path: 'sales/add', component: DetailAddComponent },
             { path: '**', redirectTo:'', pathMatch:'full' },
         ],
         canActivate:[ AuthServiceGuard],

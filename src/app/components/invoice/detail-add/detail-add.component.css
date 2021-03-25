@@ -1,0 +1,21 @@
+
+.loading {
+	align-items: center;
+	color: #fe4819;
+	display: flex;
+	font-weight: bold;
+	justify-content: center;
+}
+
+@media(min-width:768px) {
+
+	.input-fields-zone {
+		padding: 0;
+	}
+
+	.form-control-group-invoice {
+		display: grid;
+		grid-template-columns: repeat(2,1fr) !important;
+	}
+}
+	

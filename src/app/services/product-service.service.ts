@@ -38,8 +38,8 @@ export class ProductService {
     return this._http.get(`${this.baseUrl}/products`);
   }
 
-  getProductByIdService(id: number): Observable<any> {
-    return this._http.get(`${this.baseUrl}/products/${id}`);
+  getProductByIdService(codebar: string): Observable<any> {
+    return this._http.get(`${this.baseUrl}/products/${codebar}`);
   }
 
   getIdAndDescription(): Observable<any> {
