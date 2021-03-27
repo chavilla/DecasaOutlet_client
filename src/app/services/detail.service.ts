@@ -48,4 +48,15 @@ export class DetailService {
     this.form.setValue(detail);
   }
 
+  //if the item exists
+  exists(detail:DetailModel){
+    let exists:boolean = this.details.some( det => det.id === detail.id );
+    return exists;
+  }
+
+  //remove the item
+  removeItemService(detail:DetailModel) {
+    let item = this.details.indexOf(detail)
+    this.details.splice(item,1);
+  }
 }

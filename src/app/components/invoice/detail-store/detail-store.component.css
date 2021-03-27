@@ -1,0 +1,48 @@
+table.table-details {
+	border-collapse: separate;
+	width: 90%;
+	margin: 0 auto;
+	overflow: scroll;
+	padding-top: 1.5rem;
+}
+
+table.table-details thead tr {
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+table td {
+	border: none;
+}
+
+table td, table tr {
+	padding: 0 1rem;
+}
+
+.btn-delete {
+	border: none;
+	cursor: pointer;
+}
+
+tfoot {
+	padding: 1rem 0;
+}
+
+tfoot td {
+	font-weight: bold;
+}
+
+.div-btn-invoice {
+	display: flex;
+	justify-content: flex-end;
+	margin: 1rem auto;
+	width: 90%;
+}
+
+.btn-invoice-add{
+	background-color: #5CB85C;
+	border: none;
+	color: white;
+	cursor: pointer;
+	padding: 1rem 1.5rem;
+}

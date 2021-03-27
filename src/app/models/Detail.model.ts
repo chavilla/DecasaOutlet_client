@@ -1,13 +1,12 @@
 export class DetailModel {
 	constructor(
-		public description,
+		public id:number,
 		public amount:number,
-		public reference:string,
-		public stock:number,
 		public priceTotal:number,
+		public priceTotalSale:number,
+		public description:string,
 		public codebar:string,
 		public tax:number,
-		public priceTotalSale?:number,
-		
+		public reference:string,
 	){}
 }

@@ -1,0 +1,53 @@
+<div class="">
+		<div class="message text-orange text-center" style="font-size: 3rem;" *ngIf="this.details.length===0; else tableDetails">
+			No hay Items 
+		</div>
+
+		<ng-template #tableDetails>
+			<table class="table-details">
+				<thead>
+					<tr>
+						<td class="text-center">ID</td>
+						<td class="text-center">Código Barras</td>
+						<td class="text-center">Cantidad</td>
+						<td class="text-center">Descripción</td>
+						<td class="text-center">Referencia</td>
+						<td class="text-center">Precio Unidad</td>
+						<td class="text-center">Impuesto</td>
+						<td class="text-center">Total</td>
+						<td class="text-center">Quitar</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let detail of details">
+						<td class="text-center">{{ detail.id }}</td>
+						<td class="text-right">{{ detail.codebar }}</td>
+						<td class="text-center">{{ detail.amount }}</td>
+						<td class="text-left">{{ detail.description }}</td>
+						<td class="text-left">{{ detail.reference }}</td>
+						<td class="text-right">{{ detail.priceTotal |currency}}</td>
+						<td class="text-right">{{ detail.tax |percent}}</td>
+						<td class="text-right">{{ detail.priceTotalSale |currency }}</td>
+						<td class="text-center"><button (click)="removeItem(detail)" type="button" class="btn-delete"><i class="fas fa-trash text-orange"></i></button></td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+					<td colspan="7"  class="text-right">SubTotal</td>
+					<td colspan="1" class="text-right">456</td>
+					</tr>
+					<tr>
+						<td colspan="7" class="text-right">Impuesto</td>
+						<td colspan="1" class="text-right">0</td>
+					</tr>
+					<tr>
+						<td colspan="7" class="text-right">Total</td>
+						<td colspan="1" class="text-right">456</td>
+					</tr>
+				</tfoot>
+			</table>
+			<div class="div-btn-invoice">
+				<button class="btn-invoice-add">Facturar</button>
+			</div>
+		</ng-template>
+</div>

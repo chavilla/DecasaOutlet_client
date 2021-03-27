@@ -34,8 +34,6 @@ export class ProductStoreComponent  {
   ) {
     // Assign the data to the data source for the table to render
     this.getProducts().then( res =>{
-      console.log(res);
-      
       this.loading = false;
       this.dataSource = new MatTableDataSource(res[0]);
       this.dataSource.paginator = this.paginator;
