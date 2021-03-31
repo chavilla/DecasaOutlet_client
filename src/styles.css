@@ -462,3 +462,7 @@ mat-paginator {
   font-weight: bold;
   justify-content: center;
 }
+
+.searching{ 
+  font-size: 1.3rem;
+}

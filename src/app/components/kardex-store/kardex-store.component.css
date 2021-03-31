@@ -1,0 +1,37 @@
+table.table-kardex {
+	border-collapse: collapse;
+	width: 90%;
+	margin: 0 auto;
+	overflow: scroll;
+	padding-top: 1.5rem;
+}
+
+table.table-kardex thead tr {
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+tbody tr:nth-child(2n+2) {
+	background-color:#ffffff;
+}
+
+table td {
+	padding: 1rem 0;
+}
+
+table td, table tr {
+	padding: 0 1rem;
+}
+
+.btn-delete {
+	border: none;
+	cursor: pointer;
+}
+
+tfoot {
+	padding: 1rem 0;
+}
+
+tfoot td {
+	font-weight: bold;
+}

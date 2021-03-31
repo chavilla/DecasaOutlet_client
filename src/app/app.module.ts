@@ -37,6 +37,8 @@ import { InputsAddComponent } from './components/inputs/inputs-add/inputs-add.co
 import { InputStoreComponent } from './components/inputs/input-store/input-store.component';
 import { DetailAddComponent } from './components/invoice/detail-add/detail-add.component';
 import { DetailStoreComponent } from './components/invoice/detail-store/detail-store.component';
+import { KardexComponent } from './components/kardex/kardex.component';
+import { KardexStoreComponent } from './components/kardex-store/kardex-store.component';
 
 
 @NgModule({
@@ -62,6 +64,8 @@ import { DetailStoreComponent } from './components/invoice/detail-store/detail-s
     InputStoreComponent,
     DetailAddComponent,
     DetailStoreComponent,
+    KardexComponent,
+    KardexStoreComponent,
   ],
   imports: [
     BrowserModule,

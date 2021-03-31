@@ -1,0 +1,36 @@
+
+
+<div>
+	<div class="message text-orange text-center" style="font-size: 1rem;" *ngIf="kardexStored.length===0; else tableKardex">
+		No hay Kardex con el producto introducido
+	</div>
+	<ng-template #tableKardex>
+		<table class="table-kardex">
+			<thead>
+				<tr>
+					<td class="text-center">Descripción</td>
+					<td class="text-center">Promedio Ponderado</td>
+					<td class="text-center">Cantidad Entrada</td>
+					<td class="text-center">Valor Entrada</td>
+					<td class="text-center">Cantidad Salidas </td>
+					<td class="text-center">Valor Salidas</td>
+					<td class="text-center">Cantidad Total</td>
+					<td class="text-center"> Valor Total</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let Kardex of kardexStored">
+					<td class="text-center"> {{ Kardex.description }}</td>
+					<td class="text-right">{{ Kardex.cost_pp }}</td>
+					<td class="text-right">{{ Kardex.input_amount }}</td>
+					<td class="text-right">{{ Kardex.input_value | currency}}</td>
+					<td class="text-right">{{ Kardex.output_amount }}</td>
+					<td class="text-right">{{ Kardex.output_value |currency}}</td>
+					<td class="text-right">{{ Kardex.balance_amount }}</td>
+					<td class="text-right">{{ Kardex.balance_value |currency }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</ng-template>
+	
+</div>

@@ -16,6 +16,7 @@ import { UserStoreComponent } from './components/users/user-store/user-store.com
 import { InputsAddComponent } from './components/inputs/inputs-add/inputs-add.component';
 import { InputStoreComponent } from './components/inputs/input-store/input-store.component';
 import { DetailAddComponent } from './components/invoice/detail-add/detail-add.component';
+import { KardexComponent } from './components/kardex/kardex.component';
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -36,6 +37,7 @@ const appRoutes: Routes = [
             { path: 'inputs/add', component: InputsAddComponent },
             { path: 'sales', component: DetailAddComponent },
             { path: 'sales/add', component: DetailAddComponent },
+            { path: 'kardex', component: KardexComponent },
             { path: '**', redirectTo:'', pathMatch:'full' },
         ],
         canActivate:[ AuthServiceGuard],

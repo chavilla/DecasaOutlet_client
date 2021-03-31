@@ -1,0 +1,21 @@
+<h3 class="title text-center">Buscar Kardex</h3>
+<form class="normal-form" [formGroup]="form" (ngSubmit)="onSubmit(form)">
+	<div class="input-fields-zone">
+		<div class="form-control-group-kardex">
+			<div class="input-field">
+				<label for="codebar">Buscar Producto</label>
+				<input formControlName="codebar" type="text" id="codebar" class="codebar" placeholder="Código de Barra Aquí" autocomplete="off" >
+				<div class="error" *ngIf="form.get('codebar').hasError('required')">Código de barras es requerido</div>
+			</div>
+			<div class="input-field">
+				<input type="submit" value="Buscar"  [disabled]="!form.valid">
+			</div>
+		</div>	
+	</div>
+</form>
+
+<p class="text-orange text-center searching" *ngIf="loading; else kardexStored">Buscando...</p>
+
+<ng-template #kardexStored>
+	<app-kardex-store  *ngIf="kardexes.length>0"></app-kardex-store>
+</ng-template>
