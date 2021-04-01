@@ -31,10 +31,10 @@ export class InputsAddComponent extends NotificationHelper implements OnInit {
 
   saveInput(form:FormGroup, messageDialog:HTMLElement){
 
-    const { product_id, amount, cost } = form.value;
+    const { product_id, amount, cost, description } = form.value;
 
     //Creating an objet type Inputmodel
-    this.input = new InputModel(product_id, amount, cost);
+    this.input = new InputModel(product_id, amount, cost, description);
     
     this.inputService.saveInputService(this.input).subscribe( 
       res => {   

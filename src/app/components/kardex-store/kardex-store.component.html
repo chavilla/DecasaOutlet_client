@@ -8,6 +8,7 @@
 		<table class="table-kardex">
 			<thead>
 				<tr>
+					<td class="text-center">Fecha</td>
 					<td class="text-center">Descripción</td>
 					<td class="text-center">Promedio Ponderado</td>
 					<td class="text-center">Cantidad Entrada</td>
@@ -20,8 +21,9 @@
 			</thead>
 			<tbody>
 				<tr *ngFor="let Kardex of kardexStored">
+					<td class="text-center"> {{ Kardex.created_at | date }}</td>
 					<td class="text-center"> {{ Kardex.description }}</td>
-					<td class="text-right">{{ Kardex.cost_pp }}</td>
+					<td class="text-right">{{ Kardex.cost_pp | currency }}</td>
 					<td class="text-right">{{ Kardex.input_amount }}</td>
 					<td class="text-right">{{ Kardex.input_value | currency}}</td>
 					<td class="text-right">{{ Kardex.output_amount }}</td>

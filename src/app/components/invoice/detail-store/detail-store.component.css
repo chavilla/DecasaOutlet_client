@@ -32,17 +32,37 @@ tfoot td {
 	font-weight: bold;
 }
 
-.div-btn-invoice {
-	display: flex;
-	justify-content: flex-end;
-	margin: 1rem auto;
-	width: 90%;
+@media(min-width:768px) {
+	.btn-invoice-actions {
+		display: flex;
+		justify-content: flex-end;
+		margin:  .3rem auto;
+		width: 90%;
+	}
+
+	.input-content>div {
+		margin: 0 3rem;
+	}
+
+	.inputs-data-invoice {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+}
+
+.btn-invoice-add, .btn-invoice-cancel {
+	border: none;
+	color: white;
+	cursor: pointer;
+	margin: 1rem .3rem;
+	padding: 1rem 1.5rem;
 }
 
 .btn-invoice-add{
 	background-color: #5CB85C;
-	border: none;
-	color: white;
-	cursor: pointer;
-	padding: 1rem 1.5rem;
+}
+
+.btn-invoice-cancel {
+	background-color: red;
 }

@@ -1,5 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
-import {MatTableDataSource} from '@angular/material/table';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { DetailModel } from 'src/app/models/Detail.model';
 import { DetailService } from 'src/app/services/detail.service';
 
@@ -8,25 +7,47 @@ import { DetailService } from 'src/app/services/detail.service';
   templateUrl: './detail-store.component.html',
   styleUrls: ['./detail-store.component.css']
 })
-export class DetailStoreComponent implements OnDestroy  {
+export class DetailStoreComponent {
 
-  dataSource: MatTableDataSource<DetailModel>;
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'codebar', 'amount' ,'description', 'reference', 'priceTotal', 'tax', 'priceTotalSale'];
-  details:Array<DetailModel>;
+  @Input() details:Array<DetailModel>;
+  @Output() cleanDetails:EventEmitter<DetailModel>=new EventEmitter();
+  @Output() removeItem:EventEmitter<DetailModel>=new EventEmitter();
+  @ViewChild('total') totalToPay:ElementRef; 
 
   constructor(
     private detailService:DetailService,
-  ) { 
-    this.details = this.detailService.details;    
+  ){}
+
+  startRemoveItem(detail:DetailModel){
+    this.removeItem.emit(detail);
   }
 
-  removeItem(detail:DetailModel){
-    this.detailService.removeItemService(detail);
+  cleanAllDetails() {
+    this.cleanDetails.emit();
   }
 
-  ngOnDestroy():void {
-    this.detailService.details=[];
+
+  getSubTotal() {
+    return this.details.reduce( (acum, det ) => acum += det.priceTotalSale, 0);
   }
+
+  getTaxTotal() {
+    return this.details.reduce( (acum, det ) => acum += det.tax, 0);
+  }
+
+  getTotalToPay() {
+    return this.getSubTotal() + this.getTaxTotal();
+  }
+
+  addInvoice(details:Array<DetailModel>) {
+    const data = {
+      details,
+      totalToPay: this.getTotalToPay(),
+    }
+
+    this.detailService.saveInvoiceService(data);
+
+  }
+
 
 }

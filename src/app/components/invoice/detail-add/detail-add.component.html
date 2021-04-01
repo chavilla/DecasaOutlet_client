@@ -10,7 +10,7 @@
 				<input type="submit" value="Buscar">
 			</div>
 		</div>	
-		<div *ngIf="message" class="message text-center loading">{{message}}</div>
+		<div *ngIf="message" class="text-center text-orange">{{message}}</div>
 	</div>
 </form>
 
@@ -48,5 +48,8 @@
 
 <div class="invoice-content">
 	<h2 class="text-center font-bold-openSans title text-orange">Items</h2>
-	<app-detail-store *ngIf="details.length>0"></app-detail-store>
+	<app-detail-store [details]="details" (cleanDetails)="cleanDetails()" (removeItem)="removeItem($event)" *ngIf="details.length>0; else other"></app-detail-store>
+	<ng-template #other>
+		<p class="text-center text-orange" style="margin-top: 3rem;">No has agregado</p>
+	</ng-template>
 </div>

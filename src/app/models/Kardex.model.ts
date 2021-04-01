@@ -9,7 +9,6 @@ export class KardexModel {
 		public balance_amount:number,
 		public balance_value:number,
 		public created_at: string,
-		public updated_at: string,
 		public product_id: number,
 		public id:number,
 	){

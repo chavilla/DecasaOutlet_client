@@ -28,6 +28,12 @@
 				<div class="error" *ngIf="form.get('cost').hasError('min')">Costo debe ser mayor a 0.05</div>
 				<div class="error" *ngIf="form.get('cost').hasError('max')">Costo debe ser menor 999.99</div>
 			</div>
+
+			<div class="input-field">
+				<label for="description">Costo</label>
+				<input type="text" id="description" class="description" placeholder="Descripción Aquí" formControlName="description" autocomplete="off">
+				<div class="error" *ngIf="form.get('description').hasError('required')">Descripción es requerida</div>
+			</div>
 			
 			<div class="input-field">
 				<input type="submit" value="Enviar" [disabled]="!form.valid" />

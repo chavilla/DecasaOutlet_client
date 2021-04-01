@@ -49,8 +49,8 @@ export class DetailService {
   }
 
   //if the item exists
-  exists(detail:DetailModel){
-    let exists:boolean = this.details.some( det => det.id === detail.id );
+  exists(detail:DetailModel, details:Array<DetailModel>){
+    let exists:boolean = details.some( det => det.id === detail.id );
     return exists;
   }
 
@@ -58,5 +58,11 @@ export class DetailService {
   removeItemService(detail:DetailModel) {
     let item = this.details.indexOf(detail)
     this.details.splice(item,1);
+  }
+
+  // add an invoice
+  saveInvoiceService(data:Object) {
+    console.log(data);
+    
   }
 }

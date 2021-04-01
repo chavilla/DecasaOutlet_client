@@ -24,6 +24,7 @@ export class InputService {
       product_id : ['', [ Validators.required, Validators.min(1)]],
       amount: ['',[Validators.required, Validators.min(1), Validators.max(999)]],
       cost: ['', [Validators.required, Validators.min(0.05), Validators.max(999.99)]],
+      description: ['', Validators.required ],
     });
   }
 

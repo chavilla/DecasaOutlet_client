@@ -1,11 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { DetailModel } from 'src/app/models/Detail.model';
 import { DetailService } from 'src/app/services/detail.service';
 import { ProductService } from 'src/app/services/product-service.service';
-import { MatDialog } from '@angular/material/dialog';
-import * as _ from 'lodash';
-
 
 @Component({
   selector: 'app-detail-add',
@@ -16,7 +13,7 @@ export class DetailAddComponent {
 
   form: FormGroup;
   detail: DetailModel;
-  details: Array<DetailModel>;
+  details: Array<DetailModel> =[];
   message: string;
   loading: boolean;
   item: boolean;
@@ -26,7 +23,6 @@ export class DetailAddComponent {
     private productService: ProductService,
   ) {
     this.form = this.detailService.form;
-    this.details = this.detailService.details;
   }
 
   //validate the codebar is not empty
@@ -52,11 +48,12 @@ export class DetailAddComponent {
           this.message = 'Producto No encontrado';
         }
         else {
+          
           this.loading = false;
           this.message = null;
 
           //validate to item is not exists
-          if (this.detailService.exists(res[0])) {
+          if (this.detailService.exists(res[0], this.details)) {
             this.detailService.initializeFormGroup();
             alert('Este Producto ya está agregado');
             return;
@@ -88,7 +85,7 @@ export class DetailAddComponent {
     this.detail = new DetailModel(id, amount, priceTotal, priceTotalSale, description, codebar, tax, reference);
 
     // a DetailModel is pushed into detailService array
-    this.detailService.details.push(this.detail);
+    this.details.push(this.detail);
     this.item = false;
     this.form.reset();
 
@@ -102,4 +99,13 @@ export class DetailAddComponent {
     }
   }
 
+  cleanDetails():void {
+    this.details =[];
+  }
+
+  removeItem($event:DetailModel){
+    let item = this.details.indexOf($event);
+    this.details.splice(item,1);
+    
+  }
 }
