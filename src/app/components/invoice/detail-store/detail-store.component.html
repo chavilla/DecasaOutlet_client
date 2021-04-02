@@ -1,65 +1,67 @@
 <div class="invoice-content">
-	<form>
+	<form [formGroup]="form" >
 		<div class="inputs-data-invoice">
 			<div class="input-field ">
 				<label for="client">Cliente</label>
-				<input type="text" name="client" id="client" placeholder="Buscar Cliente">
+				<input (click)="onSelectClient()" type="text" name="client" id="client" formControlName="ruc" placeholder="RUC Cliente Aquí">
+				<div class="error" *ngIf="form.get('ruc').hasError('required')">Ruc es requerido</div>
 			</div>
 			<div class="input-field ">
 				<label for="payMode">Forma de Pago</label>
-				<select  id="payMode" class="payMode" placeholder="Categoría Aquí">
+				<select  id="payMode" class="payMode" formControlName="payMode" placeholder="Categoría Aquí">
 					<option value="0" selected>Seleccionar Método de Pago</option>
 					<option value="1">Efectivo</option>
 					<option value="2">Tarjeta</option>
 				</select>
+				<div class="error" *ngIf="form.get('payMode').hasError('required')">Debes seleccionar un pago</div>
 			</div>
 		</div>
-	</form>
-	
-	<table class="table-details">
-		<thead>
-			<tr>
-				<td class="text-center">ID</td>
-				<td class="text-center">Código Barras</td>
-				<td class="text-center">Cantidad</td>
-				<td class="text-center">Descripción</td>
-				<td class="text-center">Referencia</td>
-				<td class="text-center">Precio Unidad</td>
-				<td class="text-center">Impuesto</td>
-				<td class="text-center">Total</td>
-				<td class="text-center">Quitar</td>
-			</tr>
-		</thead>
-		<tbody>
-			<tr *ngFor="let detail of details">
-				<td class="text-center">{{ detail.id }}</td>
-				<td class="text-right">{{ detail.codebar }}</td>
-				<td class="text-center">{{ detail.amount }}</td>
-				<td class="text-left">{{ detail.description }}</td>
-				<td class="text-left">{{ detail.reference }}</td>
-				<td class="text-right">{{ detail.priceTotal |currency}}</td>
-				<td class="text-right">{{ detail.tax |percent}}</td>
-				<td class="text-right">{{ detail.priceTotalSale |currency }}</td>
-				<td class="text-center"><button (click)="startRemoveItem(detail)" type="button" class="btn-delete"><i class="fas fa-trash text-orange"></i></button></td>
-			</tr>
-		</tbody>
-		<tfoot>
-			<tr>
-			<td colspan="7"  class="text-right">SubTotal</td>
-			<td colspan="1" class="text-right">{{ getSubTotal() | currency}}</td>
-			</tr>
-			<tr>
-				<td colspan="7" class="text-right"  >Impuesto</td>
-				<td colspan="1" class="text-right">{{ getTaxTotal() | percent }}</td>
-			</tr>
-			<tr>
-				<td colspan="7" class="text-right">Total</td>
-				<td colspan="1" class="text-right"  #total>${{ getTotalToPay().toFixed(2) }}</td>
-			</tr>
-		</tfoot>
-	</table>
-	<div class="btn-invoice-actions">
-		<button class="btn-invoice-add" (click)="addInvoice(details)">Facturar</button>
-		<button type="button" (click)="cleanAllDetails()" class="btn-invoice-cancel">Cancelar</button>
-	</div>
+		<table class="table-details">
+			<thead>
+				<tr>
+					<td class="text-center">ID</td>
+					<td class="text-center">Código Barras</td>
+					<td class="text-center">Cantidad</td>
+					<td class="text-center">Descripción</td>
+					<td class="text-center">Referencia</td>
+					<td class="text-center">Precio Unidad</td>
+					<td class="text-center">Impuesto</td>
+					<td class="text-center">Total</td>
+					<td class="text-center">Quitar</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let detail of details">
+					<td class="text-center">{{ detail.id }}</td>
+					<td class="text-right">{{ detail.codebar }}</td>
+					<td class="text-center">{{ detail.amount }}</td>
+					<td class="text-left">{{ detail.description }}</td>
+					<td class="text-left">{{ detail.reference }}</td>
+					<td class="text-right">{{ detail.priceTotal |currency}}</td>
+					<td class="text-right">{{ detail.tax |percent}}</td>
+					<td class="text-right">{{ detail.priceTotalSale |currency }}</td>
+					<td class="text-center"><button (click)="startRemoveItem(detail)" type="button" class="btn-delete"><i class="fas fa-trash text-orange"></i></button></td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+				<td colspan="7"  class="text-right">SubTotal</td>
+				<td colspan="1" class="text-right">{{ getSubTotal() | currency}}</td>
+				</tr>
+				<tr>
+					<td colspan="7" class="text-right"  >Impuesto</td>
+					<td colspan="1" class="text-right">{{ getTaxTotal() | percent }}</td>
+				</tr>
+				<tr>
+					<td colspan="7" class="text-right">Total</td>
+					<td colspan="1" class="text-right"  #total>${{ getTotalToPay().toFixed(2) }}</td>
+				</tr>
+			</tfoot>
+		</table>
+		
+		<div class="btn-invoice-actions">
+			<button class="btn-invoice-add" [disabled]="!form.valid" (click)="addInvoice(details,form)">Facturar</button>
+			<button type="button" (click)="cleanAllDetails()" class="btn-invoice-cancel">Cancelar</button>
+		</div>
+	</form>	
 </div>

@@ -44,7 +44,7 @@ export class ClientStoreComponent  {
       if(err.status ===401){
         this.redirect = new RedirectionHelper(this.loginService,this.route,err);
       }
-  });;
+  });
   }
 
   getClients() {

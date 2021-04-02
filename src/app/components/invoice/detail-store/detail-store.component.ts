@@ -1,6 +1,9 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { DetailModel } from 'src/app/models/Detail.model';
 import { DetailService } from 'src/app/services/detail.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ClientsModalComponent } from '../../clients/clients-modal/clients-modal.component';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-detail-store',
@@ -13,10 +16,14 @@ export class DetailStoreComponent {
   @Output() cleanDetails:EventEmitter<DetailModel>=new EventEmitter();
   @Output() removeItem:EventEmitter<DetailModel>=new EventEmitter();
   @ViewChild('total') totalToPay:ElementRef; 
+  form:FormGroup;
 
   constructor(
     private detailService:DetailService,
-  ){}
+    public dialog: MatDialog,
+  ){
+    this.form = this.detailService.formInvoice;
+  }
 
   startRemoveItem(detail:DetailModel){
     this.removeItem.emit(detail);
@@ -25,7 +32,6 @@ export class DetailStoreComponent {
   cleanAllDetails() {
     this.cleanDetails.emit();
   }
-
 
   getSubTotal() {
     return this.details.reduce( (acum, det ) => acum += det.priceTotalSale, 0);
@@ -39,15 +45,23 @@ export class DetailStoreComponent {
     return this.getSubTotal() + this.getTaxTotal();
   }
 
-  addInvoice(details:Array<DetailModel>) {
+  addInvoice(details:Array<DetailModel>, form:FormGroup) {
     const data = {
       details,
       totalToPay: this.getTotalToPay(),
+      ...form.value,
     }
-
     this.detailService.saveInvoiceService(data);
-
   }
 
+  // open dialog
+  onSelectClient() {
+    let dialogRef = this.dialog.open(ClientsModalComponent, {minWidth: 1000});
+
+    dialogRef.afterClosed().subscribe( res =>{
+      this.form.controls['ruc'].setValue(res.ruc);
+      this.form.controls['id'].setValue(res.id);
+    })
+  }
 
 }

@@ -9,6 +9,7 @@ import { baseUrl } from './baseUrl';
 export class DetailService {
 
   form: FormGroup;
+  formInvoice : FormGroup;
   details: Array<DetailModel>=[];
   private baseUrl: string;
 
@@ -27,9 +28,14 @@ export class DetailService {
       reference: ['', [Validators.required]],
       codebar: ['', [Validators.required]],
     });
+    this.formInvoice = this.fb.group({
+      id: ['', Validators.required],
+      ruc: ['', Validators.required],
+      payMode: ['', Validators.required],
+    })
   }
 
-  // form constrols
+  // form constrols 
   initializeFormGroup() {
     this.form.setValue({
       id: '',
@@ -58,6 +64,15 @@ export class DetailService {
   removeItemService(detail:DetailModel) {
     let item = this.details.indexOf(detail)
     this.details.splice(item,1);
+  }
+
+  // form controls to client data in formInvoice
+  initializeFormGroupInvoice() {
+    this.formInvoice.setValue({
+      id: '',
+      ruc: '',
+      payMode: '',
+    })
   }
 
   // add an invoice

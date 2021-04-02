@@ -393,6 +393,11 @@ td.mat-footer-cell {
   .input-filter {
     width: 50% !important;
   }
+
+  .mat-cell-data{
+    cursor: pointer;
+  }
+
 }
 
 .mat-input-element::placeholder{

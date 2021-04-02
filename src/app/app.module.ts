@@ -39,6 +39,7 @@ import { DetailAddComponent } from './components/invoice/detail-add/detail-add.c
 import { DetailStoreComponent } from './components/invoice/detail-store/detail-store.component';
 import { KardexComponent } from './components/kardex/kardex.component';
 import { KardexStoreComponent } from './components/kardex-store/kardex-store.component';
+import { ClientsModalComponent } from './components/clients/clients-modal/clients-modal.component';
 
 
 @NgModule({
@@ -66,6 +67,7 @@ import { KardexStoreComponent } from './components/kardex-store/kardex-store.com
     DetailStoreComponent,
     KardexComponent,
     KardexStoreComponent,
+    ClientsModalComponent,
   ],
   imports: [
     BrowserModule,
