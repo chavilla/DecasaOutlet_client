@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DetailModel } from '../models/Detail.model';
@@ -15,6 +16,7 @@ export class DetailService {
 
   constructor(
     private fb: FormBuilder,
+    private _http:HttpClient,
   ) {
     this.baseUrl = baseUrl;
     this.form = this.fb.group({
@@ -29,7 +31,7 @@ export class DetailService {
       codebar: ['', [Validators.required]],
     });
     this.formInvoice = this.fb.group({
-      id: ['', Validators.required],
+      client_id: ['', Validators.required],
       ruc: ['', Validators.required],
       payMode: ['', Validators.required],
     })
@@ -77,7 +79,6 @@ export class DetailService {
 
   // add an invoice
   saveInvoiceService(data:Object) {
-    console.log(data);
-    
+    return this._http.post(`${this.baseUrl}/invoice`, data);
   }
 }
