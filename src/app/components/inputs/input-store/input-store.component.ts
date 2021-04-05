@@ -1,4 +1,4 @@
-import { Component, ViewChild} from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -16,45 +16,46 @@ import { Router } from '@angular/router';
   styleUrls: ['input-store.component.css'],
   templateUrl: 'input-store.component.html',
 })
-export class InputStoreComponent  {
+export class InputStoreComponent {
 
   //Attributes
-  displayedColumns: string[] = ['amount', 'description', 'cost', 'user' ,'updated_at'];
+  displayedColumns: string[] = ['amount', 'description', 'cost', 'user', 'updated_at'];
   dataSource: MatTableDataSource<InputModel>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  loading:boolean =true;
-  redirect:RedirectionHelper;
+  loading: boolean = true;
+  redirect: RedirectionHelper;
 
   constructor(
-    private inputService:InputService,
-    private loginService:LoginService,
-    private route:Router,
+    private inputService: InputService,
+    private loginService: LoginService,
+    private route: Router,
     public dialog: MatDialog,
   ) {
     // Assign the data to the data source for the table to render
-    this.getInputs().then( res =>{
+    this.getInputs().then(res => {
       this.loading = false;
       this.dataSource = new MatTableDataSource(res[0]);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-    }).catch( err =>{
-      if(err.status ===401){
-        this.redirect = new RedirectionHelper(this.loginService,this.route,err);
-      }});
+    }).catch(err => {
+      if (err.status === 401) {
+        this.redirect = new RedirectionHelper(this.loginService, this.route, err);
+      }
+    });
   }
 
   getInputs() {
-    return new Promise((resolve,reject) =>{
-      this.inputService.getInputService().subscribe( res =>{
+    return new Promise((resolve, reject) => {
+      this.inputService.getInputService().subscribe(res => {
         resolve(res)
-      }, err =>{
+      }, err => {
         reject(err);
       });
     });
   }
-   
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -65,12 +66,16 @@ export class InputStoreComponent  {
   }
 
   refresh() {
-     // Assign the data to the data source for the table to render
-     this.getInputs().then( res =>{
+    // Assign the data to the data source for the table to render
+    this.getInputs().then(res => {
       this.loading = false;
       this.dataSource = new MatTableDataSource(res[0]);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+    }).catch(err => {
+      if (err.status === 401) {
+        this.redirect = new RedirectionHelper(this.loginService, this.route, err);
+      }
     });
   }
 

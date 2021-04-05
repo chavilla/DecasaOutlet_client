@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { RedirectionHelper } from 'src/app/helpers/redirection.helper';
 import { DetailModel } from 'src/app/models/Detail.model';
 import { DetailService } from 'src/app/services/detail.service';
+import { LoginService } from 'src/app/services/login.service';
 import { ProductService } from 'src/app/services/product-service.service';
 
 @Component({
@@ -17,10 +20,14 @@ export class DetailAddComponent {
   message: string;
   loading: boolean;
   item: boolean;
+  redirect:RedirectionHelper;
+  invoiceSent:boolean;
 
   constructor(
     private detailService: DetailService,
     private productService: ProductService,
+    private loginService:LoginService,
+    private route:Router,
   ) {
     this.form = this.detailService.form;
   }
@@ -62,7 +69,9 @@ export class DetailAddComponent {
         }
       },
       err => {
-        console.log(err);
+        if(err.status === 401) {
+          this.redirect = new RedirectionHelper(this.loginService,this.route,err);
+        }
       }
     );
   }

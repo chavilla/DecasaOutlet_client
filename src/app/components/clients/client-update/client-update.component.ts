@@ -2,6 +2,9 @@ import { Component, Inject ,OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ClientService } from '../../../services/client.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { RedirectionHelper } from 'src/app/helpers/redirection.helper';
+import { LoginService } from 'src/app/services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-client-update',
@@ -11,10 +14,13 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class ClientUpdateComponent implements OnInit {
 
   form:FormGroup;
+  redirect:RedirectionHelper;
 
   constructor(
     private clientService:ClientService,
     private dialog:MatDialogRef<ClientUpdateComponent>,
+    private loginService: LoginService,
+    private route:Router,
     @Inject(MAT_DIALOG_DATA)
     public data:object,
   ) { }
@@ -30,7 +36,9 @@ export class ClientUpdateComponent implements OnInit {
         this.dialog.close(this.form.value);
       },
       err => {
-        console.log(err);
+        if(err.status ===401){
+          this.redirect = new RedirectionHelper(this.loginService,this.route,err);
+        }      
       }
      );
   } // end updateClient

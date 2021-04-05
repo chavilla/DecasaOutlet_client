@@ -1,8 +1,11 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NotificationHelper } from 'src/app/helpers/notification.helper';
+import { RedirectionHelper } from 'src/app/helpers/redirection.helper';
 import { InputModel } from 'src/app/models/Input.model';
 import { InputService } from 'src/app/services/input.service';
+import { LoginService } from 'src/app/services/login.service';
 import { ProductService } from 'src/app/services/product-service.service';
 
 @Component({
@@ -15,11 +18,14 @@ export class InputsAddComponent extends NotificationHelper implements OnInit {
   form:FormGroup;
   products:Object;
   input:InputModel;
+  redirect: RedirectionHelper;
 
   constructor(
     private inputService:InputService,
     private productService:ProductService,
     private render:Renderer2,
+    private loginService:LoginService,
+    private route:Router,
   ) {
     super();
    }
@@ -42,6 +48,9 @@ export class InputsAddComponent extends NotificationHelper implements OnInit {
          this.form.reset();
       }, 
       err =>{
+        if (err.status === 401) {
+          this.redirect = new RedirectionHelper(this.loginService, this.route, err);
+        }
         this.toggleElement(this.render, messageDialog, err.error.msg, 'failed');
       });
   

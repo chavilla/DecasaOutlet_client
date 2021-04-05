@@ -1,7 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { RedirectionHelper } from 'src/app/helpers/redirection.helper';
 import { KardexModel } from 'src/app/models/Kardex.model';
 import { KardexService } from 'src/app/services/kardex.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-kardex',
@@ -13,9 +16,12 @@ export class KardexComponent implements OnDestroy {
   kardexes:Array<KardexModel>=[];
   form:FormGroup;
   loading:boolean;
+  redirect:RedirectionHelper;
 
   constructor(
     private kardexService:KardexService,
+    private loginService:LoginService,
+    private route:Router,
   ) { 
     this.form = this.kardexService.form;
   }
@@ -25,13 +31,17 @@ export class KardexComponent implements OnDestroy {
   }
 
   onSubmit(form:FormGroup) {
-    
     this.loading = true;
     this.getKardexes(form).then( res =>{
       this.kardexes.push(res[0]);
       this.loading = false;
-    }).catch(e => {    
-      console.log(e);
+    }).catch(err => {  
+      if(err.status===401) {
+        this.redirect = new RedirectionHelper(this.loginService,this.route, err);
+      }  
+
+      
+
     });
   }
 

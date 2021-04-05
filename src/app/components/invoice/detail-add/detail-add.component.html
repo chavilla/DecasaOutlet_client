@@ -46,6 +46,7 @@
 	</div>
 </form>
 
+
 <div class="invoice-content">
 	<h2 class="text-center font-bold-openSans title text-orange">Items</h2>
 	<app-detail-store [details]="details" (cleanDetails)="cleanDetails()" (removeItem)="removeItem($event)" *ngIf="details.length>0; else other"></app-detail-store>

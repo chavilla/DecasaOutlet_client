@@ -14,8 +14,10 @@
 	</div>
 </form>
 
-<p class="text-orange text-center searching" *ngIf="loading; else kardexStored">Buscando...</p>
-
-<ng-template #kardexStored>
-	<app-kardex-store  *ngIf="kardexes.length>0"></app-kardex-store>
-</ng-template>
+<div class="kardex-content">
+	<app-spinner *ngIf="loading; else kardexStored">Buscando...</app-spinner>
+	
+	<ng-template #kardexStored>
+		<app-kardex-store  *ngIf="kardexes.length>0"></app-kardex-store>
+	</ng-template>
+</div>

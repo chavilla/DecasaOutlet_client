@@ -10,7 +10,7 @@ html {
 
 html,
 body {
-  height: 50px;
+  height: 100vh;
 }
 
 @media(max-width:768px){

@@ -1,9 +1,14 @@
 table.table-kardex {
 	border-collapse: collapse;
+	width: 100%;
+	overflow: scroll;
+	margin: 1.5rem 0;
+}
+
+.kardex-content {
+	padding-bottom: 2rem;
 	width: 90%;
 	margin: 0 auto;
-	overflow: scroll;
-	padding-top: 1.5rem;
 }
 
 table.table-kardex thead tr {

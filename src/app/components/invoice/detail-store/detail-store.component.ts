@@ -15,19 +15,20 @@ import { Router } from '@angular/router';
 })
 export class DetailStoreComponent implements OnDestroy {
 
-  @Input() details:Array<DetailModel>;
-  @Output() cleanDetails:EventEmitter<DetailModel>=new EventEmitter();
-  @Output() removeItem:EventEmitter<DetailModel>=new EventEmitter();
-  @ViewChild('total') totalToPay:ElementRef; 
-  form:FormGroup;
-  redirect:RedirectionHelper;
+  @Input() details: Array<DetailModel>;
+  @Input() invoiceSent: boolean;
+  @Output() cleanDetails: EventEmitter<DetailModel> = new EventEmitter();
+  @Output() removeItem: EventEmitter<DetailModel> = new EventEmitter();
+  @ViewChild('total') totalToPay: ElementRef;
+  form: FormGroup;
+  redirect: RedirectionHelper;
 
   constructor(
-    private detailService:DetailService,
+    private detailService: DetailService,
     public dialog: MatDialog,
-    private loginService:LoginService,
-    private route:Router,
-  ){
+    private loginService: LoginService,
+    private route: Router,
+  ) {
     this.form = this.detailService.formInvoice;
   }
 
@@ -35,7 +36,7 @@ export class DetailStoreComponent implements OnDestroy {
     this.form.reset();
   }
 
-  startRemoveItem(detail:DetailModel){
+  startRemoveItem(detail: DetailModel) {
     this.removeItem.emit(detail);
   }
 
@@ -44,56 +45,55 @@ export class DetailStoreComponent implements OnDestroy {
   }
 
   getSubTotal() {
-    return this.details.reduce( (acum, det ) => acum += det.priceTotalSale, 0);
+    return this.details.reduce((acum, det) => acum += det.priceTotalSale, 0);
   }
 
   getTaxTotal() {
-    return this.details.reduce( (acum, det ) => acum += det.tax, 0);
+    return this.details.reduce((acum, det) => acum += det.tax, 0);
   }
 
   getTotalToPay() {
     return this.getSubTotal() + this.getTaxTotal();
   }
 
-  addInvoice(details:Array<DetailModel>, form:FormGroup) {
+  addInvoice(details: Array<DetailModel>, form: FormGroup) {
 
-    details.forEach(detail =>{
+    let totalToPay = this.getTotalToPay();
+    this.invoiceSent = true;
+
+    details.forEach(detail => {
       delete detail.codebar;
       delete detail.description;
       delete detail.reference;
+      delete detail.tax;
     });
 
     const data = {
       details,
-      totalToPay: this.getTotalToPay(),
+      totalToPay,
       ...form.value,
-    }    
+    }
 
-    this.form.reset();
-    this.cleanAllDetails();
-
-    this.detailService.saveInvoiceService(data).subscribe( res =>{
-      console.log(res);
-    }, 
-    err => {
-      if(err.status === 401) {
-        this.redirect = new RedirectionHelper(this.loginService,this.route,err);
-      }
-      console.log(err);
-       
-    })
+    this.detailService.saveInvoiceService(data).subscribe(res => {
+      this.invoiceSent = false;
+      alert(res);
+      this.form.reset();
+      this.cleanAllDetails();
+    },
+      err => {
+        if (err.status === 401) {
+          this.redirect = new RedirectionHelper(this.loginService, this.route, err);
+        }
+      });
   }
 
   // open dialog
   onSelectClient() {
-    let dialogRef = this.dialog.open(ClientsModalComponent, {minWidth: 1000});
+    let dialogRef = this.dialog.open(ClientsModalComponent, { minWidth: 1000 });
 
-    dialogRef.afterClosed().subscribe( res =>{
+    dialogRef.afterClosed().subscribe(res => {
       this.form.controls['ruc'].setValue(res.ruc);
       this.form.controls['client_id'].setValue(res.id);
     })
   }
-
-
-
 }
