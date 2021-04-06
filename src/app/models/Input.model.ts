@@ -3,7 +3,7 @@ export class InputModel {
 		public product_id:number,
 		public amount:number,
 		public cost:number,
-		public description?:string,
+		public invoice_number?:string,
 		public updated_at?: string,
 		public user?:number,
 	){}

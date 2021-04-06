@@ -30,9 +30,9 @@
 			</div>
 
 			<div class="input-field">
-				<label for="description">Costo</label>
-				<input type="text" id="description" class="description" placeholder="Descripción Aquí" formControlName="description" autocomplete="off">
-				<div class="error" *ngIf="form.get('description').hasError('required')">Descripción es requerida</div>
+				<label for="invoice_number">Número de factura</label>
+				<input type="text" id="invoice_number" class="invoice_number" placeholder="Descripción Aquí" formControlName="invoice_number" autocomplete="off">
+				<div class="error" *ngIf="form.get('invoice_number').hasError('required')">Número de factura de compra es requerido</div>
 			</div>
 			
 			<div class="input-field">
