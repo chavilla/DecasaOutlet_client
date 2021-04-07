@@ -64,10 +64,12 @@ export class ProductAddFrameComponent extends NotificationHelper implements OnIn
         this.form.reset();
       },
       err => {
+        console.log(err);
+        
         if(err.status === 401) {
           this.redirect = new RedirectionHelper(this.loginService,this.route,err);
         }
-        this.toggleElement(this.render, messageDialog, err.error.error, 'failed')
+        this.toggleElement(this.render, messageDialog, err.error.msg, 'failed')
       }
         
     )

@@ -79,16 +79,28 @@ export class DetailAddComponent {
   setProductOnItem(detail: any) {
     this.item = true;
     detail.priceTotalSale = detail.priceTotal;
-    detail.amount = 1;
+    detail.amount = 0;
     this.detailService.populateForm(detail);
 
   }
 
   onSubmit(form: FormGroup) {
 
+
+
     //set priceTotalsale
     this.form.controls['priceTotalSale'].setValue(form.value.amount * form.value.priceTotal);
-    const { id, amount, priceTotal, priceTotalSale, description, codebar, tax, reference } = this.form.value;
+    const { id, stock, amount, priceTotal, priceTotalSale, description, codebar, tax, reference } = this.form.value;
+
+    if(amount>stock) {
+      alert('La cantidad no puede ser mayor al stock');
+      return;
+    }
+
+    if(amount ===0 ) {
+      alert('La Cantidad no puede ser Cero');
+      return;
+    }
 
     // a new DetailModel object is made
     this.detail = new DetailModel(id, amount, priceTotal, priceTotalSale, description, codebar, tax, reference);

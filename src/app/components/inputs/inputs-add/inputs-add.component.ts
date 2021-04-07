@@ -37,6 +37,11 @@ export class InputsAddComponent extends NotificationHelper implements OnInit {
 
   saveInput(form:FormGroup, messageDialog:HTMLElement){
 
+    if(this.form.invalid) {
+      alert('Los datos no son correctos o están incompletos');
+      return;
+    }
+
     const { product_id, amount, cost, invoice_number } = form.value;
 
     //Creating an objet type Inputmodel

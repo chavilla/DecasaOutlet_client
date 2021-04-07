@@ -15,16 +15,16 @@ import { RedirectionHelper } from 'src/app/helpers/redirection.helper';
   templateUrl: './product-store.component.html',
   styleUrls: ['./product-store.component.css']
 })
-export class ProductStoreComponent  {
+export class ProductStoreComponent {
 
   // Attributes
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   dataSource: MatTableDataSource<ProductModel>;
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id','codebar', 'description', 'reference', 'category_id', 'stock', 'cost', 'tax', 'priceTotal', 'active'];
-  loading:boolean = true;
-  redirect:RedirectionHelper;
+  displayedColumns = ['id', 'codebar', 'description', 'reference', 'category_id', 'stock', 'cost', 'tax', 'priceTotal', 'active'];
+  loading: boolean = true;
+  redirect: RedirectionHelper;
 
   constructor(
     private productService: ProductService,
@@ -33,23 +33,23 @@ export class ProductStoreComponent  {
     public dialog: MatDialog,
   ) {
     // Assign the data to the data source for the table to render
-    this.getProducts().then( res =>{
+    this.getProducts().then(res => {
       this.loading = false;
       this.dataSource = new MatTableDataSource(res[0]);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-    }).catch( err =>{
-        if(err.status ===401){
-          this.redirect = new RedirectionHelper(this.loginService,this.route,err);
-        }
+    }).catch(err => {
+      if (err.status === 401) {
+        this.redirect = new RedirectionHelper(this.loginService, this.route, err);
+      }
     });
   }
 
   getProducts() {
-    return new Promise((resolve,reject) =>{
-      this.productService.getProductService().subscribe( res =>{
+    return new Promise((resolve, reject) => {
+      this.productService.getProductService().subscribe(res => {
         resolve(res)
-      }, err =>{
+      }, err => {
         reject(err);
       });
     });
@@ -86,14 +86,14 @@ export class ProductStoreComponent  {
       data: { ...product }
     });
 
-    dialogRef.afterClosed().subscribe((res:ProductModel[])=> {
+    dialogRef.afterClosed().subscribe((res: ProductModel[]) => {
       this.refresh();
     })
   }
 
   refresh() {
     // Assign the data to the data source for the table to render
-    this.getProducts().then( res =>{
+    this.getProducts().then(res => {
       this.loading = false;
       this.dataSource = new MatTableDataSource(res[0]);
       this.dataSource.paginator = this.paginator;

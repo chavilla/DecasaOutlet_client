@@ -16,7 +16,6 @@ import { Router } from '@angular/router';
 export class DetailStoreComponent implements OnDestroy {
 
   @Input() details: Array<DetailModel>;
-  @Input() invoiceSent: boolean;
   @Output() cleanDetails: EventEmitter<DetailModel> = new EventEmitter();
   @Output() removeItem: EventEmitter<DetailModel> = new EventEmitter();
   @ViewChild('total') totalToPay: ElementRef;
@@ -58,8 +57,7 @@ export class DetailStoreComponent implements OnDestroy {
 
   addInvoice(details: Array<DetailModel>, form: FormGroup) {
 
-    let totalToPay = this.getTotalToPay();
-    this.invoiceSent = true;
+    let totalToPay = this.getTotalToPay();    
 
     details.forEach(detail => {
       delete detail.codebar;
@@ -75,12 +73,15 @@ export class DetailStoreComponent implements OnDestroy {
     }
 
     this.detailService.saveInvoiceService(data).subscribe(res => {
-      this.invoiceSent = false;
       alert(res);
+      console.log(res);
+      
       this.form.reset();
       this.cleanAllDetails();
     },
       err => {
+        console.log(err);
+        
         if (err.status === 401) {
           this.redirect = new RedirectionHelper(this.loginService, this.route, err);
         }
