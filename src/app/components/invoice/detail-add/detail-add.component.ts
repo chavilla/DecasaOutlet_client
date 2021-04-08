@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RedirectionHelper } from 'src/app/helpers/redirection.helper';
 import { DetailModel } from 'src/app/models/Detail.model';
 import { DetailService } from 'src/app/services/detail.service';
+import { InvoiceService } from 'src/app/services/invoice.service';
 import { LoginService } from 'src/app/services/login.service';
 import { ProductService } from 'src/app/services/product-service.service';
 
@@ -12,7 +13,7 @@ import { ProductService } from 'src/app/services/product-service.service';
   templateUrl: './detail-add.component.html',
   styleUrls: ['./detail-add.component.css']
 })
-export class DetailAddComponent {
+export class DetailAddComponent implements OnInit {
 
   form: FormGroup;
   detail: DetailModel;
@@ -21,15 +22,32 @@ export class DetailAddComponent {
   loading: boolean;
   item: boolean;
   redirect:RedirectionHelper;
-  invoiceSent:boolean;
+  invoice_number:string;
 
   constructor(
     private detailService: DetailService,
+    private invoiceService: InvoiceService,
     private productService: ProductService,
     private loginService:LoginService,
     private route:Router,
   ) {
     this.form = this.detailService.form;
+  }
+
+  ngOnInit():void {
+    this.getLastNoInvoice();
+  }
+
+  getLastNoInvoice() {
+    this.invoiceService.getLastNoInvoiceService().subscribe( res =>{
+     this.invoice_number = res;
+    },
+    err => {
+      if(err.status === 401) {
+        this.redirect = new RedirectionHelper(this.loginService,this.route,err);
+      }
+      console.log(err);
+    });
   }
 
   //validate the codebar is not empty

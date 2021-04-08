@@ -2,6 +2,10 @@
 	<form [formGroup]="form" >
 		<div class="inputs-data-invoice">
 			<div class="input-field ">
+				<label for="invoice_number">No. Factura</label>
+				<input type="text" name="invoice_number" id="invoice_number" formControlName="invoice_number" placeholder="No. Factura">
+			</div>
+			<div class="input-field ">
 				<label for="client">Cliente</label>
 				<input (click)="onSelectClient()" type="text" name="client" id="client" formControlName="ruc" placeholder="RUC Cliente Aquí">
 				<div class="error" *ngIf="form.get('ruc').hasError('required')">Ruc es requerido</div>

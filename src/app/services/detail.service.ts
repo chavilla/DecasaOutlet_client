@@ -31,10 +31,16 @@ export class DetailService {
       codebar: ['', [Validators.required]],
     });
     this.formInvoice = this.fb.group({
+      invoice_number: ['', [ Validators.required]],
       client_id: ['', Validators.required],
       ruc: ['', Validators.required],
       payMode: ['', Validators.required],
     })
+  }
+
+  // HTTP methods
+  saveInvoiceService(data:Object) {
+    return this._http.post(`${this.baseUrl}/invoice`, data);
   }
 
   // form constrols 
@@ -75,10 +81,5 @@ export class DetailService {
       ruc: '',
       payMode: '',
     })
-  }
-
-  // add an invoice
-  saveInvoiceService(data:Object) {
-    return this._http.post(`${this.baseUrl}/invoice`, data);
   }
 }

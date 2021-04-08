@@ -49,7 +49,7 @@
 
 <div class="invoice-content">
 	<h2 class="text-center font-bold-openSans title text-orange">Items</h2>
-	<app-detail-store [details]="details" (cleanDetails)="cleanDetails()" (removeItem)="removeItem($event)" *ngIf="details.length>0; else other"></app-detail-store>
+	<app-detail-store [details]="details" [invoice_number]="invoice_number" (cleanDetails)="cleanDetails()" (removeItem)="removeItem($event)" *ngIf="details.length>0; else other"></app-detail-store>
 	<ng-template #other>
 		<p class="text-center text-orange" style="margin-top: 3rem;">No has agregado</p>
 	</ng-template>

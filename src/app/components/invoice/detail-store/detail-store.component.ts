@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { DetailModel } from 'src/app/models/Detail.model';
 import { DetailService } from 'src/app/services/detail.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,9 +13,10 @@ import { Router } from '@angular/router';
   templateUrl: './detail-store.component.html',
   styleUrls: ['./detail-store.component.css']
 })
-export class DetailStoreComponent implements OnDestroy {
+export class DetailStoreComponent implements OnDestroy, OnInit {
 
   @Input() details: Array<DetailModel>;
+  @Input() invoice_number:string;
   @Output() cleanDetails: EventEmitter<DetailModel> = new EventEmitter();
   @Output() removeItem: EventEmitter<DetailModel> = new EventEmitter();
   @ViewChild('total') totalToPay: ElementRef;
@@ -29,6 +30,10 @@ export class DetailStoreComponent implements OnDestroy {
     private route: Router,
   ) {
     this.form = this.detailService.formInvoice;
+  }
+
+  ngOnInit() {
+    this.parseInvoiceNumber();
   }
 
   ngOnDestroy() {
@@ -58,6 +63,8 @@ export class DetailStoreComponent implements OnDestroy {
   addInvoice(details: Array<DetailModel>, form: FormGroup) {
 
     let totalToPay = this.getTotalToPay();    
+    //activate the contol number_invoice
+    form.get('invoice_number').enable();
 
     details.forEach(detail => {
       delete detail.codebar;
@@ -71,11 +78,9 @@ export class DetailStoreComponent implements OnDestroy {
       totalToPay,
       ...form.value,
     }
-
+    
     this.detailService.saveInvoiceService(data).subscribe(res => {
       alert(res);
-      console.log(res);
-      
       this.form.reset();
       this.cleanAllDetails();
     },
@@ -96,5 +101,31 @@ export class DetailStoreComponent implements OnDestroy {
       this.form.controls['ruc'].setValue(res.ruc);
       this.form.controls['client_id'].setValue(res.id);
     })
+  }
+
+  parseInvoiceNumber(){ 
+
+    let numInvoice=parseInt(this.invoice_number);
+    let numInvString : string;
+
+    if (numInvoice < 10) {
+      numInvString= `000${numInvoice+1}`; 
+    }
+
+    else if( numInvoice >= 10 && numInvoice < 100 ) {
+      numInvString= `00${numInvoice+1}`;
+    }
+
+    else if (numInvoice >=100 && numInvoice < 1000 ) {
+      numInvString = `0${numInvoice+1}`;
+    }
+
+    else {
+      numInvString = `${numInvoice}`;
+    }
+    
+    this.form.controls['invoice_number'].setValue(numInvString);
+    this.form.get('invoice_number').disable();
+    
   }
 }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { baseUrl } from './baseUrl';
 
 @Injectable({
@@ -29,6 +30,11 @@ export class InvoiceService {
       active: 1,
       creador: '',
     });
+  }
+
+  // get last number inserted
+  public getLastNoInvoiceService(): Observable<any>{
+    return this._http.get(`${this.baseUrl}/invoice/lastID`);
   }
 
 }
