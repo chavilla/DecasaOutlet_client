@@ -40,6 +40,7 @@ import { DetailStoreComponent } from './components/invoice/detail-store/detail-s
 import { KardexComponent } from './components/kardex/kardex.component';
 import { KardexStoreComponent } from './components/kardex-store/kardex-store.component';
 import { ClientsModalComponent } from './components/clients/clients-modal/clients-modal.component';
+import { InvoiceStoreComponent } from './components/invoice/invoice-store/invoice-store.component';
 
 
 @NgModule({
@@ -68,6 +69,7 @@ import { ClientsModalComponent } from './components/clients/clients-modal/client
     KardexComponent,
     KardexStoreComponent,
     ClientsModalComponent,
+    InvoiceStoreComponent,
   ],
   imports: [
     BrowserModule,

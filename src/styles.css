@@ -321,6 +321,10 @@ optgroup option {
   text-align: right !important;
 }
 
+.mat-sort-header-container {
+	justify-content: center;
+}
+
 table.table-data {
   overflow: scroll !important;
 }

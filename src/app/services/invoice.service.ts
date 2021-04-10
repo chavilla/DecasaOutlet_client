@@ -37,4 +37,9 @@ export class InvoiceService {
     return this._http.get(`${this.baseUrl}/invoice/lastID`);
   }
 
+  // get all invoices
+  public getInvoicesService(): Observable<any>{
+    return this._http.get(`${this.baseUrl}/invoices`);
+  } 
+
 }

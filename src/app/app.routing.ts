@@ -17,6 +17,7 @@ import { InputsAddComponent } from './components/inputs/inputs-add/inputs-add.co
 import { InputStoreComponent } from './components/inputs/input-store/input-store.component';
 import { DetailAddComponent } from './components/invoice/detail-add/detail-add.component';
 import { KardexComponent } from './components/kardex/kardex.component';
+import { InvoiceStoreComponent } from './components/invoice/invoice-store/invoice-store.component';
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -38,6 +39,7 @@ const appRoutes: Routes = [
             { path: 'sales', component: DetailAddComponent },
             { path: 'sales/add', component: DetailAddComponent },
             { path: 'kardex', component: KardexComponent },
+            { path: 'invoices', component: InvoiceStoreComponent },
             { path: '**', redirectTo:'', pathMatch:'full' },
         ],
         canActivate:[ AuthServiceGuard],
