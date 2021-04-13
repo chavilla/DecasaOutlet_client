@@ -23,7 +23,8 @@ const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
     {
         path: 'app', component: HomeComponent, children: [
-            { path: '', component: DashboardComponent },
+            { path: '', redirectTo: 'dashboard', pathMatch: 'full', },
+            { path: 'dashboard', component: DashboardComponent },
             { path: 'products', component: ProductStoreComponent },
             { path: 'product/add', component: ProductAddFrameComponent },
             { path: 'product/add/:id', component: ProductAddFrameComponent },

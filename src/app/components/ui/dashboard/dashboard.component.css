@@ -5,9 +5,12 @@
 }
 
 @media(min-width:768px) {
+  
   .cards-zone {
+    align-items: center;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    padding: 0 !important;
     padding-bottom: 2rem;
   }
 
@@ -17,9 +20,12 @@
 }
 
 .card {
+  align-items: center;
   background-color: #ffffff;
   box-shadow: 0 0.46875rem 2.1875rem rgb(4 9 20 / 3%), 0 0.9375rem 1.40625rem rgb(4 9 20 / 3%), 0 0.25rem 0.53125rem rgb(4 9 20 / 5%), 0 0.125rem 0.1875rem rgb(4 9 20 / 3%);
   box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 30% 70%;
   margin: 1rem auto;
   padding: 2rem;
   width: 90%;
@@ -37,6 +43,26 @@
 
 .card h3 {
   color: var(--textGrayColor);
+}
+
+.text-green, .text-blue, .text-yellow, .text-red {
+  font-size: 2.2rem;
+}
+
+.text-green {
+  color: #3AC47D;
+}
+
+.text-blue {
+  color: #3F6AD8;
+}
+
+.text-yellow {
+  color: #F9CF6A;
+}
+
+.text-red {
+  color: #D92550;
 }
 
 .borderBottomGreen {
