@@ -1,1 +1,55 @@
-<p>user-add works!</p>
+<form [formGroup]="form" class="normal-form" (ngSubmit)="saveUser(form,messageDialog)">
+	<div class="input-fields-zone">
+		<h2 class="text-center font-bold-openSans title text-orange">Crear Usuario</h2>
+
+		<!-- FormControlNames -->
+		<div class="form-control-group">
+
+			<div class="input-field">
+				<label for="userName">Nombre de Usuario</label>
+				<input type="text" id="userName" class="userName" placeholder="Nombre Aquí" formControlName="userName" autocomplete="off">
+				<div class="error" *ngIf="form.get('userName').hasError('required')">Nombre es requerido</div>
+				<div class="error" *ngIf="form.get('userName').hasError('pattern')">Nombre no válido</div>
+			</div>
+
+			<div class="input-field">
+				<label for="userEmail">Email</label>
+				<input type="email" id="userEmail" class="userEmail" placeholder="Email Aquí" formControlName="userEmail" autocomplete="off">
+				<div class="error" *ngIf="form.get('userEmail').hasError('required')">Email es requerido</div>
+				<div class="error" *ngIf="form.get('userEmail').hasError('pattern')">Email no válido</div>
+			</div>
+
+			<div class="input-field">
+				<label for="userPassword">Contraseña (Consultar Reglas)</label>
+				<input type="text" id="userPassword" class="userPassword" placeholder="Contraseña Aquí" formControlName="userPassword" autocomplete="off">
+				<div class="error" *ngIf="form.get('userPassword').hasError('required')">Contraseña es requerida</div>
+				<div class="error" *ngIf="form.get('userPassword').hasError('pattern')">Contraseña no válida</div>
+			</div>
+
+			<div class="input-field">
+				<label for="userPasswordRepeat">Confirmar Contraseña</label>
+				<input type="text" id="userPasswordRepeat" class="userPasswordRepeat" placeholder="Confirmación Aquí" formControlName="userPasswordRepeat" autocomplete="off">
+				<div class="error" *ngIf="form.get('userPasswordRepeat').hasError('required')">Este campo es requerid0</div>
+			</div>
+			<div class="input-field">
+				<input type="submit" value="Enviar" [disabled]="!form.valid" />
+			</div>
+		</div>
+	</div>
+</form>
+
+<div #messageDialog class="hide">{{message}}</div>
+
+<div class="suggestions-password" *ngIf="suggestions">
+
+	<h3>Reglas para contraseñas</h3>
+
+	<ul class="suggestions-content">
+		<li>Al menos un número 0-9</li>
+		<li>Al menos una mayúscula</li>
+		<li>Al menos una minúscula</li>
+		<li>Al menos un carácter especial (.,*!?¿¡/#$%&)</li>
+		<li>Longitud mínima de 8 caracteres, 64 máxima</li>
+		<li>No acepta espacios</li>
+	</ul>
+</div>

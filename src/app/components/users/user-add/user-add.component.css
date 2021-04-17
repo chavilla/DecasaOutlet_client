@@ -1,0 +1,22 @@
+
+.suggestions-password {
+	margin: 0 auto;
+	padding: .5rem .8rem;
+	width: 90%;
+}
+
+@media(min-width:768px) {
+	.suggestions-password {
+		padding: .5rem .8rem;
+		width: 95%;
+	}
+}
+
+.suggestions-password h3{
+	color: var(--darkGrayColor);
+	font-weight: bold;
+}
+
+.suggestions-content li {
+	color: var(--darkGrayColor);
+}

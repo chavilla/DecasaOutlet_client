@@ -42,7 +42,7 @@ export class ProductAddFrameComponent extends NotificationHelper implements OnIn
     
   public getCategories(): void {
     this.categoryService.getIdAndNameCategories().subscribe(
-      res => this.categories = res,
+      res => this.categories = res[0],
       err => {
         if(err.status === 401) {
           this.redirect = new RedirectionHelper(this.loginService,this.route,err);
