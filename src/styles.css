@@ -475,3 +475,17 @@ mat-paginator {
 .searching{ 
   font-size: 1.3rem;
 }
+
+/* buttons */
+
+.btn-edit {
+  border: none;
+  background-color: dodgerblue;
+  color: #ffffff;
+  cursor: pointer;
+  padding: .3rem .5rem;
+}
+
+.disabled {
+  opacity: .7;
+}

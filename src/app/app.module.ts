@@ -41,6 +41,7 @@ import { KardexComponent } from './components/kardex/kardex.component';
 import { KardexStoreComponent } from './components/kardex-store/kardex-store.component';
 import { ClientsModalComponent } from './components/clients/clients-modal/clients-modal.component';
 import { InvoiceStoreComponent } from './components/invoice/invoice-store/invoice-store.component';
+import { UserUpdateComponent } from './components/users/user-update/user-update.component';
 
 
 @NgModule({
@@ -70,6 +71,7 @@ import { InvoiceStoreComponent } from './components/invoice/invoice-store/invoic
     KardexStoreComponent,
     ClientsModalComponent,
     InvoiceStoreComponent,
+    UserUpdateComponent,
   ],
   imports: [
     BrowserModule,

@@ -103,9 +103,7 @@ export class DetailAddComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup) {
-
-
-
+    
     //set priceTotalsale
     this.form.controls['priceTotalSale'].setValue(form.value.amount * form.value.priceTotal);
     const { id, stock, amount, priceTotal, priceTotalSale, description, codebar, tax, reference } = this.form.value;

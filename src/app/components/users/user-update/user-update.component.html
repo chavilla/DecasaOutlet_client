@@ -1,0 +1,25 @@
+<form [formGroup]="form" class="normal-form" (ngSubmit)="onSubmit()">
+	<div class="input-fields-zone">
+		<h2 class="text-center text-uppercase font-bold-openSans title text-orange">Actualizar Cliente</h2>
+		<div class="form-control-group">
+			<div class="input-field">
+				<label for="userName">Nombre de Usuario</label>
+				<input type="text" id="userName" class="userName" placeholder="Nombre Aquí" formControlName="userName" autocomplete="off">
+				<div class="error" *ngIf="form.get('userName').hasError('required')">Nombre es requerido</div>
+				<div class="error" *ngIf="form.get('userName').hasError('pattern')">Nombre no válido</div>
+			</div>
+
+			<div class="input-field">
+				<label for="userEmail">Email</label>
+				<input type="email" id="userEmail" class="userEmail" placeholder="Email Aquí" formControlName="userEmail" autocomplete="off">
+				<div class="error" *ngIf="form.get('userEmail').hasError('required')">Email es requerido</div>
+				<div class="error" *ngIf="form.get('userEmail').hasError('pattern')">Email no válido</div>
+			</div>
+
+			<div class="input-field">
+				<input type="submit" value="Enviar" [disabled]="!form.valid" />
+			</div>
+		</div>
+	</div>
+</form>
+
