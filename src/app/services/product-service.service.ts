@@ -1,8 +1,8 @@
+import { ProductModel } from 'src/app/models/Product.models';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ProductModel } from '../models/Product.models';
 import { baseUrl } from './baseUrl';
 import * as _ from 'lodash';
 
@@ -50,7 +50,11 @@ export class ProductService {
     return this._http.post(`${this.baseUrl}/products`, product);
   }
 
-  updateProductService(data): Observable<any> {
+  updateProductService(data:ProductModel): Observable<any> {
+
+    delete data.cost;
+    delete data.stock;
+
     return this._http.put(`${this.baseUrl}/products/${data.id}`, data);
   }
 

@@ -40,8 +40,6 @@ export class ProductUpdateComponent implements OnInit, OnDestroy {
         if(err.status ===401){
           this.redirect = new RedirectionHelper(this.loginService,this.route,err);
         }
-        alert(err); return;
-        this.message = err.error.error
       });
   }
 
@@ -60,9 +58,6 @@ export class ProductUpdateComponent implements OnInit, OnDestroy {
 
   public onSubmit() {
 
-    this.form.removeControl('stock');
-    this.form.removeControl('cost');
-
     this.productService.updateProductService(this.form.value).subscribe(
       res => {
         this.dialog.close(this.form.value);
@@ -79,8 +74,7 @@ export class ProductUpdateComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    this.form.reset();
-    this.category = null;
+    this.productService.initializeFormGroup();
   }
 
 }

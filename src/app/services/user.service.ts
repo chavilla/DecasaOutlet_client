@@ -13,6 +13,7 @@ export class UserService {
   //attributes
   private baseUrl:string;
   form:FormGroup;
+  formToUpdate:FormGroup;
 
   constructor(
     private _http:HttpClient,
@@ -24,6 +25,11 @@ export class UserService {
       email: ['', [Validators.required,  Validators.pattern(/(^[a-z][\w]+[-\.]?\w+@[a-z]+\.[a-z]+(\.)?([a-z]+)?)/)]],
       password: ['', [Validators.required, Validators.pattern(/^(?=(?:.*\d))(?=.*[A-Z])(?=.*[a-z])(?=.*[.,*!?¿¡/#$%&])\S{8,20}$/)]],
       passwordRepeat: ['', [Validators.required]],
+    });
+
+     this.formToUpdate = this.fb.group({
+      name: ['', [Validators.required, Validators.pattern(/(^[A-ZÁÉÍÓÚ][a-záéíóú]{1,15}$)/)]],
+      email: ['', [Validators.required,  Validators.pattern(/(^[a-z][\w]+[-\.]?\w+@[a-z]+\.[a-z]+(\.)?([a-z]+)?)/)]],
     });
   }
 
@@ -51,6 +57,10 @@ export class UserService {
 
   populateForm(user: Object) {
     this.form.setValue(user);
+  }
+
+  populateFormToUpdate(user: UserModel) {
+    this.formToUpdate.setValue(user);
   }
 
 

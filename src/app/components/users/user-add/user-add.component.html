@@ -6,30 +6,30 @@
 		<div class="form-control-group">
 
 			<div class="input-field">
-				<label for="userName">Nombre de Usuario</label>
-				<input type="text" id="userName" class="userName" placeholder="Nombre Aquí" formControlName="userName" autocomplete="off">
-				<div class="error" *ngIf="form.get('userName').hasError('required')">Nombre es requerido</div>
-				<div class="error" *ngIf="form.get('userName').hasError('pattern')">Nombre no válido</div>
+				<label for="name">Nombre de Usuario</label>
+				<input type="text" id="name" class="name" placeholder="Nombre Aquí" formControlName="name" autocomplete="off">
+				<div class="error" *ngIf="form.get('name').hasError('required')">Nombre es requerido</div>
+				<div class="error" *ngIf="form.get('name').hasError('pattern')">Nombre no válido</div>
 			</div>
 
 			<div class="input-field">
-				<label for="userEmail">Email</label>
-				<input type="email" id="userEmail" class="userEmail" placeholder="Email Aquí" formControlName="userEmail" autocomplete="off">
-				<div class="error" *ngIf="form.get('userEmail').hasError('required')">Email es requerido</div>
-				<div class="error" *ngIf="form.get('userEmail').hasError('pattern')">Email no válido</div>
+				<label for="email">Email</label>
+				<input type="email" id="email" class="email" placeholder="Email Aquí" formControlName="email" autocomplete="off">
+				<div class="error" *ngIf="form.get('email').hasError('required')">Email es requerido</div>
+				<div class="error" *ngIf="form.get('email').hasError('pattern')">Email no válido</div>
 			</div>
 
 			<div class="input-field">
-				<label for="userPassword">Contraseña (Consultar Reglas)</label>
-				<input type="text" id="userPassword" class="userPassword" placeholder="Contraseña Aquí" formControlName="userPassword" autocomplete="off">
-				<div class="error" *ngIf="form.get('userPassword').hasError('required')">Contraseña es requerida</div>
-				<div class="error" *ngIf="form.get('userPassword').hasError('pattern')">Contraseña no válida</div>
+				<label for="password">Contraseña (Consultar Reglas)</label>
+				<input type="text" id="password" class="password" placeholder="Contraseña Aquí" formControlName="password" autocomplete="off">
+				<div class="error" *ngIf="form.get('password').hasError('required')">Contraseña es requerida</div>
+				<div class="error" *ngIf="form.get('password').hasError('pattern')">Contraseña no válida</div>
 			</div>
 
 			<div class="input-field">
-				<label for="userPasswordRepeat">Confirmar Contraseña</label>
-				<input type="text" id="userPasswordRepeat" class="userPasswordRepeat" placeholder="Confirmación Aquí" formControlName="userPasswordRepeat" autocomplete="off">
-				<div class="error" *ngIf="form.get('userPasswordRepeat').hasError('required')">Este campo es requerid0</div>
+				<label for="passwordRepeat">Confirmar Contraseña</label>
+				<input type="text" id="passwordRepeat" class="passwordRepeat" placeholder="Confirmación Aquí" formControlName="passwordRepeat" autocomplete="off">
+				<div class="error" *ngIf="form.get('passwordRepeat').hasError('required')">Este campo es requerid0</div>
 			</div>
 			<div class="input-field">
 				<input type="submit" value="Enviar" [disabled]="!form.valid" />

@@ -84,7 +84,7 @@ export class ProductStoreComponent implements OnInit {
 
   // update product
   onUpdate(product: object) {
-
+    
     let dialogRef = this.dialog.open(ProductUpdateComponent, {
       minWidth: 900,
       data: { ...product }

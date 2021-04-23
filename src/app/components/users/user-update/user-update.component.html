@@ -3,17 +3,17 @@
 		<h2 class="text-center text-uppercase font-bold-openSans title text-orange">Actualizar Cliente</h2>
 		<div class="form-control-group">
 			<div class="input-field">
-				<label for="userName">Nombre de Usuario</label>
-				<input type="text" id="userName" class="userName" placeholder="Nombre Aquí" formControlName="userName" autocomplete="off">
-				<div class="error" *ngIf="form.get('userName').hasError('required')">Nombre es requerido</div>
-				<div class="error" *ngIf="form.get('userName').hasError('pattern')">Nombre no válido</div>
+				<label for="name">Nombre de Usuario</label>
+				<input type="text" id="name" class="name" placeholder="Nombre Aquí" formControlName="name" autocomplete="off">
+				<div class="error" *ngIf="form.get('name').hasError('required')">Nombre es requerido</div>
+				<div class="error" *ngIf="form.get('name').hasError('pattern')">Nombre no válido</div>
 			</div>
 
 			<div class="input-field">
-				<label for="userEmail">Email</label>
-				<input type="email" id="userEmail" class="userEmail" placeholder="Email Aquí" formControlName="userEmail" autocomplete="off">
-				<div class="error" *ngIf="form.get('userEmail').hasError('required')">Email es requerido</div>
-				<div class="error" *ngIf="form.get('userEmail').hasError('pattern')">Email no válido</div>
+				<label for="email">Email</label>
+				<input type="email" id="email" class="email" placeholder="Email Aquí" formControlName="email" autocomplete="off">
+				<div class="error" *ngIf="form.get('email').hasError('required')">Email es requerido</div>
+				<div class="error" *ngIf="form.get('email').hasError('pattern')">Email no válido</div>
 			</div>
 
 			<div class="input-field">

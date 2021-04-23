@@ -34,10 +34,16 @@
 				<td class="text-center" mat-cell *matCellDef="let row"> {{row.active===1 ? 'Activo': 'Inactivo' }} </td>
 			</ng-container>
 
-			<!-- ID Column -->
+			<!-- Edit Column -->
 			<ng-container matColumnDef="edit">
 				<th mat-header-cell *matHeaderCellDef mat-sort-header>Acción</th>
-				<td mat-cell *matCellDef="let row"><button type="button" (click)="onUpdate(row)">Editar</button></td>
+				<td mat-cell *matCellDef="let row"><button class='btn-edit' type="button" (click)="onUpdate(row)">Editar</button></td>
+			</ng-container>
+
+			<!-- setRole Column -->
+			<ng-container matColumnDef="setRole">
+				<th mat-header-cell *matHeaderCellDef mat-sort-header>Rol</th>
+				<td mat-cell  *matCellDef="let row"><button class='btn-edit' type="button" (click)="onSetRole(row)">Cambiar</button></td>
 			</ng-container>
 
 			<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { UserModel } from 'src/app/models/User.model';
 import { UserService } from 'src/app/services/user.service';
 import { UserUpdateComponent } from '../user-update/user-update.component';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-user-store',
@@ -18,7 +19,7 @@ import { UserUpdateComponent } from '../user-update/user-update.component';
 export class UserStoreComponent implements OnInit {
 
    //Attributes
-   displayedColumns: string[] = ['name','email','role','active','edit'];
+   displayedColumns: string[] = ['name','email','role','active','edit', 'setRole'];
    dataSource: MatTableDataSource<UserModel>;
  
    @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -56,21 +57,23 @@ export class UserStoreComponent implements OnInit {
     });
   }
 
-  onUpdate(user) {
+  onUpdate(user:UserModel) {
 
-    console.log(user); 
-    return;
-  
+  let userToUpdate =_.omit(user, ['active', 'role']);
+
     let dialogRef = this.dialog.open(UserUpdateComponent, {
       minWidth: 900,
-      data: { ...user }
+      data: { ...userToUpdate }
     });
-
 
     dialogRef.afterClosed().subscribe((res:UserModel[])=> {
       //this.clientService.updateProductOnView(this.dataSource.data, res);
       //this.refresh();
     })
+  }
+
+  onSetRole(user:UserModel) {
+    console.info('Hola')
   }
 
   applyFilter(event: Event) {

@@ -21,19 +21,14 @@ export class UserUpdateComponent implements OnInit {
     private dialog:MatDialogRef<UserUpdateComponent>,
     private loginService: LoginService,
     private route:Router,
+    private userService:UserService,
     @Inject(MAT_DIALOG_DATA)
     public data:UserModel,
-    private userService:UserService,
-  ) {
-    console.log(this.data);
-    return;
-  }
+  ) {}
 
   ngOnInit(): void {
-
-    
-    this.form = this.userService.form;
-    this.userService.populateForm(this.data);
+    this.form = this.userService.formToUpdate;
+    this.userService.populateFormToUpdate(this.data);
   }
 
   //update the client
