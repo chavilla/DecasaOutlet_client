@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -15,7 +15,7 @@ import { RedirectionHelper } from 'src/app/helpers/redirection.helper';
   templateUrl: './product-store.component.html',
   styleUrls: ['./product-store.component.css']
 })
-export class ProductStoreComponent {
+export class ProductStoreComponent implements OnInit {
 
   // Attributes
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -31,7 +31,10 @@ export class ProductStoreComponent {
     private loginService: LoginService,
     private route: Router,
     public dialog: MatDialog,
-  ) {
+  ) { }
+
+  ngOnInit(): void {
+
     // Assign the data to the data source for the table to render
     this.getProducts().then(res => {
       this.loading = false;
@@ -81,7 +84,7 @@ export class ProductStoreComponent {
 
   // update product
   onUpdate(product: object) {
-        
+
     let dialogRef = this.dialog.open(ProductUpdateComponent, {
       minWidth: 900,
       data: { ...product }
@@ -89,7 +92,8 @@ export class ProductStoreComponent {
 
     dialogRef.afterClosed().subscribe((res: ProductModel[]) => {
       this.refresh();
-    })
+    });
+
   }
 
   refresh() {

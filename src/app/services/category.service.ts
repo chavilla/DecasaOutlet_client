@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { categoryModel } from '../models/Category.model';
-import { baseUrl } from './baseUrl'; 
+import { baseUrl } from './baseUrl';
 
 @Injectable({
   providedIn: 'root'

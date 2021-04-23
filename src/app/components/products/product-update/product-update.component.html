@@ -1,4 +1,4 @@
-	<form class="" [formGroup]="form" (ngSubmit)="updateCategory()">
+	<form class="" [formGroup]="form" (ngSubmit)="onSubmit()">
 		<div class="input-fields-zone">
 			<h2 class="text-center text-uppercase font-bold-openSans title text-orange">Actualizando Producto</h2>
 			<div class="form-control-group">
@@ -23,31 +23,16 @@
 				<div class="input-field ">
 					<label for="reference">Categoría</label>
 					<select  id="category" class="category" placeholder="Categoría Aquí" formControlName="category_id" autocomplete="off">
-	
+
 						<optgroup>
-							<option value="" selected>Seleccionar Categoría</option>
-							<option  *ngFor="let category of category"  value="{{category.id}}">{{category.name}}</option>
+							<option value="">Seleccionar Categoría</option>
+							<option  *ngFor="let cat of category"  [ngValue]="cat.id">{{cat.name}}</option>
 						</optgroup>
-						
+
 					</select>
 					<div class="error" *ngIf="form.get('category_id').hasError('required')">Categoría es requerido</div>
 				</div>
-	
-				<div class="input-field">
-					<label for="stock">Stock</label>
-					<input type="number" id="stock" class="stock" placeholder="Seleccionar stock" formControlName="stock" autocomplete="off">
-					<div class="error" *ngIf="form.get('stock').hasError('required')">Stock es requerido</div>
-					<div class="error" *ngIf="form.get('stock').hasError('min')">Stock no debe ser menor a 1</div>
-				</div>
-	
-				<div class="input-field">
-					<label for="cost">Costo</label>
-					<input type="number" id="cost" class="cost"  max=999.99, min=1.00  step=0.00 placeholder="Seleccionar costo" formControlName="cost" autocomplete="off">
-					<div class="error" *ngIf="form.get('cost').hasError('required')">Costo es requerido</div>
-					<div class="error" *ngIf="form.get('cost').hasError('min')">Costo no debe ser inferior a 0.05</div>
-					<div class="error" *ngIf="form.get('cost').hasError('max')">Costo no debe ser Mayor a 999.99</div>
-				</div>
-				
+
 				<div class="input-field">
 					<label for="priceTotal">Precio Venta</label>
 					<input type="number" id="priceTotal" class="priceTotal"  max=999.99, min=1.00  step=0.00 placeholder="Seleccionar costo" formControlName="priceTotal" autocomplete="off">
@@ -55,7 +40,7 @@
 					<div class="error" *ngIf="form.get('priceTotal').hasError('min')">Precio total no debe ser inferior a 0.05</div>
 					<div class="error" *ngIf="form.get('priceTotal').hasError('max')">Precio total no debe ser Mayor a 999.99</div>
 				</div>
-	
+
 				<div class="input-field">
 					<label for="tax">Impuesto</label>
 					<input type="number" id="tax" class="tax" placeholder="Seleccionar Impuesto"  formControlName="tax" autocomplete="off">
@@ -68,5 +53,5 @@
 			</div>
 		</div>
 	</form>
-	
+
 	<div #messageDialog class="hide">Notofication here</div>
