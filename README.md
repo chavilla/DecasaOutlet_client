@@ -4,7 +4,7 @@ _Proyecto de sistema de información para Decasaoutlet. Se trabaja del lado del 
 
 ### Pre-requisitos 📋
 
-_Para visualizar el software en tu computadora debes tener instalado los siguientes programas _
+Para visualizar el software en tu computadora debes tener instalado los siguientes programas:
 
 * Código del proyecto del lado del servidor.
 * Nodejs.
