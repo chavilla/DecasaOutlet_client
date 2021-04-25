@@ -11,7 +11,11 @@ Mira **Deployment** para conocer como desplegar el proyecto.
 
 ### Pre-requisitos 📋
 
-_Que cosas necesitas para instalar el software y como instalarlas_
+_Para visualizar el software en tu computadora debes tener instalado los siguientes programas _
+
+* Nodejs.
+* AngularCli.
+* npm.
 
 ```
 Da un ejemplo
@@ -83,10 +87,7 @@ Usamos [SemVer](http://semver.org/) para el versionado. Para todas las versiones
 
 _Menciona a todos aquellos que ayudaron a levantar el proyecto desde sus inicios_
 
-* **Andrés Villanueva** - *Trabajo Inicial* - [villanuevand](https://github.com/villanuevand)
-* **Fulanito Detal** - *Documentación* - [fulanitodetal](#fulanito-de-tal)
-
-También puedes mirar la lista de todos los [contribuyentes](https://github.com/your/project/contributors) quíenes han participado en este proyecto. 
+* **Jesús Charris** - *Trabajo Inicial* - [chavilla](https://github.com/chavilla)
 
 ## Licencia 📄
 
@@ -94,12 +95,9 @@ Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md
 
 ## Expresiones de Gratitud 🎁
 
-* Comenta a otros sobre este proyecto 📢
-* Invita una cerveza 🍺 o un café ☕ a alguien del equipo. 
-* Da las gracias públicamente 🤓.
-* etc.
+* Este proyecto ha sido posible a los conocimientos adquiridos en los cursos de Angula Avanzado de Fernando Herrera. 
 
 
 
 ---
-⌨️ con ❤️ por [Villanuevand](https://github.com/Villanuevand) 😊
+⌨️ con mucho gusto por [chavilla](https://github.com/chavilla).
