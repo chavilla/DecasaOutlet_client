@@ -21,28 +21,22 @@ export class CategoriesAddComponent implements OnInit, OnDestroy {
     private loginService: LoginService,
     private render: Renderer2,
     private route: Router,
-    private activatedRoute:ActivatedRoute
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-
-    console.log();
-    
-
     if (this.activatedRoute.snapshot.queryParams.editionMode) {
-      this.setCategoryToUpdate(this.activatedRoute.snapshot.params.id).then(res =>{
-          this.categoryService.populateForm(res[0])
+      this.setCategoryToUpdate(this.activatedRoute.snapshot.params.id).then(res => {
+          this.categoryService.populateForm(res[0]);
       }).catch(
           err => this.categoryService.cleanForm()
         );
     }
-    
     this.form = this.categoryService.form;
-
   }
 
-  public saveCategory(_frame: FormGroup, messageDialog:HTMLElement) {
-    const { name } = _frame.value;
+  public saveCategory(frame: FormGroup, messageDialog: HTMLElement): void {
+    const { name } = frame.value;
     this.category = new categoryModel(name);
     this.categoryService.saveCategoryService(this.category).subscribe(
       res => {
@@ -50,19 +44,18 @@ export class CategoriesAddComponent implements OnInit, OnDestroy {
         this.form.reset();
       },
       err => {
-        if(err.status===401) {
+        if(err.status === 401) {
           alert('Tu sesión expiró. Debes volver al login');
           this.loginService.logout();
           this.route.navigate(['../login']);
-        }     
-        else if(err.status===400) {
+        } else if (err.status === 400) {
           this.toggleElement(messageDialog, err.error.error, 'failed');
         }
       }
     )
   }
 
-  public setCategoryToUpdate(id:number) {
+  public setCategoryToUpdate(id: number): Promise<any> {
 
     return new Promise((resolve,reject)=>{
       this.categoryService.getCategoryById(id).subscribe( res  =>{
@@ -73,8 +66,7 @@ export class CategoriesAddComponent implements OnInit, OnDestroy {
     });
   }
 
-  public toggleElement(toggleElement: HTMLElement, messageStatus:string, className:string) {
-    
+  public toggleElement(toggleElement: HTMLElement, messageStatus: string, className: string): void {
     setTimeout(() => {
       this.render.removeClass(toggleElement, 'hide');
       this.render.addClass(toggleElement, 'show');
@@ -84,13 +76,13 @@ export class CategoriesAddComponent implements OnInit, OnDestroy {
         this.render.removeClass(toggleElement, 'show');
         this.render.addClass(toggleElement, 'hide');
         this.render.removeClass(toggleElement, className);
-      }, 4000)
-    }, 0)
+      }, 4000);
+    }, 0);
   }
 
   ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
+    // Called once, before the instance is destroyed.
+    // Add 'implements OnDestroy' to the class.
     this.categoryService.cleanForm();
   }
 

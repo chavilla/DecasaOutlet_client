@@ -4,7 +4,7 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
     <div class="image-logo">
-      <a [routerLink]="['dashboard']">
+      <a [routerLink]="['/app']">
         <img src="assets/img/logo-outlet.png" alt="logo outlet" class="logo">
       </a>
     </div>

@@ -1,53 +1,21 @@
 import { RouterModule, Routes } from '@angular/router';
-import { ModuleWithProviders } from '@angular/core';
-import { LoginComponent } from './components/login/login.component';
-import { PageNotFoundComponent } from './components/ui/page-not-found/page-not-found.component';
-import { ProductStoreComponent } from './components/products/product-store/product-store.component';
-import { ProductAddFrameComponent } from './components/products/product-add-frame/product-add-frame.component';
-import { DashboardComponent } from './components/ui/dashboard/dashboard.component';
-import { HomeComponent } from './components/home/home.component';
+import { NgModule } from '@angular/core';
 import { AuthServiceGuard } from './auth-guard-service.guard';
-import { CategoriesAddComponent } from './components/categories/categories-add/categories-add.component';
-import { ClientsAddComponent } from './components/clients/clients-add/clients-add.component';
-import { CategoriesStoreComponent } from './components/categories/categories-store/categories-store.component';
-import { ClientStoreComponent } from './components/clients/client-store/client-store.component';
-import { UserAddComponent } from './components/users/user-add/user-add.component';
-import { UserStoreComponent } from './components/users/user-store/user-store.component';
-import { InputsAddComponent } from './components/inputs/inputs-add/inputs-add.component';
-import { InputStoreComponent } from './components/inputs/input-store/input-store.component';
-import { DetailAddComponent } from './components/invoice/detail-add/detail-add.component';
-import { KardexComponent } from './components/kardex/kardex.component';
-import { InvoiceStoreComponent } from './components/invoice/invoice-store/invoice-store.component';
+import { NoFoundComponent } from './no-found/no-found.component';
+import { PagesRoutingModule } from './pages/pages-routing.module';
+import { AuthRoutingModule } from './auth/auth-routing.module';
 
-const appRoutes: Routes = [
-    { path: 'login', component: LoginComponent },
-    {
-        path: 'app', component: HomeComponent, children: [
-            { path: '', redirectTo: 'dashboard', pathMatch: 'full', },
-            { path: 'dashboard', component: DashboardComponent },
-            { path: 'products', component: ProductStoreComponent },
-            { path: 'product/add', component: ProductAddFrameComponent },
-            { path: 'product/add/:id', component: ProductAddFrameComponent },
-            { path: 'categories', component: CategoriesStoreComponent },
-            { path: 'categories/add', component: CategoriesAddComponent },
-            { path: 'categories/add/:id', component: CategoriesAddComponent },
-            { path: 'clients/add', component: ClientsAddComponent },
-            { path: 'clients', component: ClientStoreComponent },
-            { path: 'users', component: UserStoreComponent },
-            { path: 'users/add', component: UserAddComponent },
-            { path: 'inputs', component: InputStoreComponent },
-            { path: 'inputs/add', component: InputsAddComponent },
-            { path: 'sales', component: DetailAddComponent },
-            { path: 'sales/add', component: DetailAddComponent },
-            { path: 'kardex', component: KardexComponent },
-            { path: 'invoices', component: InvoiceStoreComponent },
-            { path: '**', redirectTo:'', pathMatch:'full' },
-        ],
-        canActivate:[ AuthServiceGuard],
-    },
-    { path: '', redirectTo: '/app', pathMatch: 'full', canActivate: [AuthServiceGuard] },
-    { path: '**', component: PageNotFoundComponent,  canActivate:[ AuthServiceGuard], },
+const routes: Routes = [
+  { path: '', redirectTo: '/app', pathMatch: 'full', canActivate: [AuthServiceGuard] },
+  { path: '**', component: NoFoundComponent },
 ];
 
-export const appRoutingProviders: any[] = [];
-export const routing: ModuleWithProviders<any> = RouterModule.forRoot(appRoutes);
+@NgModule({
+  imports: [
+    RouterModule.forRoot(routes),
+    PagesRoutingModule,
+    AuthRoutingModule,
+  ],
+  exports: [RouterModule],
+})
+export class AppRoutingModule { }

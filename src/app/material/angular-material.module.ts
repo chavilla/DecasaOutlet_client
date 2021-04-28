@@ -14,24 +14,26 @@ import { MatInputModule  } from '@angular/material/input';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatDialogModule} from '@angular/material/dialog';
 
+const material = [
+  MatSidenavModule,
+  MatExpansionModule,
+  MatCardModule,
+  MatTableModule,
+  MatToolbarModule,
+  MatListModule,
+  MatIconModule,
+  MatButtonModule,
+  MatPaginatorModule,
+  MatSortModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatGridListModule,
+  MatDialogModule,
+];
+
 @NgModule({
   declarations: [],
-  exports: [
-    MatSidenavModule,
-    MatExpansionModule,
-    MatCardModule,
-    MatTableModule,
-    MatToolbarModule,
-    MatListModule,
-    MatIconModule,
-    MatButtonModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatGridListModule,
-    MatDialogModule,
-    
-  ]
+  imports : material,
+  exports: material,
 })
 export class AngularMaterialModule { }
