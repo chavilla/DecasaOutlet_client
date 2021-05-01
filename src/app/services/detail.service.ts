@@ -10,6 +10,7 @@ import { baseUrl } from './baseUrl';
 export class DetailService {
 
   form: FormGroup;
+  formGetProduct: FormGroup;
   formInvoice : FormGroup;
   details: Array<DetailModel>=[];
   private baseUrl: string;
@@ -35,7 +36,10 @@ export class DetailService {
       client_id: ['', Validators.required],
       ruc: ['', Validators.required],
       payMode: ['', Validators.required],
-    })
+    });
+    this.formGetProduct = this.fb.group({
+      codebar: ['', Validators.required ],
+    });
   }
 
   // HTTP methods
@@ -43,7 +47,7 @@ export class DetailService {
     return this._http.post(`${this.baseUrl}/invoice`, data);
   }
 
-  // form constrols 
+  // form constrols
   initializeFormGroup() {
     this.form.setValue({
       id: '',

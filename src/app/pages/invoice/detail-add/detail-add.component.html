@@ -1,18 +1,19 @@
 
-<form *ngIf="!item" class="normal-form" (ngSubmit)="getCodebar(codebar.value)">
+<form *ngIf="!item" class="normal-form" [formGroup]="formGetProduct"(ngSubmit)="getCodebar(formGetProduct)">
 	<div class="input-fields-zone">
 		<div class="form-control-group-invoice">
 			<div class="input-field">
 				<label for="codebar">Código de Barras</label>
-				<input #codebar type="text" id="codebar" class="codebar" placeholder="Código de Barra Aquí" autocomplete="off" >
+				<input type="text" id="codebar" formControlName="codebar" class="codebar" placeholder="Código de Barra Aquí" autocomplete="off" >
 			</div>
 			<div class="input-field">
 				<input type="submit" value="Buscar">
 			</div>
-		</div>	
+		</div>
 		<div *ngIf="message" class="text-center text-orange">{{message}}</div>
 	</div>
 </form>
+
 
 <form *ngIf="item" class="normal-form" [formGroup]='form' (ngSubmit)="onSubmit(form)">
 	<div class="input-fields-zone">

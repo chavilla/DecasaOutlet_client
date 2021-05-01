@@ -1,43 +1,52 @@
 <div class="container-dashboard">
-	<app-spinner *ngIf="loading; else cards"></app-spinner>	
-	<ng-template #cards class="cards-zone-header">
-		<div class="cards-zone">
-			<div class="card borderBottomGreen">
-				<div class="icon-zone">
-					<i class="fas fa-couch text-green"></i>
-				</div>
-				<div class="data-zone">
-					<p><span>{{ statistics.salesToday | currency:'USD' }}</span></p>
-					<h3>Ventas Día de Hoy</h3>
-				</div>
-			</div>
-			<div class="card borderBottomBlue">
-				<div class="icon-zone">
-					<i class="fas fa-dolly-flatbed text-blue"></i>
-				</div>
-				<div class="data-zone">
-					<p><span>{{ statistics.salesMonth | currency:'USD' }}</span></p>
-					<h3>Ventas Mes Actual</h3>
-				</div>
-			</div>
-			<div class="card borderBottomYellow">
-				<div class="icon-zone">
-					<i class="fab fa-product-hunt text-yellow"></i>
-				</div>
-				<div class="data-zone">
-					<p><span>{{ statistics.products }}</span></p>
-					<h3>Productos Existentes</h3>
-				</div>
-			</div>
-			<div class="card borderBottomRed">
-				<div class="icon-zone">
-					<i class="fas fa-male text-red"></i>
-				</div>
-				<div class="data-zone">
-					<p><span>{{ statistics.clients }}</span></p>
-					<h3>Clientes Registrados</h3>
-				</div>
-			</div>
-		</div>
-	</ng-template>
+  <app-spinner *ngIf="loading; else cards"></app-spinner>
+  <ng-template #cards class="cards-zone-header">
+    <div class="cards-zone">
+      <div class="card borderBottomGreen">
+        <div class="icon-zone">
+          <i class="fas fa-couch text-green"></i>
+        </div>
+        <div class="data-zone">
+          <p><span>{{ statistics.salesLastMonth | currency:'USD' }}</span></p>
+          <h3>Ventas Mes Anterior</h3>
+        </div>
+      </div>
+      <div class="card borderBottomBlue">
+        <div class="icon-zone">
+          <i class="fas fa-dolly-flatbed text-blue"></i>
+        </div>
+        <div class="data-zone">
+          <p><span>{{ statistics.salesMonth | currency:'USD' }}</span></p>
+          <h3>Ventas Mes Actual</h3>
+        </div>
+      </div>
+      <div class="card borderBottomGreen">
+        <div class="icon-zone">
+          <i class="fas fa-couch text-green"></i>
+        </div>
+        <div class="data-zone">
+          <p><span>{{ statistics.salesToday | currency:'USD' }}</span></p>
+          <h3>Ventas Día de Hoy</h3>
+        </div>
+      </div>
+      <div class="card borderBottomYellow">
+        <div class="icon-zone">
+          <i class="fab fa-product-hunt text-yellow"></i>
+        </div>
+        <div class="data-zone">
+          <p><span>{{ statistics.products }}</span></p>
+          <h3>Productos Existentes</h3>
+        </div>
+      </div>
+      <div class="card borderBottomRed">
+        <div class="icon-zone">
+          <i class="fas fa-male text-red"></i>
+        </div>
+        <div class="data-zone">
+          <p><span>{{ statistics.clients }}</span></p>
+          <h3>Clientes Registrados</h3>
+        </div>
+      </div>
+    </div>
+  </ng-template>
 </div>

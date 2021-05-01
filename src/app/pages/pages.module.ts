@@ -18,7 +18,7 @@ import { ProductUpdateComponent } from './products/product-update/product-update
 import { UserAddComponent } from './users/user-add/user-add.component';
 import { UserStoreComponent } from './users/user-store/user-store.component';
 import { UserUpdateComponent } from './users/user-update/user-update.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PagesComponent } from './pages.component';
 import { SharedModule } from '../shared/shared.module';

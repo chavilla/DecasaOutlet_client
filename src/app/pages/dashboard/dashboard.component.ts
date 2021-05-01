@@ -10,6 +10,7 @@ interface DATA_STATISTICS {
   products: number,
   salesMonth: number,
   salesToday: number,
+  salesLastMonth: number,
   clients: number,
 };
 

@@ -16,6 +16,7 @@ import { ProductService } from 'src/app/services/product-service.service';
 export class DetailAddComponent implements OnInit {
 
   form: FormGroup;
+  formGetProduct: FormGroup;
   detail: DetailModel;
   details: Array<DetailModel> =[];
   message: string;
@@ -32,6 +33,7 @@ export class DetailAddComponent implements OnInit {
     private route:Router,
   ) {
     this.form = this.detailService.form;
+    this.formGetProduct = this.detailService.formGetProduct;
   }
 
   ngOnInit():void {
@@ -51,13 +53,13 @@ export class DetailAddComponent implements OnInit {
   }
 
   //validate the codebar is not empty
-  getCodebar(code: object) {
-    let codebar = code.toString();
+  getCodebar(formGetProduct:FormGroup) {
+    let { codebar }=formGetProduct.value;
     if (codebar.trim() === '') {
       alert('Debes ingresar un código');
       return;
     }
-    this.getProductByCodebar(codebar)
+    this.getProductByCodebar(codebar);
   }
 
   //if the codebar is not empty, get the product
@@ -73,7 +75,7 @@ export class DetailAddComponent implements OnInit {
           this.message = 'Producto No encontrado';
         }
         else {
-          
+
           this.loading = false;
           this.message = null;
 
@@ -103,7 +105,7 @@ export class DetailAddComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup) {
-    
+
     //set priceTotalsale
     this.form.controls['priceTotalSale'].setValue(form.value.amount * form.value.priceTotal);
     const { id, stock, amount, priceTotal, priceTotalSale, description, codebar, tax, reference } = this.form.value;
@@ -143,6 +145,6 @@ export class DetailAddComponent implements OnInit {
   removeItem($event:DetailModel){
     let item = this.details.indexOf($event);
     this.details.splice(item,1);
-    
+
   }
 }
