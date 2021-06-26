@@ -35,14 +35,14 @@ export class UserAddComponent extends NotificationHelper implements OnInit {
 
   saveUser(form: FormGroup, messageDialog: HTMLElement) {
 
-    if(form.value.userPassword !== form.value.userPasswordRepeat) {
+    if(form.value.password !== form.value.passwordRepeat) {
       alert('Las contraseñas no coinciden');
       return;
     }
 
     // Destructuring to the components
-    const { userName, userEmail, userPassword } = form.value;
-    this.user = new UserModel(userName, userEmail, userPassword);
+    const { name, email, password } = form.value;
+    this.user = new UserModel(name, email, password);
 
     this.userSevice.saveUserService(this.user).subscribe(
       res => {

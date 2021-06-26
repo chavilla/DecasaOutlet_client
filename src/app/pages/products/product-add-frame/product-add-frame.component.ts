@@ -20,7 +20,7 @@ export class ProductAddFrameComponent extends NotificationHelper implements OnIn
   private product: ProductModel;
   public categories: Array<categoryModel>;
   public redirect:RedirectionHelper;
-  
+
   constructor(
     private productService: ProductService,
     private categoryService: CategoryService,
@@ -34,12 +34,12 @@ export class ProductAddFrameComponent extends NotificationHelper implements OnIn
   ngOnInit(): void {
       this.form =this.productService.form;
       this.productService.initializeFormGroup();
-      this.getCategories(); 
+      this.getCategories();
   }
 
   public setFormBuilder() {
   }
-    
+
   public getCategories(): void {
     this.categoryService.getIdAndNameCategories().subscribe(
       res => this.categories = res[0],
@@ -61,17 +61,17 @@ export class ProductAddFrameComponent extends NotificationHelper implements OnIn
     this.productService.addProductService(this.product).subscribe(
       res => {
         this.toggleElement(this.render, messageDialog, res.msg, 'success');
-        this.form.reset();
+        this.productService.initializeFormGroup();
       },
       err => {
         console.log(err);
-        
+
         if(err.status === 401) {
           this.redirect = new RedirectionHelper(this.loginService,this.route,err);
         }
         this.toggleElement(this.render, messageDialog, err.error.msg, 'failed')
       }
-        
+
     )
   } // end saveProduct
 

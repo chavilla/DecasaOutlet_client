@@ -10,7 +10,7 @@ interface DATA_STATISTICS {
   products: number,
   salesMonth: number,
   salesToday: number,
-  salesLastMonth: number,
+ /*  salesLastMonth: number, */
   clients: number,
 };
 
@@ -33,6 +33,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getStatistics().then( (res: DATA_STATISTICS) => {
+      console.info(res);
+
       this.loading = false;
       this.statistics = res;
     }).catch( err => {

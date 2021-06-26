@@ -62,7 +62,7 @@ export class DetailStoreComponent implements OnDestroy, OnInit {
 
   addInvoice(details: Array<DetailModel>, form: FormGroup) {
 
-    let totalToPay = this.getTotalToPay();    
+    let totalToPay = this.getTotalToPay();
     //activate the contol number_invoice
     form.get('invoice_number').enable();
 
@@ -78,7 +78,7 @@ export class DetailStoreComponent implements OnDestroy, OnInit {
       totalToPay,
       ...form.value,
     }
-    
+
     this.detailService.saveInvoiceService(data).subscribe(res => {
       alert(res);
       this.form.reset();
@@ -86,7 +86,7 @@ export class DetailStoreComponent implements OnDestroy, OnInit {
     },
       err => {
         console.log(err);
-        
+
         if (err.status === 401) {
           this.redirect = new RedirectionHelper(this.loginService, this.route, err);
         }
@@ -103,13 +103,13 @@ export class DetailStoreComponent implements OnDestroy, OnInit {
     })
   }
 
-  parseInvoiceNumber(){ 
+  parseInvoiceNumber(){
 
     let numInvoice=parseInt(this.invoice_number);
     let numInvString : string;
 
     if (numInvoice < 10) {
-      numInvString= `000${numInvoice+1}`; 
+      numInvString= `000${numInvoice+1}`;
     }
 
     else if( numInvoice >= 10 && numInvoice < 100 ) {
@@ -123,9 +123,9 @@ export class DetailStoreComponent implements OnDestroy, OnInit {
     else {
       numInvString = `${numInvoice}`;
     }
-    
+
     this.form.controls['invoice_number'].setValue(numInvString);
     this.form.get('invoice_number').disable();
-    
+
   }
 }
