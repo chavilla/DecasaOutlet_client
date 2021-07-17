@@ -5,5 +5,6 @@ export class UserModel {
 		public password:string,
 		public active?:number,
 		public id?:number,
+		public role?:string,
 	){}
 }

@@ -41,8 +41,13 @@ export class UserService {
     return this._http.get(`${this.baseUrl}/user`);
   }
 
-  updateUserService(user:UserModel): Observable<any> {
-    return this._http.put(`${this.baseUrl}/user`, user);
+  updateUserService(user:UserModel, id): Observable<any> {
+    let data_to_backend = {
+      ...user,
+      id
+    }
+    
+    return this._http.put(`${this.baseUrl}/user`, data_to_backend);
   }
 
   // form constrols

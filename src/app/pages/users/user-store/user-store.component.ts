@@ -58,22 +58,30 @@ export class UserStoreComponent implements OnInit {
   }
 
   onUpdate(user:UserModel) {
-
-  let userToUpdate =_.omit(user, ['active', 'role']);
+   
+   let userToUpdate =_.omit(user, ['active', 'role']);
 
     let dialogRef = this.dialog.open(UserUpdateComponent, {
-      minWidth: 900,
+      minWidth: 300,
+      hasBackdrop: true,
+      panelClass: 'dialog-responsive',
+      autoFocus: true,
       data: { ...userToUpdate }
     });
 
     dialogRef.afterClosed().subscribe((res:UserModel[])=> {
-      //this.clientService.updateProductOnView(this.dataSource.data, res);
-      //this.refresh();
+      this.refresh();
     })
   }
 
   onSetRole(user:UserModel) {
-    console.info('Hola')
+    const role = localStorage.getItem('role');
+    if (role !== 'admin') {
+      alert("No tienes permiso para realizar esta acción"); return;
+    }
+    else {
+      alert('adelante');
+    }
   }
 
   applyFilter(event: Event) {
@@ -83,5 +91,15 @@ export class UserStoreComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  refresh() {
+    // Assign the data to the data source for the table to render
+    this.getUsers().then(res => {
+      this.loading = false;
+      this.dataSource = new MatTableDataSource(res[0]);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
   }
 }

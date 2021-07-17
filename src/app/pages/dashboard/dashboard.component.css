@@ -31,6 +31,11 @@
   width: 90%;
 }
 
+.card:hover {
+  transform: scale(1.1);
+  transition: transform .2s ease-out;
+}
+
 .card p {
   color: var(--textGrayColor);
   font-size: 1.2rem;

@@ -6,6 +6,7 @@ import { LoginService } from 'src/app/services/login.service';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { UserModel } from 'src/app/models/User.model';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-user-update',
@@ -28,12 +29,13 @@ export class UserUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.userService.formToUpdate;
-    this.userService.populateFormToUpdate(this.data);
+    let data_to_form = _.omit(this.data, 'id');
+    this.userService.populateFormToUpdate(data_to_form);
   }
 
   //update the client
   onSubmit(){
-    this.userService.updateUserService(this.form.value).subscribe( 
+    this.userService.updateUserService(this.form.value, this.data.id).subscribe( 
       res => {
         this.dialog.close(this.form.value);
       },
