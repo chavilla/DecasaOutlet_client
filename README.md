@@ -30,7 +30,7 @@ Para todas las versiones disponibles, mira los [tags en este repositorio](https:
 
 ## Autores ✒️
 
-* **Jesús Charris** - *Análisis y pogramación* - [chavilla](https://github.com/chavilla)
+* **Jesús Charris** - *Análisis y programación* - [chavilla](https://github.com/chavilla)
 
 ## Licencia 📄
 
