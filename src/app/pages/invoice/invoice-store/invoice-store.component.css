@@ -1,0 +1,10 @@
+.btn-pdf {
+  background-color: #18A0FB;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  height: 100%;
+  padding: 8px 0;
+  width: 100%;
+}

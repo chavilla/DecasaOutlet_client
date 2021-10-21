@@ -7,6 +7,10 @@ import { RedirectionHelper } from 'src/app/helpers/redirection.helper';
 import { InvoiceModel } from 'src/app/models/Invoice-model';
 import { InvoiceService } from 'src/app/services/invoice.service';
 import { LoginService } from 'src/app/services/login.service';
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+import { logo_pdf } from './image';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
   selector: 'app-invoice-store',
@@ -20,7 +24,7 @@ export class InvoiceStoreComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   dataSource: MatTableDataSource<InvoiceModel>;
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['invoice','clientName','clientLastName', 'seller', 'created_at'];
+  displayedColumns = ['invoice','clientName','clientLastName', 'seller', 'created_at', 'setPDF'];
   loading: boolean = true;
   redirect: RedirectionHelper;
 
@@ -46,7 +50,7 @@ export class InvoiceStoreComponent implements OnInit {
 
   getInvoices() {
     return new Promise((resolve,reject) =>{
-      this.invoiceService.getInvoicesService().subscribe( 
+      this.invoiceService.getInvoicesService().subscribe(
         res => {
           resolve(res);
         }, err =>{
@@ -68,4 +72,48 @@ export class InvoiceStoreComponent implements OnInit {
     return dateInvoice.substring(0,10);
   }
 
+  onClickPDF(row) {
+
+    const { data } = row;
+    const { invoice } = data[0];
+
+     /* {
+      "invoice": "0001",
+      "clientName": "Andrea",
+      "clientLastName": "Valdez",
+      "seller": "Jesús",
+      "created_at": "2021-06-26 22:56:43"
+  } */
+
+    const pdfDefinitions : any = {
+        content: [
+          {
+            columns: [
+              {
+                // auto-sized columns have their widths based on their content
+                stack: [`Factura de Venta ${invoice}`, 'Decasa Outlet USA', 'Calle Rafael Eyseric' ],
+              },
+              {
+                image: logo_pdf,
+                style: ['logoStyle']
+              },
+            ],
+          },
+        ],
+        styles: {
+          header: {
+            fontSize: 10,
+            bold: true
+          },
+          logoStyle: {
+            alignment: 'right'
+          }
+        }
+    };
+
+    const pdf = pdfMake.createPdf(pdfDefinitions);
+
+    pdf.open();
+
+  }
 }
