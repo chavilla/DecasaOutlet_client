@@ -1,0 +1,23 @@
+.cdk-overlay-pane {
+    max-width: 95% !important;
+    max-height: 95% !important;
+}
+
+.table-list-content {
+    padding-top: 10px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.mat-elevation-z8 {
+    overflow: hidden;
+    margin: 0;
+}
+
+.table.mat-table {
+    border-spacing: revert !important;
+}
+
+.full-width-table {
+    width: 99% !important;
+}
