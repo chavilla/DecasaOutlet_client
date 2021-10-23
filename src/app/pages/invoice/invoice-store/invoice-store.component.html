@@ -44,7 +44,7 @@
     <!-- setRole Column -->
 			<ng-container matColumnDef="setPDF">
 				<th mat-header-cell *matHeaderCellDef mat-sort-header>Acción</th>
-				<td mat-cell  *matCellDef="let row"><button class='btn-pdf' type="button" (click)="onClickPDF(dataSource)">Ver pdf</button></td>
+				<td mat-cell (click)="onClickPDF(row)" *matCellDef="let row"><button class='btn-pdf' type="button">Ver pdf</button></td>
 			</ng-container>
 
 		<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

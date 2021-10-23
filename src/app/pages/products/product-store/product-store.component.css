@@ -8,7 +8,13 @@ table {
 	font-size: 14px;
 	width: 100%;
   }
-  
-  td, th {
-	width: 25%;
+
+  .mat-sort-header-container {
+	display: flex;
+	justify-content: flex-end;  
+  }
+
+  td {
+	  text-align: right;
+	  padding-right: 40px !important;
   }

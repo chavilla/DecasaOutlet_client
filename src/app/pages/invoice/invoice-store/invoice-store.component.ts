@@ -72,11 +72,11 @@ export class InvoiceStoreComponent implements OnInit {
     return dateInvoice.substring(0,10);
   }
 
-  onClickPDF(row) {
+  onClickPDF(invoice) {
 
-    const { data } = row;
-    const { invoice } = data[0];
-
+    const { clientName, clientLastName } = invoice;
+    console.log(invoice);
+    
      /* {
       "invoice": "0001",
       "clientName": "Andrea",
@@ -91,7 +91,7 @@ export class InvoiceStoreComponent implements OnInit {
             columns: [
               {
                 // auto-sized columns have their widths based on their content
-                stack: [`Factura de Venta ${invoice}`, 'Decasa Outlet USA', 'Calle Rafael Eyseric' ],
+                stack: [`Factura de Venta ${invoice.invoice}`, 'Decasa Outlet USA', 'Calle Rafael Eyseric' ],
               },
               {
                 image: logo_pdf,
@@ -99,11 +99,15 @@ export class InvoiceStoreComponent implements OnInit {
               },
             ],
           },
+          { text: `Facturar a ${clientName} ${clientLastName}` }
         ],
         styles: {
           header: {
             fontSize: 10,
             bold: true
+          },
+          title: {
+            fontSize: 24
           },
           logoStyle: {
             alignment: 'right'
