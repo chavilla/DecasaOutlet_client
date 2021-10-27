@@ -86,7 +86,13 @@
   background-color: var(--grayHeaderColor);
   box-shadow: 5px 5px;
   display: grid;
-  grid-template-columns: 65% 35%;
+  grid-template-columns: 75% 25%;
+}
+
+@media(min-width:768px) {
+  .toolbar-header {
+    grid-template-columns: 70% 15% 15% !important;
+  }  
 }
 
 .mat-icon {

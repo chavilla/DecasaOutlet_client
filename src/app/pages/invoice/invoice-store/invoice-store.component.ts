@@ -72,17 +72,30 @@ export class InvoiceStoreComponent implements OnInit {
     return dateInvoice.substring(0,10);
   }
 
-  onClickPDF(invoice) {
+  onClickPDF(invoice_object) {
 
-    const { clientName, clientLastName } = invoice;
-    console.log(invoice);
+    const { clientName, clientLastName, created_at, clientRuc, phone, email, invoice} = invoice_object;
+    console.info(invoice_object);
+    const date_formatted = created_at.split(' ');
     
-     /* {
+   /*  {
+      "id": 13,
       "invoice": "0001",
-      "clientName": "Andrea",
-      "clientLastName": "Valdez",
+      "clientName": "Pedro",
+      "clientLastName": "Tabarez",
+      "clientRuc": "3984217",
+      "phone": "6746-6265",
+      "email": "pedrotab05@gmail.com",
       "seller": "Jesús",
-      "created_at": "2021-06-26 22:56:43"
+      "created_at": "2021-10-23 21:31:49",
+      "details": [
+          {
+              "description": "Trípode Celular",
+              "amount": 1,
+              "priceUnit": 13.67,
+              "priceTotal": 13.67
+          }
+      ]
   } */
 
     const pdfDefinitions : any = {
@@ -90,27 +103,58 @@ export class InvoiceStoreComponent implements OnInit {
           {
             columns: [
               {
-                // auto-sized columns have their widths based on their content
-                stack: [`Factura de Venta ${invoice.invoice}`, 'Decasa Outlet USA', 'Calle Rafael Eyseric' ],
-              },
-              {
                 image: logo_pdf,
                 style: ['logoStyle']
               },
+              {
+                // auto-sized columns have their widths based on their content
+                stack: ['\tFactura de Venta'],
+                style: ['title'],
+              },
             ],
           },
-          { text: `Facturar a ${clientName} ${clientLastName}` }
+          {
+            columns: [
+              {
+                stack: ['\n\t\t\t Dirección: Calle Rafael Eyseric', 'Ciudad: Penonomé', 'Teléfono: 9086765'],
+                style: ['header']
+              }, 
+              {
+                stack: [ `\n\t\t\t Factura No. ${invoice}`, `Fecha: ${date_formatted[0]}`],
+                style: ['header_right'],
+              }
+            ]
+          },
+          { text: '\n\n' },
+          { 
+            columns: [
+              {
+                stack: [`FACTURAR A:`,`${clientName} ${clientLastName}`, `RUC: ${clientRuc}`,`Teléfono: ${phone}`, `Email: ${email}`],
+                style: ['header']
+              },
+              {
+                stack: ['POR: ', 'Venta de mercancía tipo Outlet'],
+                style: ['header_right']
+              }
+            ]}
         ],
         styles: {
           header: {
-            fontSize: 10,
-            bold: true
+            fontSize: 11,
+            bold: false
+          },
+          header_right: {
+            fontSize: 11,
+            bold: false,
+            margin: [65, 0, 0, 0],
           },
           title: {
-            fontSize: 24
+            fontSize: 24,
+            aligment: 'right',
+            margin: [65, 0, 0, 0],
           },
           logoStyle: {
-            alignment: 'right'
+            alignment: 'left'
           }
         }
     };
