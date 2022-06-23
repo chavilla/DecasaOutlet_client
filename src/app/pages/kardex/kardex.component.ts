@@ -9,20 +9,19 @@ import { LoginService } from 'src/app/services/login.service';
 @Component({
   selector: 'app-kardex',
   templateUrl: './kardex.component.html',
-  styleUrls: ['./kardex.component.css']
+  styleUrls: ['./kardex.component.css'],
 })
 export class KardexComponent implements OnDestroy {
-  
-  kardexes:Array<KardexModel>=[];
-  form:FormGroup;
-  loading:boolean;
-  redirect:RedirectionHelper;
+  kardexes: Array<KardexModel> = [];
+  form: FormGroup;
+  loading: boolean;
+  redirect: RedirectionHelper;
 
   constructor(
-    private kardexService:KardexService,
-    private loginService:LoginService,
-    private route:Router,
-  ) { 
+    private kardexService: KardexService,
+    private loginService: LoginService,
+    private route: Router
+  ) {
     this.form = this.kardexService.form;
   }
 
@@ -30,34 +29,39 @@ export class KardexComponent implements OnDestroy {
     this.form.reset();
   }
 
-  onSubmit(form:FormGroup) {
+  onSubmit(form: FormGroup) {
     this.loading = true;
-    this.getKardexes(form).then( res =>{
-      this.kardexes.push(res[0]);
-      this.loading = false;
-    }).catch(err => {  
-      if(err.status===401) {
-        this.redirect = new RedirectionHelper(this.loginService,this.route, err);
-      }  
-
-      
-
-    });
+    this.getKardexes(form)
+      .then((res) => {
+        this.kardexes.push(res[0]);
+        this.loading = false;
+      })
+      .catch((err) => {
+        if (err.status === 401) {
+          this.redirect = new RedirectionHelper(
+            this.loginService,
+            this.route,
+            err
+          );
+        }
+      });
   }
 
-  getKardexes(form:FormGroup){ 
-    return new Promise((resolve,reject) =>{
-      this.kardexService.getKardexByCodeBar(form.value.codebar).subscribe( res => {        
-        if(res.length===0){
-          resolve(res)
+  getKardexes(form: FormGroup) {
+    return new Promise((resolve, reject) => {
+      this.kardexService.getKardexByCodeBar(form.value.codebar).subscribe(
+        (res) => {
+          if (res.length === 0) {
+            resolve(res);
+          } else {
+            this.kardexService.kardexes = res;
+            resolve(this.kardexService.kardexes);
+          }
+        },
+        (err) => {
+          reject(err);
         }
-        else {
-          this.kardexService.kardexes = res;
-          resolve(this.kardexService.kardexes);
-        }  
-      },err =>{
-        reject(err);
-      });
+      );
     });
   }
 }
