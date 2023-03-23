@@ -41,4 +41,4 @@ Este proyecto está bajo la Licencia () - mira el archivo [LICENSE.md](LICENSE.m
 * Este proyecto ha sido posible a los conocimientos adquiridos en los cursos de Angular Avanzado de Fernando Herrera. Encuéntralo en (https://www.udemy.com/course/angular-avanzado-fernando-herrera). 
 
 ---
-⌨️ con mucho gusto por [chavilla](https://github.com/chavilla).
+
